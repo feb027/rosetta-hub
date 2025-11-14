@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import type { Tag } from '../types/problem';
 
 interface TagFilterProps {
@@ -6,7 +7,7 @@ interface TagFilterProps {
   onToggle: (tag: Tag) => void;
 }
 
-export default function TagFilter({ availableTags, selectedTags, onToggle }: TagFilterProps) {
+function TagFilter({ availableTags, selectedTags, onToggle }: TagFilterProps) {
   return (
     <div role="group" aria-label="Filter by tags" className="w-full">
       <div className="flex flex-wrap gap-2">
@@ -39,3 +40,5 @@ export default function TagFilter({ availableTags, selectedTags, onToggle }: Tag
     </div>
   );
 }
+
+export default memo(TagFilter);

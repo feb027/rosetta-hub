@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { X, ChevronDown, ChevronUp } from 'lucide-react';
 import SearchInput from './SearchInput';
 import DifficultyFilter from './DifficultyFilter';
@@ -29,7 +29,7 @@ const availableTags: Tag[] = [
   'greedy',
 ];
 
-export default function HubFilters({
+function HubFilters({
   searchTerm,
   selectedDifficulty,
   selectedTags,
@@ -100,3 +100,5 @@ export default function HubFilters({
     </div>
   );
 }
+
+export default memo(HubFilters);

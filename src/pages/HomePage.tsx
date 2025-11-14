@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useCallback } from 'react';
 import HubFilters from '../components/HubFilters';
 import ProblemGrid from '../components/ProblemGrid';
 import type { Difficulty, Tag } from '../types/problem';
@@ -27,21 +27,24 @@ export default function HomePage() {
     updateFilters(debouncedSearchTerm, difficulty, selectedTags);
   }, [debouncedSearchTerm, difficulty, selectedTags, updateFilters]);
 
-  const handleTagToggle = (tag: Tag) => {
-    const newTags = new Set(selectedTags);
-    if (newTags.has(tag)) {
-      newTags.delete(tag);
-    } else {
-      newTags.add(tag);
-    }
-    setSelectedTags(newTags);
-  };
+  // Memoize handler functions to prevent unnecessary re-renders
+  const handleTagToggle = useCallback((tag: Tag) => {
+    setSelectedTags((prevTags) => {
+      const newTags = new Set(prevTags);
+      if (newTags.has(tag)) {
+        newTags.delete(tag);
+      } else {
+        newTags.add(tag);
+      }
+      return newTags;
+    });
+  }, []);
 
-  const handleClearFilters = () => {
+  const handleClearFilters = useCallback(() => {
     setSearchTerm('');
     setDifficulty('all');
     setSelectedTags(new Set());
-  };
+  }, []);
 
   const activeFilterCount = useMemo(() => {
     let count = 0;

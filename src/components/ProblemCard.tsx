@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import type { Difficulty, Tag } from '../types/problem';
@@ -10,7 +11,7 @@ interface ProblemCardProps {
   tags: Tag[];
 }
 
-export default function ProblemCard({ title, slug, difficulty, tags }: ProblemCardProps) {
+function ProblemCard({ title, slug, difficulty, tags }: ProblemCardProps) {
   return (
     <Link 
       to={`/visualizations/${slug}`} 
@@ -54,3 +55,5 @@ export default function ProblemCard({ title, slug, difficulty, tags }: ProblemCa
     </Link>
   );
 }
+
+export default memo(ProblemCard);

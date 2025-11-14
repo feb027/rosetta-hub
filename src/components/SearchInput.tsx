@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { Search, X } from 'lucide-react';
 
 interface SearchInputProps {
@@ -7,7 +7,7 @@ interface SearchInputProps {
   placeholder?: string;
 }
 
-export default function SearchInput({ 
+function SearchInput({ 
   value, 
   onChange, 
   placeholder = 'Search problems...' 
@@ -65,3 +65,5 @@ export default function SearchInput({
     </div>
   );
 }
+
+export default memo(SearchInput);

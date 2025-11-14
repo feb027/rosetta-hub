@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import type { Difficulty } from '../types/problem';
 import { DIFFICULTY_LABELS } from '../constants/colors';
 
@@ -8,7 +9,7 @@ interface DifficultyFilterProps {
 
 const options: Array<Difficulty | 'all'> = ['all', 'easy', 'medium', 'hard'];
 
-export default function DifficultyFilter({ selected, onChange }: DifficultyFilterProps) {
+function DifficultyFilter({ selected, onChange }: DifficultyFilterProps) {
   return (
     <fieldset className="w-full" aria-label="Filter by difficulty">
       <legend className="sr-only">Select difficulty level</legend>
@@ -50,3 +51,5 @@ export default function DifficultyFilter({ selected, onChange }: DifficultyFilte
     </fieldset>
   );
 }
+
+export default memo(DifficultyFilter);
