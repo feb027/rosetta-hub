@@ -39,7 +39,8 @@ export default function DifficultyFilter({ selected, onChange }: DifficultyFilte
                 value={option}
                 checked={isSelected}
                 onChange={() => onChange(option)}
-                className="sr-only"
+                className="sr-only focus:ring-2 focus:ring-cyan-400"
+                aria-label={`Filter by ${label} difficulty`}
               />
               {label}
             </label>

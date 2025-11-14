@@ -88,7 +88,7 @@ export default function HomePage() {
 
         {/* Results Count with Subtle Animation */}
         {problems.length > 0 && (
-          <div className="mb-6 text-center">
+          <div className="mb-6 text-center" aria-live="polite" aria-atomic="true">
             <p className="text-slate-400 text-sm">
               Showing{' '}
               <span className="text-cyan-400 font-semibold">

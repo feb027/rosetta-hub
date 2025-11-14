@@ -66,8 +66,8 @@ export default function HubFilters({
         {activeFilterCount > 0 && (
           <button
             onClick={onClearFilters}
-            aria-label={`Clear ${activeFilterCount} active filters`}
-            className="lg:w-auto flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-slate-700/50 hover:bg-slate-700 text-slate-300 hover:text-slate-100 border border-slate-600/50 hover:border-slate-500 transition-all duration-250 whitespace-nowrap"
+            aria-label={`Clear ${activeFilterCount} active ${activeFilterCount === 1 ? 'filter' : 'filters'}`}
+            className="lg:w-auto flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-slate-700/50 hover:bg-slate-700 text-slate-300 hover:text-slate-100 border border-slate-600/50 hover:border-slate-500 transition-all duration-250 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-900"
           >
             <X size={16} />
             <span className="text-sm">Clear ({activeFilterCount})</span>

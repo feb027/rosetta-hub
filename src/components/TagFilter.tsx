@@ -21,6 +21,7 @@ export default function TagFilter({ availableTags, selectedTags, onToggle }: Tag
                 px-4 py-2 rounded-lg
                 text-sm font-medium
                 border transition-all duration-250
+                focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-900
                 ${
                   isSelected
                     ? 'bg-cyan-500/20 text-cyan-400 border-cyan-500/50 glow-cyan'
@@ -28,6 +29,7 @@ export default function TagFilter({ availableTags, selectedTags, onToggle }: Tag
                 }
               `}
               aria-pressed={isSelected}
+              aria-label={`${isSelected ? 'Remove' : 'Add'} ${tag} filter`}
             >
               {tag}
             </button>

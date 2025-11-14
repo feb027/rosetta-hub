@@ -18,6 +18,14 @@ export default function SearchInput({
     onChange('');
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    // Clear search on Escape key
+    if (e.key === 'Escape' && value) {
+      handleClear();
+      e.preventDefault();
+    }
+  };
+
   return (
     <div className="relative w-full">
       {/* Search Icon */}
@@ -30,6 +38,7 @@ export default function SearchInput({
         type="search"
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        onKeyDown={handleKeyDown}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         placeholder={placeholder}
@@ -38,7 +47,7 @@ export default function SearchInput({
           w-full pl-12 pr-12 py-3 rounded-lg
           glass text-slate-100 placeholder-slate-400
           border transition-all duration-250
-          focus:outline-none focus:ring-2 focus:ring-cyan-400
+          focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-900
           ${isFocused ? 'border-cyan-500 glow-cyan' : 'border-slate-600/50'}
         `}
       />

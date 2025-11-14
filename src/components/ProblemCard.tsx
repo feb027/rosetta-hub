@@ -12,7 +12,11 @@ interface ProblemCardProps {
 
 export default function ProblemCard({ title, slug, difficulty, tags }: ProblemCardProps) {
   return (
-    <Link to={`/visualizations/${slug}`} className="block h-full w-full">
+    <Link 
+      to={`/visualizations/${slug}`} 
+      className="block h-full w-full"
+      aria-label={`View ${title} problem - ${DIFFICULTY_LABELS[difficulty]} difficulty`}
+    >
       <motion.div
         initial={{ scale: 1 }}
         whileHover={{
