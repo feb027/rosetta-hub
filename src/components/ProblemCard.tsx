@@ -61,14 +61,14 @@ function ProblemCard({ title, slug, difficulty, tags, createdAt, previewImage }:
         <div className="relative h-full flex flex-col">
           {/* Background Preview Image - BOTTOM LAYER */}
           {previewImage && (
-            <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 z-0 overflow-hidden">
               <img 
                 src={previewImage} 
                 alt="" 
-                className="w-full h-full object-cover rounded-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300"
-                onLoad={() => console.log('Image loaded successfully:', previewImage)}
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-contain object-center rounded-xl opacity-20 group-hover:opacity-40 transition-opacity duration-300 scale-90"
                 onError={(e) => {
-                  console.error('Failed to load preview image:', previewImage);
                   e.currentTarget.style.display = 'none';
                 }}
               />
@@ -159,18 +159,20 @@ function ProblemCard({ title, slug, difficulty, tags, createdAt, previewImage }:
       <Tooltip
         id={`preview-${slug}`}
         delayHide={0}
-        delayShow={100}
+        delayShow={300}
         className="!p-0 !bg-transparent !border-0 !shadow-2xl !opacity-100"
         style={{ zIndex: 9999 }}
       >
-        <div className="relative w-80 h-60 rounded-xl overflow-hidden border-2 border-cyan-500/50 shadow-2xl">
+        <div className="relative w-96 h-64 rounded-xl overflow-hidden border-2 border-cyan-500/50 shadow-2xl bg-slate-900">
           <img 
             src={previewImage} 
             alt={`Preview of ${title}`}
-            className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-contain object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 p-4">
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute bottom-0 left-0 right-0 p-4 pointer-events-none">
             <h3 className="text-white font-semibold text-lg">{title}</h3>
             <p className="text-slate-300 text-sm">{DIFFICULTY_LABELS[difficulty]} • Interactive Visualization</p>
           </div>
