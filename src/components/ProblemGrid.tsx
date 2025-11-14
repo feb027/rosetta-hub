@@ -75,6 +75,7 @@ export default function ProblemGrid({ problems, onClearFilters, isLoading = fals
               slug={problem.slug}
               difficulty={problem.difficulty}
               tags={problem.tags}
+              createdAt={problem.createdAt}
             />
           </motion.div>
         ))}
