@@ -14,6 +14,6 @@ Question: What state are the doors in after the last pass? Which are open, which
 
 Alternate: The only doors that remain open are those whose numbers are perfect squares. Why?`,
   rosettaCodeUrl: 'https://rosettacode.org/wiki/100_doors',
-  createdAt: '2024-01-15',
+  createdAt: '2025-11-14',
   previewImage: '/previews/100-doors.png',
 };

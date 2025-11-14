@@ -2,6 +2,77 @@ import { useState, useEffect, useRef } from 'react';
 import { Play, RotateCcw, Lightbulb, Trophy, Target, TrendingUp, Sparkles, Volume2, VolumeX, Delete } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
+// Safe expression evaluator without eval()
+function evaluateExpression(expr: string): number | null {
+  try {
+    const tokens = expr.match(/(\d+\.?\d*|[+\-*/()])/g);
+    if (!tokens) return null;
+
+    const values: number[] = [];
+    const ops: string[] = [];
+
+    const precedence: Record<string, number> = {
+      '+': 1,
+      '-': 1,
+      '*': 2,
+      '/': 2,
+    };
+
+    const applyOp = (op: string, b: number, a: number): number => {
+      switch (op) {
+        case '+': return a + b;
+        case '-': return a - b;
+        case '*': return a * b;
+        case '/': return b !== 0 ? a / b : NaN;
+        default: return NaN;
+      }
+    };
+
+    for (let i = 0; i < tokens.length; i++) {
+      const token = tokens[i];
+
+      if (token === ' ') continue;
+
+      if (!isNaN(Number(token))) {
+        values.push(Number(token));
+      } else if (token === '(') {
+        ops.push(token);
+      } else if (token === ')') {
+        while (ops.length > 0 && ops[ops.length - 1] !== '(') {
+          const op = ops.pop()!;
+          const b = values.pop()!;
+          const a = values.pop()!;
+          values.push(applyOp(op, b, a));
+        }
+        ops.pop(); // Remove '('
+      } else if (['+', '-', '*', '/'].includes(token)) {
+        while (
+          ops.length > 0 &&
+          ops[ops.length - 1] !== '(' &&
+          precedence[ops[ops.length - 1]] >= precedence[token]
+        ) {
+          const op = ops.pop()!;
+          const b = values.pop()!;
+          const a = values.pop()!;
+          values.push(applyOp(op, b, a));
+        }
+        ops.push(token);
+      }
+    }
+
+    while (ops.length > 0) {
+      const op = ops.pop()!;
+      const b = values.pop()!;
+      const a = values.pop()!;
+      values.push(applyOp(op, b, a));
+    }
+
+    return values.length === 1 ? values[0] : null;
+  } catch {
+    return null;
+  }
+}
+
 export default function TwentyFourGameVisualization() {
   const [digits, setDigits] = useState<number[]>([]);
   const [expression, setExpression] = useState('');
@@ -172,39 +243,40 @@ export default function TwentyFourGameVisualization() {
       return;
     }
 
-    try {
-      // Evaluate the expression safely
-      const evalResult = Function(`"use strict"; return (${expression})`)();
-      setResult(evalResult);
-      setAttempts(prev => prev + 1);
-
-      if (Math.abs(evalResult - 24) < 0.001) {
-        setMessage('🎉 Correct! You got 24!');
-        setWins(prev => prev + 1);
-        const newStreak = streak + 1;
-        setStreak(newStreak);
-        if (newStreak > bestStreak) {
-          setBestStreak(newStreak);
-        }
-        
-        // Play appropriate sound
-        if (newStreak > 1) {
-          playStreakSound();
-        } else {
-          playSuccessSound();
-        }
-        
-        setShowConfetti(true);
-        setHintLevel(0); // Reset hint level on success
-        setTimeout(() => setShowConfetti(false), 3000);
-      } else {
-        setMessage(`Not quite! Your expression equals ${evalResult.toFixed(2)}`);
-        setStreak(0);
-        playErrorSound();
-      }
-    } catch (error) {
+    const evalResult = evaluateExpression(expression);
+    
+    if (evalResult === null || isNaN(evalResult)) {
       setMessage('Invalid expression syntax');
       setResult(null);
+      playErrorSound();
+      return;
+    }
+
+    setResult(evalResult);
+    setAttempts(prev => prev + 1);
+
+    if (Math.abs(evalResult - 24) < 0.001) {
+      setMessage('🎉 Correct! You got 24!');
+      setWins(prev => prev + 1);
+      const newStreak = streak + 1;
+      setStreak(newStreak);
+      if (newStreak > bestStreak) {
+        setBestStreak(newStreak);
+      }
+      
+      // Play appropriate sound
+      if (newStreak > 1) {
+        playStreakSound();
+      } else {
+        playSuccessSound();
+      }
+      
+      setShowConfetti(true);
+      setHintLevel(0); // Reset hint level on success
+      setTimeout(() => setShowConfetti(false), 3000);
+    } else {
+      setMessage(`Not quite! Your expression equals ${evalResult.toFixed(2)}`);
+      setStreak(0);
       playErrorSound();
     }
   };

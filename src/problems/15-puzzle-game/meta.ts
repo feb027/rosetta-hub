@@ -18,6 +18,6 @@ Key features to implement:
 
 Note: Only half of all possible initial positions are solvable. A configuration is solvable if the number of inversions (tiles in wrong order) has the correct parity.`,
   rosettaCodeUrl: 'https://rosettacode.org/wiki/15_puzzle_game',
-  createdAt: '2025-01-14',
+  createdAt: '2025-11-14',
   previewImage: '/previews/15-puzzle-game.png'
 };

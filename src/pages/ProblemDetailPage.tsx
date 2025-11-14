@@ -10,6 +10,8 @@ import HundredPrisonersVisualization from '../components/visualizations/HundredP
 import FifteenPuzzleVisualization from '../components/visualizations/FifteenPuzzleVisualization';
 import TwentyOneGameVisualization from '../components/visualizations/TwentyOneGameVisualization';
 import TwentyFourGameVisualization from '../components/visualizations/TwentyFourGameVisualization';
+import TwentyFourGameSolverVisualization from '../components/visualizations/TwentyFourGameSolverVisualization';
+import FourRingsPuzzleVisualization from '../components/visualizations/FourRingsPuzzleVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -25,6 +27,7 @@ export default function ProblemDetailPage() {
     '15-puzzle-game': <FifteenPuzzleVisualization/>,
     '21-game': <TwentyOneGameVisualization />,
     '24-game': <TwentyFourGameVisualization />,
+    '24-game-solve': <TwentyFourGameSolverVisualization />,
   };
   
   // Find the problem by slug
