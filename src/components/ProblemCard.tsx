@@ -57,11 +57,15 @@ function ProblemCard({ title, slug, difficulty, tags, createdAt, previewImage }:
         <div className="relative h-full flex flex-col">
           {/* Background Preview Image */}
           {previewImage && (
-            <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
+            <div className="absolute inset-0 opacity-15 group-hover:opacity-30 transition-opacity duration-300 z-0">
               <img 
                 src={previewImage} 
                 alt="" 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover rounded-xl"
+                onError={(e) => {
+                  console.error('Failed to load preview image:', previewImage);
+                  e.currentTarget.style.display = 'none';
+                }}
               />
             </div>
           )}

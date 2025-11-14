@@ -63,7 +63,17 @@ function HubFilters({
   activeFilterCount,
 }: HubFiltersProps) {
   const [isTagsExpanded, setIsTagsExpanded] = useState(false);
-  const [isCompact, setIsCompact] = useState(false);
+  
+  // Load compact state from localStorage
+  const [isCompact, setIsCompact] = useState(() => {
+    const saved = localStorage.getItem('filters-compact');
+    return saved === 'true';
+  });
+
+  // Save compact state to localStorage
+  useEffect(() => {
+    localStorage.setItem('filters-compact', isCompact.toString());
+  }, [isCompact]);
 
   // Keyboard shortcuts
   useEffect(() => {
