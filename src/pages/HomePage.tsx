@@ -4,7 +4,7 @@ import ProblemGrid from '../components/ProblemGrid';
 import type { Difficulty, Tag, ProblemMeta } from '../types/problem';
 import { useProblems } from '../hooks/useProblems';
 import { useDebounce } from '../hooks/useDebounce';
-import { filterProblems } from '../utils/filterProblems';
+import { filterProblems, type TagFilterMode } from '../utils/filterProblems';
 import { useURLState } from '../hooks/useURLState';
 
 export default function HomePage() {
@@ -18,6 +18,7 @@ export default function HomePage() {
   const [searchTerm, setSearchTerm] = useState(urlSearchTerm);
   const [difficulty, setDifficulty] = useState<Difficulty | 'all'>(urlDifficulty);
   const [selectedTags, setSelectedTags] = useState<Set<Tag>>(urlSelectedTags);
+  const [tagFilterMode, setTagFilterMode] = useState<TagFilterMode>('OR');
   const [sortBy, setSortBy] = useState<SortOption>('difficulty-asc');
 
   // Debounce search term for better performance
@@ -45,6 +46,7 @@ export default function HomePage() {
     setSearchTerm('');
     setDifficulty('all');
     setSelectedTags(new Set());
+    setTagFilterMode('OR');
     setSortBy('difficulty-asc');
   }, []);
 
@@ -90,9 +92,9 @@ export default function HomePage() {
 
   // Filter and sort problems
   const filteredProblems = useMemo(() => {
-    const filtered = filterProblems(problems, debouncedSearchTerm, difficulty, selectedTags);
+    const filtered = filterProblems(problems, debouncedSearchTerm, difficulty, selectedTags, tagFilterMode);
     return sortProblems(filtered);
-  }, [problems, debouncedSearchTerm, difficulty, selectedTags, sortProblems]);
+  }, [problems, debouncedSearchTerm, difficulty, selectedTags, tagFilterMode, sortProblems]);
 
   return (
     <div className="min-h-screen p-4 md:p-6 lg:p-8">
@@ -116,10 +118,12 @@ export default function HomePage() {
             searchTerm={searchTerm}
             selectedDifficulty={difficulty}
             selectedTags={selectedTags}
+            tagFilterMode={tagFilterMode}
             sortBy={sortBy}
             onSearchChange={setSearchTerm}
             onDifficultyChange={setDifficulty}
             onTagToggle={handleTagToggle}
+            onTagFilterModeChange={setTagFilterMode}
             onSortChange={setSortBy}
             onClearFilters={handleClearFilters}
             activeFilterCount={activeFilterCount}

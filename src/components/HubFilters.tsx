@@ -4,6 +4,7 @@ import SearchInput from './SearchInput';
 import DifficultyFilter from './DifficultyFilter';
 import TagFilter from './TagFilter';
 import type { Difficulty, Tag } from '../types/problem';
+import type { TagFilterMode } from '../utils/filterProblems';
 
 export type SortOption = 'title-asc' | 'title-desc' | 'difficulty-asc' | 'difficulty-desc' | 'newest' | 'oldest';
 
@@ -11,10 +12,12 @@ interface HubFiltersProps {
   searchTerm: string;
   selectedDifficulty: Difficulty | 'all';
   selectedTags: Set<Tag>;
+  tagFilterMode: TagFilterMode;
   sortBy: SortOption;
   onSearchChange: (value: string) => void;
   onDifficultyChange: (value: Difficulty | 'all') => void;
   onTagToggle: (tag: Tag) => void;
+  onTagFilterModeChange: (mode: TagFilterMode) => void;
   onSortChange: (value: SortOption) => void;
   onClearFilters: () => void;
   activeFilterCount: number;
@@ -46,10 +49,12 @@ function HubFilters({
   searchTerm,
   selectedDifficulty,
   selectedTags,
+  tagFilterMode,
   sortBy,
   onSearchChange,
   onDifficultyChange,
   onTagToggle,
+  onTagFilterModeChange,
   onSortChange,
   onClearFilters,
   activeFilterCount,
@@ -67,8 +72,8 @@ function HubFilters({
         />
       </div>
 
-      {/* Second Row: Difficulty + Sort + Clear (fixed layout) */}
-      <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
+      {/* Second Row: Difficulty + Sort (stacked on mobile, side by side on tablet+) */}
+      <div className="flex flex-col md:flex-row gap-3 mb-3">
         {/* Difficulty Filter */}
         <div className="flex-shrink-0">
           <DifficultyFilter
@@ -80,11 +85,11 @@ function HubFilters({
         {/* Sort Dropdown */}
         <div className="flex-shrink-0 relative">
           <div className="flex items-center gap-2">
-            <ArrowUpDown size={16} className="text-slate-400" />
+            <ArrowUpDown size={16} className="text-slate-400 flex-shrink-0" />
             <select
               value={sortBy}
               onChange={(e) => onSortChange(e.target.value as SortOption)}
-              className="glass px-3 py-2 pr-8 rounded-lg text-sm text-slate-300 border border-slate-600/50 hover:border-slate-500 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 transition-all cursor-pointer appearance-none bg-slate-800/50"
+              className="glass w-full px-3 py-2 pr-8 rounded-lg text-sm text-slate-300 border border-slate-600/50 hover:border-slate-500 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 transition-all cursor-pointer appearance-none bg-slate-800/50"
               aria-label="Sort problems by"
             >
               {sortOptions.map((option) => (
@@ -96,52 +101,89 @@ function HubFilters({
             <ChevronDown size={14} className="absolute right-2 text-slate-400 pointer-events-none" />
           </div>
         </div>
+      </div>
 
-        {/* Spacer to push clear button to the right */}
-        <div className="flex-1 min-w-0" />
+      {/* Third Row: Clear Button (full width on mobile) */}
+      {activeFilterCount > 0 && (
+        <div className="mb-3">
+          <button
+            onClick={onClearFilters}
+            aria-label={`Clear ${activeFilterCount} active ${activeFilterCount === 1 ? 'filter' : 'filters'}`}
+            className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-red-500/20 hover:bg-red-500/30 text-red-400 hover:text-red-300 border border-red-500/30 hover:border-red-500/50 transition-all duration-250 focus:outline-none focus:ring-2 focus:ring-red-400"
+          >
+            <X size={16} />
+            <span className="text-sm font-medium">Clear All Filters ({activeFilterCount})</span>
+          </button>
+        </div>
+      )}
 
-        {/* Clear Filters Button - always reserve space */}
-        <div className="flex-shrink-0 w-full sm:w-auto">
-          {activeFilterCount > 0 ? (
-            <button
-              onClick={onClearFilters}
-              aria-label={`Clear ${activeFilterCount} active ${activeFilterCount === 1 ? 'filter' : 'filters'}`}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-red-500/20 hover:bg-red-500/30 text-red-400 hover:text-red-300 border border-red-500/30 hover:border-red-500/50 transition-all duration-250 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-slate-900"
-            >
-              <X size={16} />
-              <span className="text-sm font-medium">Clear ({activeFilterCount})</span>
-            </button>
-          ) : (
-            <div className="w-full sm:w-auto h-10 opacity-0 pointer-events-none">
-              {/* Invisible placeholder to maintain layout */}
-              <button className="px-4 py-2 text-sm whitespace-nowrap">
-                Clear (0)
+      {/* Tags Section - Improved */}
+      <div className="mt-4 border-t border-slate-600/50 pt-4">
+        <div className="flex items-center justify-between mb-3">
+          <button
+            onClick={() => setIsTagsExpanded(!isTagsExpanded)}
+            className="flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-400/50 rounded px-2 py-1"
+            aria-expanded={isTagsExpanded}
+          >
+            <span>
+              Tags
+              {selectedTags.size > 0 && (
+                <span className="ml-2 px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-400 text-xs font-semibold">
+                  {selectedTags.size}
+                </span>
+              )}
+            </span>
+            {isTagsExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+          </button>
+
+          {/* AND/OR Toggle - only show when tags are selected */}
+          {selectedTags.size > 1 && isTagsExpanded && (
+            <div className="flex items-center gap-1 text-xs">
+              <span className="text-slate-500 mr-1">Match:</span>
+              <button
+                onClick={() => onTagFilterModeChange('OR')}
+                className={`px-2 py-1 rounded transition-all ${
+                  tagFilterMode === 'OR'
+                    ? 'bg-cyan-500/30 text-cyan-300 border border-cyan-500/50'
+                    : 'bg-slate-700/50 text-slate-400 border border-slate-600/50 hover:bg-slate-700'
+                }`}
+                aria-pressed={tagFilterMode === 'OR'}
+                title="Show problems with ANY selected tag"
+              >
+                ANY
+              </button>
+              <button
+                onClick={() => onTagFilterModeChange('AND')}
+                className={`px-2 py-1 rounded transition-all ${
+                  tagFilterMode === 'AND'
+                    ? 'bg-cyan-500/30 text-cyan-300 border border-cyan-500/50'
+                    : 'bg-slate-700/50 text-slate-400 border border-slate-600/50 hover:bg-slate-700'
+                }`}
+                aria-pressed={tagFilterMode === 'AND'}
+                title="Show problems with ALL selected tags"
+              >
+                ALL
               </button>
             </div>
           )}
         </div>
-      </div>
-
-      {/* Tags - Collapsible */}
-      <div className="mt-4 border-t border-slate-600/50 pt-4">
-        <button
-          onClick={() => setIsTagsExpanded(!isTagsExpanded)}
-          className="w-full flex items-center justify-between text-sm font-medium text-slate-300 hover:text-slate-100 transition-colors mb-2 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 rounded px-2 py-1"
-          aria-expanded={isTagsExpanded}
-        >
-          <span>
-            Tags {selectedTags.size > 0 && <span className="text-cyan-400">({selectedTags.size} selected)</span>}
-          </span>
-          {isTagsExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-        </button>
         
         {isTagsExpanded && (
-          <div className="max-h-32 overflow-y-auto scrollbar-thin">
-            <TagFilter
-              availableTags={availableTags}
-              selectedTags={selectedTags}
-              onToggle={onTagToggle}
-            />
+          <div>
+            {selectedTags.size > 1 && (
+              <div className="mb-2 text-xs text-slate-400 px-2">
+                {tagFilterMode === 'OR' 
+                  ? '✨ Showing problems with ANY of the selected tags' 
+                  : '🎯 Showing problems with ALL selected tags'}
+              </div>
+            )}
+            <div className="max-h-40 overflow-y-auto scrollbar-thin">
+              <TagFilter
+                availableTags={availableTags}
+                selectedTags={selectedTags}
+                onToggle={onTagToggle}
+              />
+            </div>
           </div>
         )}
       </div>
