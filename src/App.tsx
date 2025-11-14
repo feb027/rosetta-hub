@@ -1,10 +1,49 @@
 import { useState, useMemo } from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import ProblemCard from './components/ProblemCard'
 import HubFilters from './components/HubFilters'
-import EmptyState from './components/EmptyState'
-import type { Difficulty, Tag } from './types/problem'
+import ProblemGrid from './components/ProblemGrid'
+import type { Difficulty, Tag, ProblemMeta } from './types/problem'
 import './App.css'
+
+// Mock data for testing
+const mockProblems: ProblemMeta[] = [
+  {
+    title: 'Hello, World!',
+    slug: 'hello-world',
+    difficulty: 'easy',
+    tags: ['string'],
+  },
+  {
+    title: 'FizzBuzz',
+    slug: 'fizz-buzz',
+    difficulty: 'easy',
+    tags: ['algorithm', 'math'],
+  },
+  {
+    title: 'Binary Search Tree Implementation',
+    slug: 'binary-search-tree',
+    difficulty: 'medium',
+    tags: ['data-structure', 'recursion'],
+  },
+  {
+    title: "Dijkstra's Shortest Path",
+    slug: 'dijkstra-shortest-path',
+    difficulty: 'hard',
+    tags: ['graph', 'algorithm', 'greedy'],
+  },
+  {
+    title: 'Bubble Sort',
+    slug: 'bubble-sort',
+    difficulty: 'easy',
+    tags: ['sorting', 'algorithm', 'array'],
+  },
+  {
+    title: 'Merge Sort',
+    slug: 'merge-sort',
+    difficulty: 'medium',
+    tags: ['sorting', 'algorithm', 'recursion'],
+  },
+];
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -35,15 +74,25 @@ function App() {
     return count;
   }, [searchTerm, difficulty, selectedTags]);
 
+  // Simple filter logic for testing
+  const filteredProblems = useMemo(() => {
+    return mockProblems.filter(problem => {
+      const matchesSearch = problem.title.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesDifficulty = difficulty === 'all' || problem.difficulty === difficulty;
+      const matchesTags = selectedTags.size === 0 || problem.tags.some(tag => selectedTags.has(tag));
+      return matchesSearch && matchesDifficulty && matchesTags;
+    });
+  }, [searchTerm, difficulty, selectedTags]);
+
   return (
     <BrowserRouter>
-      <div className="min-h-screen p-8">
-        <div className="max-w-4xl mx-auto">
+      <div className="min-h-screen p-4 md:p-8">
+        <div className="max-w-7xl mx-auto">
           <h1 className="text-4xl font-bold text-cyan-400 mb-8 text-center">
-            HubFilters Component Test
+            Rosetta Code Visualization Hub
           </h1>
           
-          {/* HubFilters Test */}
+          {/* Filters */}
           <div className="mb-8">
             <HubFilters
               searchTerm={searchTerm}
@@ -55,59 +104,13 @@ function App() {
               onClearFilters={handleClearFilters}
               activeFilterCount={activeFilterCount}
             />
-            <div className="mt-4 p-4 glass rounded-lg">
-              <p className="text-slate-300 text-sm">
-                <strong>Active Filters ({activeFilterCount}):</strong>
-              </p>
-              <ul className="text-slate-400 text-sm mt-2 space-y-1">
-                {searchTerm && <li>Search: "{searchTerm}"</li>}
-                {difficulty !== 'all' && <li>Difficulty: {difficulty}</li>}
-                {selectedTags.size > 0 && (
-                  <li>Tags: {Array.from(selectedTags).join(', ')}</li>
-                )}
-                {activeFilterCount === 0 && <li>No filters active</li>}
-              </ul>
-            </div>
           </div>
 
-          {/* EmptyState Test */}
-          <div className="mb-8">
-            <h2 className="text-xl text-slate-300 mb-4">EmptyState Component</h2>
-            <div className="glass rounded-xl border border-slate-600/50">
-              <EmptyState onClearFilters={handleClearFilters} />
-            </div>
-          </div>
-
-          {/* ProblemCard Test */}
-          <div>
-            <h2 className="text-xl text-slate-300 mb-4">ProblemCard Component</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <ProblemCard
-                title="Hello, World!"
-                slug="hello-world"
-                difficulty="easy"
-                tags={['string']}
-              />
-              <ProblemCard
-                title="FizzBuzz"
-                slug="fizz-buzz"
-                difficulty="easy"
-                tags={['algorithm', 'math']}
-              />
-              <ProblemCard
-                title="Binary Search Tree Implementation"
-                slug="binary-search-tree"
-                difficulty="medium"
-                tags={['data-structure', 'recursion']}
-              />
-              <ProblemCard
-                title="Dijkstra's Shortest Path"
-                slug="dijkstra-shortest-path"
-                difficulty="hard"
-                tags={['graph', 'algorithm', 'greedy']}
-              />
-            </div>
-          </div>
+          {/* Problem Grid */}
+          <ProblemGrid 
+            problems={filteredProblems}
+            onClearFilters={handleClearFilters}
+          />
         </div>
       </div>
     </BrowserRouter>
