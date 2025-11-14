@@ -21,6 +21,7 @@ export interface ProblemMeta {
   tags: Tag[];
   description?: string;
   createdAt?: string;
+  previewImage?: string;
 }
 
 export interface FilterState {
