@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Search, X } from 'lucide-react';
 
 interface SearchInputProps {
   value: string;
@@ -21,7 +22,7 @@ export default function SearchInput({
     <div className="relative w-full">
       {/* Search Icon */}
       <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
-        🔍
+        <Search size={20} />
       </div>
 
       {/* Input Field */}
@@ -49,7 +50,7 @@ export default function SearchInput({
           aria-label="Clear search"
           className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 transition-colors"
         >
-          ✕
+          <X size={18} />
         </button>
       )}
     </div>
