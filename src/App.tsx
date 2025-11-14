@@ -2,10 +2,13 @@ import { useState } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import ProblemCard from './components/ProblemCard'
 import SearchInput from './components/SearchInput'
+import DifficultyFilter from './components/DifficultyFilter'
+import type { Difficulty } from './types/problem'
 import './App.css'
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [difficulty, setDifficulty] = useState<Difficulty | 'all'>('all');
 
   return (
     <BrowserRouter>
@@ -27,6 +30,18 @@ function App() {
                 Search term: "{searchTerm}"
               </p>
             )}
+          </div>
+
+          {/* DifficultyFilter Test */}
+          <div className="mb-8">
+            <h2 className="text-xl text-slate-300 mb-4">DifficultyFilter Component</h2>
+            <DifficultyFilter 
+              selected={difficulty}
+              onChange={setDifficulty}
+            />
+            <p className="text-slate-400 mt-2 text-sm">
+              Selected: {difficulty}
+            </p>
           </div>
 
           {/* ProblemCard Test */}
