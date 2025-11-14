@@ -3,14 +3,20 @@ import HubFilters from '../components/HubFilters';
 import ProblemGrid from '../components/ProblemGrid';
 import type { Difficulty, Tag } from '../types/problem';
 import { useProblems } from '../hooks/useProblems';
+import { useDebounce } from '../hooks/useDebounce';
+import { filterProblems } from '../utils/filterProblems';
 
 export default function HomePage() {
   // Load problems dynamically
   const problems = useProblems();
 
+  // Filter state
   const [searchTerm, setSearchTerm] = useState('');
   const [difficulty, setDifficulty] = useState<Difficulty | 'all'>('all');
   const [selectedTags, setSelectedTags] = useState<Set<Tag>>(new Set());
+
+  // Debounce search term for better performance
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
   const handleTagToggle = (tag: Tag) => {
     const newTags = new Set(selectedTags);
@@ -36,15 +42,10 @@ export default function HomePage() {
     return count;
   }, [searchTerm, difficulty, selectedTags]);
 
-  // Simple filter logic for testing
+  // Filter problems using the utility function with debounced search
   const filteredProblems = useMemo(() => {
-    return problems.filter((problem) => {
-      const matchesSearch = problem.title.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesDifficulty = difficulty === 'all' || problem.difficulty === difficulty;
-      const matchesTags = selectedTags.size === 0 || problem.tags.some((tag) => selectedTags.has(tag));
-      return matchesSearch && matchesDifficulty && matchesTags;
-    });
-  }, [problems, searchTerm, difficulty, selectedTags]);
+    return filterProblems(problems, debouncedSearchTerm, difficulty, selectedTags);
+  }, [problems, debouncedSearchTerm, difficulty, selectedTags]);
 
   return (
     <div className="min-h-screen p-4 md:p-6 lg:p-8">
