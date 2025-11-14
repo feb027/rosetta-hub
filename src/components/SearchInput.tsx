@@ -21,8 +21,8 @@ export default function SearchInput({
   return (
     <div className="relative w-full">
       {/* Search Icon */}
-      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
-        <Search size={20} />
+      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none flex items-center justify-center z-10">
+        <Search size={20} strokeWidth={2} />
       </div>
 
       {/* Input Field */}
@@ -48,9 +48,9 @@ export default function SearchInput({
         <button
           onClick={handleClear}
           aria-label="Clear search"
-          className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 transition-colors"
+          className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 transition-colors flex items-center justify-center z-10"
         >
-          <X size={18} />
+          <X size={18} strokeWidth={2} />
         </button>
       )}
     </div>
