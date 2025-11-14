@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import ProblemCard from './components/ProblemCard'
 import HubFilters from './components/HubFilters'
+import EmptyState from './components/EmptyState'
 import type { Difficulty, Tag } from './types/problem'
 import './App.css'
 
@@ -66,6 +67,14 @@ function App() {
                 )}
                 {activeFilterCount === 0 && <li>No filters active</li>}
               </ul>
+            </div>
+          </div>
+
+          {/* EmptyState Test */}
+          <div className="mb-8">
+            <h2 className="text-xl text-slate-300 mb-4">EmptyState Component</h2>
+            <div className="glass rounded-xl border border-slate-600/50">
+              <EmptyState onClearFilters={handleClearFilters} />
             </div>
           </div>
 
