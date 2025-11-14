@@ -15,7 +15,8 @@ export type Tag =
   | 'greedy'
   | 'simulation'
   | 'optimization'
-  | 'game';
+  | 'game'
+  | 'puzzle';
 
 export interface ProblemMeta {
   title: string;

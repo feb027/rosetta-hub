@@ -25,6 +25,6 @@ export const TAG_CATEGORIES: TagCategory[] = [
   {
     name: 'Interactive',
     icon: '🎮',
-    tags: ['game']
+    tags: ['game', 'puzzle']
   }
 ];
