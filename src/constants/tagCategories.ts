@@ -21,5 +21,10 @@ export const TAG_CATEGORIES: TagCategory[] = [
     name: 'Operations',
     icon: '⚙️',
     tags: ['sorting', 'math', 'string', 'simulation']
+  },
+  {
+    name: 'Interactive',
+    icon: '🎮',
+    tags: ['game']
   }
 ];

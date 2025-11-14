@@ -38,6 +38,7 @@ const availableTags: Tag[] = [
   'greedy',
   'simulation',
   'optimization',
+  'game',
 ];
 
 const sortOptions: { value: SortOption; label: string }[] = [

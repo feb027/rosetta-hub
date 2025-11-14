@@ -7,6 +7,8 @@ import { DIFFICULTY_COLORS } from '../constants/colors';
 import BinarySearchVisualization from '../components/visualizations/BinarySearchVisualization';
 import HundredDoorsVisualization from '../components/visualizations/HundredDoorsVisualization';
 import HundredPrisonersVisualization from '../components/visualizations/HundredPrisonersVisualization';
+import FifteenPuzzleVisualization from '../components/visualizations/FifteenPuzzleVisualization';
+import TwentyOneGameVisualization from '../components/visualizations/TwentyOneGameVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -19,6 +21,8 @@ export default function ProblemDetailPage() {
     'binary-search': <BinarySearchVisualization />,
     '100-doors': <HundredDoorsVisualization />,
     '100-prisoners': <HundredPrisonersVisualization />,
+    '15-puzzle-game': <FifteenPuzzleVisualization/>,
+    '21-game': <TwentyOneGameVisualization />,
   };
   
   // Find the problem by slug

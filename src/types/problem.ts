@@ -14,7 +14,8 @@ export type Tag =
   | 'dynamic-programming'
   | 'greedy'
   | 'simulation'
-  | 'optimization';
+  | 'optimization'
+  | 'game';
 
 export interface ProblemMeta {
   title: string;

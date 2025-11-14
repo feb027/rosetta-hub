@@ -1,7 +1,20 @@
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Code2, Layers, Zap } from 'lucide-react';
+import { 
+  ArrowUpDown, 
+  Binary, 
+  Network, 
+  Boxes, 
+  Calculator, 
+  Type, 
+  Repeat, 
+  Sparkles, 
+  Target, 
+  Activity,
+  Gamepad2
+} from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { Tooltip } from 'react-tooltip';
 import type { Difficulty, Tag } from '../types/problem';
 import { DIFFICULTY_COLORS, DIFFICULTY_LABELS } from '../constants/colors';
@@ -22,18 +35,83 @@ const DIFFICULTY_GRADIENTS = {
   hard: 'from-red-500/50 to-pink-500/50',
 };
 
-// Tech stack for visualizations (you can customize per problem later)
-const TECH_STACK = [
-  { icon: Code2, label: 'React', color: 'text-cyan-400' },
-  { icon: Layers, label: 'Motion', color: 'text-purple-400' },
-  { icon: Zap, label: 'TypeScript', color: 'text-blue-400' },
-];
+// Tag to icon mapping
+const TAG_ICONS: Record<Tag, { icon: LucideIcon; label: string; color: string }> = {
+  'algorithm': { icon: Binary, label: 'Algorithm', color: 'text-cyan-400' },
+  'data-structure': { icon: Boxes, label: 'Data Structure', color: 'text-purple-400' },
+  'math': { icon: Calculator, label: 'Math', color: 'text-blue-400' },
+  'string': { icon: Type, label: 'String', color: 'text-green-400' },
+  'array': { icon: Boxes, label: 'Array', color: 'text-orange-400' },
+  'recursion': { icon: Repeat, label: 'Recursion', color: 'text-pink-400' },
+  'sorting': { icon: ArrowUpDown, label: 'Sorting', color: 'text-yellow-400' },
+  'graph': { icon: Network, label: 'Graph', color: 'text-indigo-400' },
+  'dynamic-programming': { icon: Sparkles, label: 'Dynamic Programming', color: 'text-violet-400' },
+  'greedy': { icon: Target, label: 'Greedy', color: 'text-emerald-400' },
+  'simulation': { icon: Activity, label: 'Simulation', color: 'text-teal-400' },
+  'optimization': { icon: Target, label: 'Optimization', color: 'text-red-400' },
+  'game': { icon: Gamepad2, label: 'Game', color: 'text-fuchsia-400' },
+};
+
+// Get icons for a problem based on its tags
+function getIconsForTags(tags: Tag[]): Array<{ icon: LucideIcon; label: string; color: string }> {
+  // Prioritize certain tags for display
+  const priorityOrder: Tag[] = [
+    'game',
+    'algorithm',
+    'data-structure',
+    'graph',
+    'dynamic-programming',
+    'sorting',
+    'recursion',
+    'math',
+    'simulation',
+    'string',
+    'array',
+    'greedy',
+    'optimization',
+  ];
+
+  const icons: Array<{ icon: LucideIcon; label: string; color: string }> = [];
+  const seenIcons = new Set<LucideIcon>();
+
+  // Add icons based on priority
+  for (const tag of priorityOrder) {
+    if (tags.includes(tag)) {
+      const iconData = TAG_ICONS[tag];
+      // Avoid duplicate icons (e.g., array and data-structure both use Boxes)
+      if (!seenIcons.has(iconData.icon)) {
+        icons.push(iconData);
+        seenIcons.add(iconData.icon);
+        if (icons.length >= 3) break;
+      }
+    }
+  }
+
+  // If we still need more icons, add remaining tags
+  if (icons.length < 3) {
+    for (const tag of tags) {
+      if (!priorityOrder.includes(tag)) {
+        const iconData = TAG_ICONS[tag];
+        if (!seenIcons.has(iconData.icon)) {
+          icons.push(iconData);
+          seenIcons.add(iconData.icon);
+          if (icons.length >= 3) break;
+        }
+      }
+    }
+  }
+
+  return icons;
+}
 
 function ProblemCard({ title, slug, difficulty, tags, createdAt, previewImage }: ProblemCardProps) {
   // Format date if available
   const formattedDate = createdAt 
     ? new Date(createdAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
     : null;
+
+  // Get contextual icons based on tags
+  const techIcons = getIconsForTags(tags);
 
   return (
     <>
@@ -122,9 +200,9 @@ function ProblemCard({ title, slug, difficulty, tags, createdAt, previewImage }:
               )}
             </div>
 
-            {/* Tech Stack Icons Row */}
+            {/* Contextual Icons Row */}
             <div className="flex items-center gap-2 pt-2 border-t border-slate-700/50 mt-auto">
-              {TECH_STACK.map((tech, index) => (
+              {techIcons.map((tech, index) => (
                 <div
                   key={index}
                   className="group/icon relative"
@@ -137,7 +215,7 @@ function ProblemCard({ title, slug, difficulty, tags, createdAt, previewImage }:
                 </div>
               ))}
               <span className="ml-auto text-[10px] text-slate-500 group-hover:text-slate-400 transition-colors duration-300">
-                Interactive Visualization
+                Interactive
               </span>
             </div>
           </div>
