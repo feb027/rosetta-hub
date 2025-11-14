@@ -1,10 +1,16 @@
 import { useParams, Link } from 'react-router-dom';
 import { useProblems } from '../hooks/useProblems';
 import { DIFFICULTY_COLORS } from '../constants/colors';
+import BinarySearchVisualization from '../components/visualizations/BinarySearchVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const problems = useProblems();
+  
+  // Map of problem slugs to their visualization components
+  const visualizations: Record<string, React.ReactNode> = {
+    'binary-search': <BinarySearchVisualization />,
+  };
   
   // Find the problem by slug
   const problem = problems.find((p) => p.slug === slug);
@@ -94,35 +100,39 @@ export default function ProblemDetailPage() {
           )}
         </div>
 
-        {/* Visualization Placeholder */}
-        <div className="glass rounded-2xl p-12 border border-slate-600/50 text-center">
-          <div className="max-w-2xl mx-auto">
-            <div className="text-6xl mb-6">🚧</div>
-            <h2 className="text-2xl font-bold text-slate-100 mb-4">
-              Visualization Coming Soon
-            </h2>
-            <p className="text-slate-400 mb-8">
-              We're working on creating an interactive visualization for this problem.
-              Check back soon!
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
-              <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700/50">
-                <div className="text-cyan-400 font-semibold mb-2">Coming Soon:</div>
-                <ul className="text-slate-400 text-sm space-y-1">
-                  <li>• Interactive visualization</li>
-                  <li>• Step-by-step walkthrough</li>
-                </ul>
-              </div>
-              <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700/50">
-                <div className="text-cyan-400 font-semibold mb-2">Future Features:</div>
-                <ul className="text-slate-400 text-sm space-y-1">
-                  <li>• Code examples</li>
-                  <li>• Complexity analysis</li>
-                </ul>
+        {/* Visualization or Placeholder */}
+        {visualizations[problem.slug] ? (
+          visualizations[problem.slug]
+        ) : (
+          <div className="glass rounded-2xl p-12 border border-slate-600/50 text-center">
+            <div className="max-w-2xl mx-auto">
+              <div className="text-6xl mb-6">🚧</div>
+              <h2 className="text-2xl font-bold text-slate-100 mb-4">
+                Visualization Coming Soon
+              </h2>
+              <p className="text-slate-400 mb-8">
+                We're working on creating an interactive visualization for this problem.
+                Check back soon!
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+                <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700/50">
+                  <div className="text-cyan-400 font-semibold mb-2">Coming Soon:</div>
+                  <ul className="text-slate-400 text-sm space-y-1">
+                    <li>• Interactive visualization</li>
+                    <li>• Step-by-step walkthrough</li>
+                  </ul>
+                </div>
+                <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700/50">
+                  <div className="text-cyan-400 font-semibold mb-2">Future Features:</div>
+                  <ul className="text-slate-400 text-sm space-y-1">
+                    <li>• Code examples</li>
+                    <li>• Complexity analysis</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
