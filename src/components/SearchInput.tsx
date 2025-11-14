@@ -57,7 +57,7 @@ function SearchInput({
         <button
           onClick={handleClear}
           aria-label="Clear search"
-          className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 transition-colors flex items-center justify-center z-10"
+          className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 transition-colors flex items-center justify-center z-10 w-10 h-10 min-w-[44px] min-h-[44px]"
         >
           <X size={18} strokeWidth={2} />
         </button>

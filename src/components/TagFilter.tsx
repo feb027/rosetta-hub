@@ -19,9 +19,10 @@ function TagFilter({ availableTags, selectedTags, onToggle }: TagFilterProps) {
               key={tag}
               onClick={() => onToggle(tag)}
               className={`
-                px-4 py-2 rounded-lg
+                px-4 py-3 rounded-lg
                 text-sm font-medium
                 border transition-all duration-250
+                min-h-[44px] flex items-center justify-center
                 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-900
                 ${
                   isSelected
