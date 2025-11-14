@@ -12,20 +12,20 @@ export default function HomePage() {
   const problems = useProblems();
 
   // Get filter state from URL
-  const urlState = useURLState();
+  const { searchTerm: urlSearchTerm, difficulty: urlDifficulty, selectedTags: urlSelectedTags, updateFilters } = useURLState();
 
   // Local state for immediate UI updates (before debounce)
-  const [searchTerm, setSearchTerm] = useState(urlState.searchTerm);
-  const [difficulty, setDifficulty] = useState<Difficulty | 'all'>(urlState.difficulty);
-  const [selectedTags, setSelectedTags] = useState<Set<Tag>>(urlState.selectedTags);
+  const [searchTerm, setSearchTerm] = useState(urlSearchTerm);
+  const [difficulty, setDifficulty] = useState<Difficulty | 'all'>(urlDifficulty);
+  const [selectedTags, setSelectedTags] = useState<Set<Tag>>(urlSelectedTags);
 
   // Debounce search term for better performance
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
   // Update URL when filters change (using debounced search)
   useEffect(() => {
-    urlState.updateFilters(debouncedSearchTerm, difficulty, selectedTags);
-  }, [debouncedSearchTerm, difficulty, selectedTags, urlState]);
+    updateFilters(debouncedSearchTerm, difficulty, selectedTags);
+  }, [debouncedSearchTerm, difficulty, selectedTags, updateFilters]);
 
   const handleTagToggle = (tag: Tag) => {
     const newTags = new Set(selectedTags);
