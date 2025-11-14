@@ -16,7 +16,18 @@ export default function ProblemGrid({ problems, onClearFilters, isLoading = fals
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
         {Array.from({ length: 8 }).map((_, index) => (
-          <SkeletonCard key={index} />
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.3,
+              delay: index * 0.05, // Stagger delay: 50ms per card
+              ease: [0.4, 0, 0.2, 1]
+            }}
+          >
+            <SkeletonCard />
+          </motion.div>
         ))}
       </div>
     );
@@ -32,7 +43,7 @@ export default function ProblemGrid({ problems, onClearFilters, isLoading = fals
       className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 lg:gap-8"
     >
       <AnimatePresence mode="popLayout">
-        {problems.map((problem) => (
+        {problems.map((problem, index) => (
           <motion.div
             key={problem.slug}
             layout
@@ -41,6 +52,7 @@ export default function ProblemGrid({ problems, onClearFilters, isLoading = fals
             exit={{ opacity: 0, y: -20 }}
             transition={{
               duration: 0.3,
+              delay: index * 0.05, // Stagger delay: 50ms per card
               ease: [0.4, 0, 0.2, 1],
               layout: { duration: 0.3 }
             }}
