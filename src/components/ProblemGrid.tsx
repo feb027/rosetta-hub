@@ -48,12 +48,24 @@ export default function ProblemGrid({ problems, onClearFilters, isLoading = fals
             key={problem.slug}
             layout
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            animate={{ 
+              opacity: 1, 
+              y: 0,
+              transition: {
+                duration: 0.3,
+                delay: index * 0.05, // Stagger delay: 50ms per card
+                ease: [0.4, 0, 0.2, 1]
+              }
+            }}
+            exit={{ 
+              opacity: 0, 
+              y: -20,
+              transition: {
+                duration: 0.2,
+                ease: [0.4, 0, 0.2, 1]
+              }
+            }}
             transition={{
-              duration: 0.3,
-              delay: index * 0.05, // Stagger delay: 50ms per card
-              ease: [0.4, 0, 0.2, 1],
               layout: { duration: 0.3 }
             }}
             className="h-full flex"
