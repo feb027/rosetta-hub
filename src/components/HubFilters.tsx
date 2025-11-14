@@ -72,8 +72,8 @@ function HubFilters({
         />
       </div>
 
-      {/* Second Row: Difficulty + Sort (stacked on mobile, side by side on tablet+) */}
-      <div className="flex flex-col md:flex-row gap-3 mb-3">
+      {/* Second Row: Difficulty + Sort + Clear */}
+      <div className="flex flex-col md:flex-row gap-3">
         {/* Difficulty Filter */}
         <div className="flex-shrink-0">
           <DifficultyFilter
@@ -89,7 +89,7 @@ function HubFilters({
             <select
               value={sortBy}
               onChange={(e) => onSortChange(e.target.value as SortOption)}
-              className="glass w-full px-3 py-2 pr-8 rounded-lg text-sm text-slate-300 border border-slate-600/50 hover:border-slate-500 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 transition-all cursor-pointer appearance-none bg-slate-800/50"
+              className="glass w-full md:w-auto px-3 py-2 pr-8 rounded-lg text-sm text-slate-300 border border-slate-600/50 hover:border-slate-500 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 transition-all cursor-pointer appearance-none bg-slate-800/50"
               aria-label="Sort problems by"
             >
               {sortOptions.map((option) => (
@@ -101,21 +101,24 @@ function HubFilters({
             <ChevronDown size={14} className="absolute right-2 text-slate-400 pointer-events-none" />
           </div>
         </div>
-      </div>
 
-      {/* Third Row: Clear Button (full width on mobile) */}
-      {activeFilterCount > 0 && (
-        <div className="mb-3">
-          <button
-            onClick={onClearFilters}
-            aria-label={`Clear ${activeFilterCount} active ${activeFilterCount === 1 ? 'filter' : 'filters'}`}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-red-500/20 hover:bg-red-500/30 text-red-400 hover:text-red-300 border border-red-500/30 hover:border-red-500/50 transition-all duration-250 focus:outline-none focus:ring-2 focus:ring-red-400"
-          >
-            <X size={16} />
-            <span className="text-sm font-medium">Clear All Filters ({activeFilterCount})</span>
-          </button>
-        </div>
-      )}
+        {/* Spacer on desktop */}
+        <div className="hidden md:block flex-1 min-w-0" />
+
+        {/* Clear Button - full width on mobile, auto on desktop */}
+        {activeFilterCount > 0 && (
+          <div className="flex-shrink-0">
+            <button
+              onClick={onClearFilters}
+              aria-label={`Clear ${activeFilterCount} active ${activeFilterCount === 1 ? 'filter' : 'filters'}`}
+              className="w-full md:w-auto flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-red-500/20 hover:bg-red-500/30 text-red-400 hover:text-red-300 border border-red-500/30 hover:border-red-500/50 transition-all duration-250 focus:outline-none focus:ring-2 focus:ring-red-400 whitespace-nowrap"
+            >
+              <X size={16} />
+              <span className="text-sm font-medium">Clear ({activeFilterCount})</span>
+            </button>
+          </div>
+        )}
+      </div>
 
       {/* Tags Section - Improved */}
       <div className="mt-4 border-t border-slate-600/50 pt-4">
