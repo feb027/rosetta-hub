@@ -3,12 +3,26 @@ import { BrowserRouter } from 'react-router-dom'
 import ProblemCard from './components/ProblemCard'
 import SearchInput from './components/SearchInput'
 import DifficultyFilter from './components/DifficultyFilter'
-import type { Difficulty } from './types/problem'
+import TagFilter from './components/TagFilter'
+import type { Difficulty, Tag } from './types/problem'
 import './App.css'
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [difficulty, setDifficulty] = useState<Difficulty | 'all'>('all');
+  const [selectedTags, setSelectedTags] = useState<Set<Tag>>(new Set());
+
+  const availableTags: Tag[] = ['algorithm', 'data-structure', 'math', 'string', 'array', 'recursion'];
+
+  const handleTagToggle = (tag: Tag) => {
+    const newTags = new Set(selectedTags);
+    if (newTags.has(tag)) {
+      newTags.delete(tag);
+    } else {
+      newTags.add(tag);
+    }
+    setSelectedTags(newTags);
+  };
 
   return (
     <BrowserRouter>
@@ -41,6 +55,19 @@ function App() {
             />
             <p className="text-slate-400 mt-2 text-sm">
               Selected: {difficulty}
+            </p>
+          </div>
+
+          {/* TagFilter Test */}
+          <div className="mb-8">
+            <h2 className="text-xl text-slate-300 mb-4">TagFilter Component</h2>
+            <TagFilter 
+              availableTags={availableTags}
+              selectedTags={selectedTags}
+              onToggle={handleTagToggle}
+            />
+            <p className="text-slate-400 mt-2 text-sm">
+              Selected tags: {selectedTags.size > 0 ? Array.from(selectedTags).join(', ') : 'none'}
             </p>
           </div>
 
