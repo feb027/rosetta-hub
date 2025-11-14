@@ -120,6 +120,7 @@ export default function HomePage() {
             selectedTags={selectedTags}
             tagFilterMode={tagFilterMode}
             sortBy={sortBy}
+            problems={problems}
             onSearchChange={setSearchTerm}
             onDifficultyChange={setDifficulty}
             onTagToggle={handleTagToggle}
