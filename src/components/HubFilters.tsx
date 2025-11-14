@@ -36,6 +36,8 @@ const availableTags: Tag[] = [
   'graph',
   'dynamic-programming',
   'greedy',
+  'simulation',
+  'optimization',
 ];
 
 const sortOptions: { value: SortOption; label: string }[] = [

@@ -2,6 +2,7 @@ import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Code2, Layers, Zap } from 'lucide-react';
+import { Tooltip } from 'react-tooltip';
 import type { Difficulty, Tag } from '../types/problem';
 import { DIFFICULTY_COLORS, DIFFICULTY_LABELS } from '../constants/colors';
 
@@ -35,11 +36,14 @@ function ProblemCard({ title, slug, difficulty, tags, createdAt, previewImage }:
     : null;
 
   return (
-    <Link 
-      to={`/visualizations/${slug}`} 
-      className="block h-full w-full group"
-      aria-label={`View ${title} problem - ${DIFFICULTY_LABELS[difficulty]} difficulty`}
-    >
+    <>
+      <Link 
+        to={`/visualizations/${slug}`} 
+        className="block h-full w-full group"
+        aria-label={`View ${title} problem - ${DIFFICULTY_LABELS[difficulty]} difficulty`}
+        data-tooltip-id={`preview-${slug}`}
+        data-tooltip-place="top"
+      >
       <motion.div
         initial={{ scale: 1, y: 0 }}
         whileHover={{
@@ -149,6 +153,31 @@ function ProblemCard({ title, slug, difficulty, tags, createdAt, previewImage }:
         <div className="absolute inset-0 z-[30] rounded-xl ring-2 ring-transparent group-focus-within:ring-cyan-400 transition-all duration-300 pointer-events-none" />
       </motion.div>
     </Link>
+
+    {/* Preview Tooltip - Positioned Above Card */}
+    {previewImage && (
+      <Tooltip
+        id={`preview-${slug}`}
+        delayHide={0}
+        delayShow={100}
+        className="!p-0 !bg-transparent !border-0 !shadow-2xl !opacity-100"
+        style={{ zIndex: 9999 }}
+      >
+        <div className="relative w-80 h-60 rounded-xl overflow-hidden border-2 border-cyan-500/50 shadow-2xl">
+          <img 
+            src={previewImage} 
+            alt={`Preview of ${title}`}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 p-4">
+            <h3 className="text-white font-semibold text-lg">{title}</h3>
+            <p className="text-slate-300 text-sm">{DIFFICULTY_LABELS[difficulty]} • Interactive Visualization</p>
+          </div>
+        </div>
+      </Tooltip>
+    )}
+  </>
   );
 }
 

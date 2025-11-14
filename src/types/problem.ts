@@ -12,7 +12,9 @@ export type Tag =
   | 'sorting'
   | 'graph'
   | 'dynamic-programming'
-  | 'greedy';
+  | 'greedy'
+  | 'simulation'
+  | 'optimization';
 
 export interface ProblemMeta {
   title: string;
