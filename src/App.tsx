@@ -1,9 +1,7 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import ProblemCard from './components/ProblemCard'
-import SearchInput from './components/SearchInput'
-import DifficultyFilter from './components/DifficultyFilter'
-import TagFilter from './components/TagFilter'
+import HubFilters from './components/HubFilters'
 import type { Difficulty, Tag } from './types/problem'
 import './App.css'
 
@@ -11,8 +9,6 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [difficulty, setDifficulty] = useState<Difficulty | 'all'>('all');
   const [selectedTags, setSelectedTags] = useState<Set<Tag>>(new Set());
-
-  const availableTags: Tag[] = ['algorithm', 'data-structure', 'math', 'string', 'array', 'recursion'];
 
   const handleTagToggle = (tag: Tag) => {
     const newTags = new Set(selectedTags);
@@ -24,51 +20,53 @@ function App() {
     setSelectedTags(newTags);
   };
 
+  const handleClearFilters = () => {
+    setSearchTerm('');
+    setDifficulty('all');
+    setSelectedTags(new Set());
+  };
+
+  const activeFilterCount = useMemo(() => {
+    let count = 0;
+    if (searchTerm) count++;
+    if (difficulty !== 'all') count++;
+    if (selectedTags.size > 0) count += selectedTags.size;
+    return count;
+  }, [searchTerm, difficulty, selectedTags]);
+
   return (
     <BrowserRouter>
       <div className="min-h-screen p-8">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold text-cyan-400 mb-8 text-center">
-            Component Test
+            HubFilters Component Test
           </h1>
           
-          {/* SearchInput Test */}
+          {/* HubFilters Test */}
           <div className="mb-8">
-            <h2 className="text-xl text-slate-300 mb-4">SearchInput Component</h2>
-            <SearchInput 
-              value={searchTerm}
-              onChange={setSearchTerm}
-            />
-            {searchTerm && (
-              <p className="text-slate-400 mt-2 text-sm">
-                Search term: "{searchTerm}"
-              </p>
-            )}
-          </div>
-
-          {/* DifficultyFilter Test */}
-          <div className="mb-8">
-            <h2 className="text-xl text-slate-300 mb-4">DifficultyFilter Component</h2>
-            <DifficultyFilter 
-              selected={difficulty}
-              onChange={setDifficulty}
-            />
-            <p className="text-slate-400 mt-2 text-sm">
-              Selected: {difficulty}
-            </p>
-          </div>
-
-          {/* TagFilter Test */}
-          <div className="mb-8">
-            <h2 className="text-xl text-slate-300 mb-4">TagFilter Component</h2>
-            <TagFilter 
-              availableTags={availableTags}
+            <HubFilters
+              searchTerm={searchTerm}
+              selectedDifficulty={difficulty}
               selectedTags={selectedTags}
-              onToggle={handleTagToggle}
+              onSearchChange={setSearchTerm}
+              onDifficultyChange={setDifficulty}
+              onTagToggle={handleTagToggle}
+              onClearFilters={handleClearFilters}
+              activeFilterCount={activeFilterCount}
             />
-            <p className="text-slate-400 mt-2 text-sm">
-              Selected tags: {selectedTags.size > 0 ? Array.from(selectedTags).join(', ') : 'none'}
-            </p>
+            <div className="mt-4 p-4 glass rounded-lg">
+              <p className="text-slate-300 text-sm">
+                <strong>Active Filters ({activeFilterCount}):</strong>
+              </p>
+              <ul className="text-slate-400 text-sm mt-2 space-y-1">
+                {searchTerm && <li>Search: "{searchTerm}"</li>}
+                {difficulty !== 'all' && <li>Difficulty: {difficulty}</li>}
+                {selectedTags.size > 0 && (
+                  <li>Tags: {Array.from(selectedTags).join(', ')}</li>
+                )}
+                {activeFilterCount === 0 && <li>No filters active</li>}
+              </ul>
+            </div>
           </div>
 
           {/* ProblemCard Test */}
