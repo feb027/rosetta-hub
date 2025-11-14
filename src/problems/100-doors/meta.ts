@@ -13,6 +13,7 @@ The third time, visit every 3rd door (door #3, #6, #9, ...), etc, until you only
 Question: What state are the doors in after the last pass? Which are open, which are closed?
 
 Alternate: The only doors that remain open are those whose numbers are perfect squares. Why?`,
+  rosettaCodeUrl: 'https://rosettacode.org/wiki/100_doors',
   createdAt: '2024-01-15',
   previewImage: '/previews/100-doors.png',
 };

@@ -1,11 +1,12 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowLeft, ArrowUp, BookOpen } from 'lucide-react';
+import { ArrowLeft, ArrowUp, BookOpen, ExternalLink } from 'lucide-react';
 import { useProblems } from '../hooks/useProblems';
 import { DIFFICULTY_COLORS } from '../constants/colors';
 import BinarySearchVisualization from '../components/visualizations/BinarySearchVisualization';
 import HundredDoorsVisualization from '../components/visualizations/HundredDoorsVisualization';
+import HundredPrisonersVisualization from '../components/visualizations/HundredPrisonersVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -17,6 +18,7 @@ export default function ProblemDetailPage() {
   const visualizations: Record<string, React.ReactNode> = {
     'binary-search': <BinarySearchVisualization />,
     '100-doors': <HundredDoorsVisualization />,
+    '100-prisoners': <HundredPrisonersVisualization />,
   };
   
   // Find the problem by slug
@@ -177,16 +179,29 @@ export default function ProblemDetailPage() {
             )}
 
             {/* Metadata Footer */}
-            {problem.createdAt && (
-              <div className="mt-4 pt-4 border-t border-slate-700/50 flex items-center gap-2 text-xs text-slate-400">
-                <BookOpen size={14} />
-                <span>Added {new Date(problem.createdAt).toLocaleDateString('en-US', { 
-                  month: 'long', 
-                  day: 'numeric', 
-                  year: 'numeric' 
-                })}</span>
-              </div>
-            )}
+            <div className="mt-4 pt-4 border-t border-slate-700/50 flex flex-wrap items-center gap-4 text-xs text-slate-400">
+              {problem.createdAt && (
+                <div className="flex items-center gap-2">
+                  <BookOpen size={14} />
+                  <span>Added {new Date(problem.createdAt).toLocaleDateString('en-US', { 
+                    month: 'long', 
+                    day: 'numeric', 
+                    year: 'numeric' 
+                  })}</span>
+                </div>
+              )}
+              {problem.rosettaCodeUrl && (
+                <a
+                  href={problem.rosettaCodeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-cyan-400 hover:text-cyan-300 transition-colors group"
+                >
+                  <ExternalLink size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  <span>View on Rosetta Code</span>
+                </a>
+              )}
+            </div>
           </div>
         </motion.div>
 

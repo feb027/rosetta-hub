@@ -22,6 +22,7 @@ export interface ProblemMeta {
   difficulty: Difficulty;
   tags: Tag[];
   description?: string;
+  rosettaCodeUrl?: string; // Link to original Rosetta Code problem
   createdAt?: string;
   previewImage?: string;
 }
