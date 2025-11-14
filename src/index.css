@@ -1,1 +1,62 @@
 @import "tailwindcss";
+
+@theme {
+  /* Background Colors */
+  --color-background-primary: #0F172A;      /* Deep slate */
+  --color-background-secondary: #1E293B;    /* Slate 800 */
+  --color-background-card: rgba(30, 41, 59, 0.6);  /* Semi-transparent */
+  
+  /* Text Colors */
+  --color-text-primary: #F1F5F9;            /* Soft white */
+  --color-text-secondary: #94A3B8;          /* Muted slate */
+  --color-text-muted: #64748B;              /* Slate 500 */
+  
+  /* Accent Colors */
+  --color-accent-primary: #38BDF8;          /* Soft cyan */
+  --color-accent-hover: #0EA5E9;            /* Darker cyan */
+  --color-accent-glow: rgba(56, 189, 248, 0.3);  /* Glow effect */
+  
+  /* Difficulty Colors */
+  --color-difficulty-easy: #22C55E;         /* Green */
+  --color-difficulty-medium: #F59E0B;       /* Amber */
+  --color-difficulty-hard: #EF4444;         /* Red */
+  
+  /* Border Colors */
+  --color-border: rgba(51, 65, 85, 0.5);    /* Semi-transparent slate */
+  --color-border-focus: #38BDF8;            /* Cyan */
+}
+
+/* Global Styles */
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  color: var(--color-text-primary);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  min-height: 100vh;
+}
+
+/* Glassmorphism Utility */
+.glass {
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+/* Glow Effect Utility */
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
