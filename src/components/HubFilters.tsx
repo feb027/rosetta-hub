@@ -1,4 +1,5 @@
-import { X } from 'lucide-react';
+import { useState } from 'react';
+import { X, ChevronDown, ChevronUp } from 'lucide-react';
 import SearchInput from './SearchInput';
 import DifficultyFilter from './DifficultyFilter';
 import TagFilter from './TagFilter';
@@ -38,58 +39,64 @@ export default function HubFilters({
   onClearFilters,
   activeFilterCount,
 }: HubFiltersProps) {
+  const [isTagsExpanded, setIsTagsExpanded] = useState(false);
+
   return (
-    <div className="glass rounded-xl p-6 border border-slate-600/50 space-y-6">
-      {/* Search Input */}
-      <div>
-        <label className="block text-sm font-medium text-slate-300 mb-2">
-          Search
-        </label>
-        <SearchInput
-          value={searchTerm}
-          onChange={onSearchChange}
-          placeholder="Search problems by title..."
-        />
-      </div>
+    <div className="glass rounded-xl p-4 md:p-6 border border-slate-600/50">
+      {/* Compact Layout: Search + Difficulty + Clear in one row on desktop */}
+      <div className="flex flex-col lg:flex-row gap-4 lg:items-start">
+        {/* Search - takes more space */}
+        <div className="flex-1 min-w-0">
+          <SearchInput
+            value={searchTerm}
+            onChange={onSearchChange}
+            placeholder="Search problems..."
+          />
+        </div>
 
-      {/* Difficulty Filter */}
-      <div>
-        <label className="block text-sm font-medium text-slate-300 mb-2">
-          Difficulty
-        </label>
-        <DifficultyFilter
-          selected={selectedDifficulty}
-          onChange={onDifficultyChange}
-        />
-      </div>
+        {/* Difficulty - compact */}
+        <div className="lg:w-auto">
+          <DifficultyFilter
+            selected={selectedDifficulty}
+            onChange={onDifficultyChange}
+          />
+        </div>
 
-      {/* Tag Filter */}
-      <div>
-        <label className="block text-sm font-medium text-slate-300 mb-2">
-          Tags
-        </label>
-        <TagFilter
-          availableTags={availableTags}
-          selectedTags={selectedTags}
-          onToggle={onTagToggle}
-        />
-      </div>
-
-      {/* Clear Filters Button */}
-      {activeFilterCount > 0 && (
-        <div className="pt-2 border-t border-slate-600/50">
+        {/* Clear Filters Button - compact */}
+        {activeFilterCount > 0 && (
           <button
             onClick={onClearFilters}
             aria-label={`Clear ${activeFilterCount} active filters`}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-slate-700/50 hover:bg-slate-700 text-slate-300 hover:text-slate-100 border border-slate-600/50 hover:border-slate-500 transition-all duration-250"
+            className="lg:w-auto flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-slate-700/50 hover:bg-slate-700 text-slate-300 hover:text-slate-100 border border-slate-600/50 hover:border-slate-500 transition-all duration-250 whitespace-nowrap"
           >
             <X size={16} />
-            <span>
-              Clear Filters {activeFilterCount > 0 && `(${activeFilterCount})`}
-            </span>
+            <span className="text-sm">Clear ({activeFilterCount})</span>
           </button>
-        </div>
-      )}
+        )}
+      </div>
+
+      {/* Tags - Collapsible with max height */}
+      <div className="mt-4 border-t border-slate-600/50 pt-4">
+        <button
+          onClick={() => setIsTagsExpanded(!isTagsExpanded)}
+          className="w-full flex items-center justify-between text-sm font-medium text-slate-300 hover:text-slate-100 transition-colors mb-2"
+        >
+          <span>
+            Tags {selectedTags.size > 0 && `(${selectedTags.size} selected)`}
+          </span>
+          {isTagsExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+        </button>
+        
+        {isTagsExpanded && (
+          <div className="max-h-32 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-slate-800/50">
+            <TagFilter
+              availableTags={availableTags}
+              selectedTags={selectedTags}
+              onToggle={onTagToggle}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
