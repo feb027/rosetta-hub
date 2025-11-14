@@ -12,7 +12,8 @@ import {
   Sparkles, 
   Target, 
   Activity,
-  Gamepad2
+  Gamepad2,
+  Puzzle
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Tooltip } from 'react-tooltip';
@@ -50,6 +51,7 @@ const TAG_ICONS: Record<Tag, { icon: LucideIcon; label: string; color: string }>
   'simulation': { icon: Activity, label: 'Simulation', color: 'text-teal-400' },
   'optimization': { icon: Target, label: 'Optimization', color: 'text-red-400' },
   'game': { icon: Gamepad2, label: 'Game', color: 'text-fuchsia-400' },
+  'puzzle': { icon: Puzzle, label: 'Puzzle', color: 'text-amber-400' },
 };
 
 // Get icons for a problem based on its tags

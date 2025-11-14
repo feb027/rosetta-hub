@@ -9,6 +9,7 @@ import HundredDoorsVisualization from '../components/visualizations/HundredDoors
 import HundredPrisonersVisualization from '../components/visualizations/HundredPrisonersVisualization';
 import FifteenPuzzleVisualization from '../components/visualizations/FifteenPuzzleVisualization';
 import TwentyOneGameVisualization from '../components/visualizations/TwentyOneGameVisualization';
+import TwentyFourGameVisualization from '../components/visualizations/TwentyFourGameVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -23,6 +24,7 @@ export default function ProblemDetailPage() {
     '100-prisoners': <HundredPrisonersVisualization />,
     '15-puzzle-game': <FifteenPuzzleVisualization/>,
     '21-game': <TwentyOneGameVisualization />,
+    '24-game': <TwentyFourGameVisualization />,
   };
   
   // Find the problem by slug
