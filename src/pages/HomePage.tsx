@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect, useCallback } from 'react';
-import HubFilters from '../components/HubFilters';
+import HubFilters, { type SortOption } from '../components/HubFilters';
 import ProblemGrid from '../components/ProblemGrid';
-import type { Difficulty, Tag } from '../types/problem';
+import type { Difficulty, Tag, ProblemMeta } from '../types/problem';
 import { useProblems } from '../hooks/useProblems';
 import { useDebounce } from '../hooks/useDebounce';
 import { filterProblems } from '../utils/filterProblems';
@@ -18,6 +18,7 @@ export default function HomePage() {
   const [searchTerm, setSearchTerm] = useState(urlSearchTerm);
   const [difficulty, setDifficulty] = useState<Difficulty | 'all'>(urlDifficulty);
   const [selectedTags, setSelectedTags] = useState<Set<Tag>>(urlSelectedTags);
+  const [sortBy, setSortBy] = useState<SortOption>('difficulty-asc');
 
   // Debounce search term for better performance
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
@@ -44,7 +45,40 @@ export default function HomePage() {
     setSearchTerm('');
     setDifficulty('all');
     setSelectedTags(new Set());
+    setSortBy('difficulty-asc');
   }, []);
+
+  // Sort problems based on selected option
+  const sortProblems = useCallback((problemsToSort: ProblemMeta[]): ProblemMeta[] => {
+    const sorted = [...problemsToSort];
+    
+    switch (sortBy) {
+      case 'title-asc':
+        return sorted.sort((a, b) => a.title.localeCompare(b.title));
+      case 'title-desc':
+        return sorted.sort((a, b) => b.title.localeCompare(a.title));
+      case 'difficulty-asc':
+        const difficultyOrder = { easy: 1, medium: 2, hard: 3 };
+        return sorted.sort((a, b) => difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty]);
+      case 'difficulty-desc':
+        const difficultyOrderDesc = { easy: 3, medium: 2, hard: 1 };
+        return sorted.sort((a, b) => difficultyOrderDesc[a.difficulty] - difficultyOrderDesc[b.difficulty]);
+      case 'newest':
+        return sorted.sort((a, b) => {
+          const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+          const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+          return dateB - dateA;
+        });
+      case 'oldest':
+        return sorted.sort((a, b) => {
+          const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+          const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+          return dateA - dateB;
+        });
+      default:
+        return sorted;
+    }
+  }, [sortBy]);
 
   const activeFilterCount = useMemo(() => {
     let count = 0;
@@ -54,10 +88,11 @@ export default function HomePage() {
     return count;
   }, [searchTerm, difficulty, selectedTags]);
 
-  // Filter problems using the utility function with debounced search
+  // Filter and sort problems
   const filteredProblems = useMemo(() => {
-    return filterProblems(problems, debouncedSearchTerm, difficulty, selectedTags);
-  }, [problems, debouncedSearchTerm, difficulty, selectedTags]);
+    const filtered = filterProblems(problems, debouncedSearchTerm, difficulty, selectedTags);
+    return sortProblems(filtered);
+  }, [problems, debouncedSearchTerm, difficulty, selectedTags, sortProblems]);
 
   return (
     <div className="min-h-screen p-4 md:p-6 lg:p-8">
@@ -81,9 +116,11 @@ export default function HomePage() {
             searchTerm={searchTerm}
             selectedDifficulty={difficulty}
             selectedTags={selectedTags}
+            sortBy={sortBy}
             onSearchChange={setSearchTerm}
             onDifficultyChange={setDifficulty}
             onTagToggle={handleTagToggle}
+            onSortChange={setSortBy}
             onClearFilters={handleClearFilters}
             activeFilterCount={activeFilterCount}
           />
