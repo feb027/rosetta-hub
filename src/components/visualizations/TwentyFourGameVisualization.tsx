@@ -69,8 +69,8 @@ export default function TwentyFourGameVisualization() {
     setTimeout(() => playSound(1046.50, 0.15), 160); // C6
   };
 
-  const generateDigits = () => {
-    playClickSound();
+  const generateDigits = (playSound = true) => {
+    if (playSound) playClickSound();
     const newDigits = Array.from({ length: 4 }, () => Math.floor(Math.random() * 9) + 1);
     setDigits(newDigits);
     setExpression('');
@@ -84,7 +84,7 @@ export default function TwentyFourGameVisualization() {
   };
 
   useEffect(() => {
-    generateDigits();
+    generateDigits(false); // Don't play sound on initial load
   }, []);
 
   useEffect(() => {
@@ -542,7 +542,7 @@ export default function TwentyFourGameVisualization() {
               <span className="text-xs opacity-70">(Enter)</span>
             </motion.button>
             <motion.button
-              onClick={generateDigits}
+              onClick={() => generateDigits()}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="px-6 py-3 rounded-lg bg-slate-700 hover:bg-slate-600 transition-all 
