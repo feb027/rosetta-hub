@@ -1,49 +1,13 @@
 import { useState, useMemo } from 'react';
 import HubFilters from '../components/HubFilters';
 import ProblemGrid from '../components/ProblemGrid';
-import type { Difficulty, Tag, ProblemMeta } from '../types/problem';
-
-// Mock data for testing
-const mockProblems: ProblemMeta[] = [
-  {
-    title: 'Hello, World!',
-    slug: 'hello-world',
-    difficulty: 'easy',
-    tags: ['string'],
-  },
-  {
-    title: 'FizzBuzz',
-    slug: 'fizz-buzz',
-    difficulty: 'easy',
-    tags: ['algorithm', 'math'],
-  },
-  {
-    title: 'Binary Search Tree Implementation',
-    slug: 'binary-search-tree',
-    difficulty: 'medium',
-    tags: ['data-structure', 'recursion'],
-  },
-  {
-    title: "Dijkstra's Shortest Path",
-    slug: 'dijkstra-shortest-path',
-    difficulty: 'hard',
-    tags: ['graph', 'algorithm', 'greedy'],
-  },
-  {
-    title: 'Bubble Sort',
-    slug: 'bubble-sort',
-    difficulty: 'easy',
-    tags: ['sorting', 'algorithm', 'array'],
-  },
-  {
-    title: 'Merge Sort',
-    slug: 'merge-sort',
-    difficulty: 'medium',
-    tags: ['sorting', 'algorithm', 'recursion'],
-  },
-];
+import type { Difficulty, Tag } from '../types/problem';
+import { useProblems } from '../hooks/useProblems';
 
 export default function HomePage() {
+  // Load problems dynamically
+  const problems = useProblems();
+
   const [searchTerm, setSearchTerm] = useState('');
   const [difficulty, setDifficulty] = useState<Difficulty | 'all'>('all');
   const [selectedTags, setSelectedTags] = useState<Set<Tag>>(new Set());
@@ -74,13 +38,13 @@ export default function HomePage() {
 
   // Simple filter logic for testing
   const filteredProblems = useMemo(() => {
-    return mockProblems.filter((problem) => {
+    return problems.filter((problem) => {
       const matchesSearch = problem.title.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesDifficulty = difficulty === 'all' || problem.difficulty === difficulty;
       const matchesTags = selectedTags.size === 0 || problem.tags.some((tag) => selectedTags.has(tag));
       return matchesSearch && matchesDifficulty && matchesTags;
     });
-  }, [searchTerm, difficulty, selectedTags]);
+  }, [problems, searchTerm, difficulty, selectedTags]);
 
   return (
     <div className="min-h-screen p-4 md:p-8">
