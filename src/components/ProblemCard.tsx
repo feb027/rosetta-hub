@@ -12,7 +12,7 @@ interface ProblemCardProps {
 
 export default function ProblemCard({ title, slug, difficulty, tags }: ProblemCardProps) {
   return (
-    <Link to={`/visualizations/${slug}`} className="block">
+    <Link to={`/visualizations/${slug}`} className="block h-full w-full">
       <motion.div
         initial={{ scale: 1 }}
         whileHover={{
@@ -21,7 +21,7 @@ export default function ProblemCard({ title, slug, difficulty, tags }: ProblemCa
           transition: { duration: 0.25, ease: [0.4, 0, 0.2, 1] }
         }}
         whileTap={{ scale: 0.98 }}
-        className="glass rounded-xl p-6 h-full flex flex-col gap-4 border border-transparent hover:border-cyan-500/50 transition-colors duration-250 focus-within:ring-2 focus-within:ring-cyan-400 focus-within:outline-none"
+        className="glass rounded-xl p-6 h-full w-full flex flex-col gap-4 border border-transparent hover:border-cyan-500/50 transition-colors duration-250 focus-within:ring-2 focus-within:ring-cyan-400 focus-within:outline-none"
       >
         {/* Title */}
         <h3 className="text-xl font-semibold text-slate-100 line-clamp-2">
