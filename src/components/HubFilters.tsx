@@ -87,10 +87,8 @@ function HubFilters({
   }, [activeFilterCount, onClearFilters]);
 
   return (
-    <motion.div
-      layout
-      className="glass rounded-xl p-4 md:p-6 border border-slate-600/50 relative"
-    >
+    <div className="glass rounded-xl p-4 md:p-6 border border-slate-600/50 relative">
+
       {/* Compact/Expand Toggle */}
       <button
         onClick={() => setIsCompact(!isCompact)}
@@ -105,16 +103,16 @@ function HubFilters({
       </button>
 
       {/* Top Row: Search */}
-      <motion.div layout className="mb-4 pr-12">
+      <div className="mb-4 pr-12">
         <SearchInput
           value={searchTerm}
           onChange={onSearchChange}
           placeholder="Search problems..."
           problems={problems}
         />
-      </motion.div>
+      </div>
 
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {!isCompact && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
@@ -125,7 +123,7 @@ function HubFilters({
           >
 
             {/* Second Row: Difficulty + Sort + Clear */}
-            <motion.div layout className="flex flex-col md:flex-row gap-3">
+            <div className="flex flex-col md:flex-row gap-3">
         {/* Difficulty Filter */}
         <div className="flex-shrink-0">
           <DifficultyFilter
@@ -135,22 +133,26 @@ function HubFilters({
         </div>
 
         {/* Sort Dropdown */}
-        <div className="flex-shrink-0 relative">
-          <div className="flex items-center gap-2">
-            <ArrowUpDown size={16} className="text-slate-400 flex-shrink-0" />
+        <div className="flex-shrink-0 p-0.5">
+          <div className="relative glass rounded-lg border border-slate-600/50 hover:border-slate-500 focus-within:border-cyan-500 focus-within:ring-2 focus-within:ring-cyan-400/50 focus-within:ring-offset-2 focus-within:ring-offset-slate-900 transition-all">
+            <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none z-10">
+              <ArrowUpDown size={16} className="text-slate-400" />
+            </div>
             <select
               value={sortBy}
               onChange={(e) => onSortChange(e.target.value as SortOption)}
-              className="glass w-full md:w-auto px-3 py-2 pr-8 rounded-lg text-sm text-slate-300 border border-slate-600/50 hover:border-slate-500 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 transition-all cursor-pointer appearance-none bg-slate-800/50"
+              className="w-full md:w-auto pl-10 pr-10 py-2 rounded-lg text-sm text-slate-300 bg-transparent border-0 focus:outline-none cursor-pointer appearance-none relative z-20"
               aria-label="Sort problems by"
             >
               {sortOptions.map((option) => (
-                <option key={option.value} value={option.value} className="bg-slate-800">
+                <option key={option.value} value={option.value} className="bg-slate-800 text-slate-300 py-2">
                   {option.label}
                 </option>
               ))}
             </select>
-            <ChevronDown size={14} className="absolute right-2 text-slate-400 pointer-events-none" />
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none z-10">
+              <ChevronDown size={14} className="text-slate-400" />
+            </div>
           </div>
         </div>
 
@@ -177,14 +179,14 @@ function HubFilters({
                   </motion.div>
                 )}
               </AnimatePresence>
-            </motion.div>
+            </div>
 
             {/* Tags Section - Improved */}
-            <motion.div layout className="mt-4 border-t border-slate-600/50 pt-4">
-              <div className="flex items-center justify-between mb-3">
+            <div className="mt-4 border-t border-slate-600/50 pt-4">
+              <div className="flex items-center justify-between mb-3 -mx-1">
                 <button
                   onClick={() => setIsTagsExpanded(!isTagsExpanded)}
-                  className="flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-400/50 rounded px-2 py-1"
+                  className="flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:ring-offset-2 focus:ring-offset-slate-900 rounded-lg px-3 py-2 hover:bg-slate-700/30"
                   aria-expanded={isTagsExpanded}
                 >
                   <span>
@@ -270,11 +272,11 @@ function HubFilters({
                   </motion.div>
                 )}
               </AnimatePresence>
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
 }
 
