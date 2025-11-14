@@ -55,13 +55,14 @@ function ProblemCard({ title, slug, difficulty, tags, createdAt, previewImage }:
         
         {/* Main Card with Glassmorphism Layers */}
         <div className="relative h-full flex flex-col">
-          {/* Background Preview Image */}
+          {/* Background Preview Image - BOTTOM LAYER */}
           {previewImage && (
-            <div className="absolute inset-0 opacity-15 group-hover:opacity-30 transition-opacity duration-300 z-0">
+            <div className="absolute inset-0 z-0">
               <img 
                 src={previewImage} 
                 alt="" 
-                className="w-full h-full object-cover rounded-xl"
+                className="w-full h-full object-cover rounded-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300"
+                onLoad={() => console.log('Image loaded successfully:', previewImage)}
                 onError={(e) => {
                   console.error('Failed to load preview image:', previewImage);
                   e.currentTarget.style.display = 'none';
@@ -70,14 +71,14 @@ function ProblemCard({ title, slug, difficulty, tags, createdAt, previewImage }:
             </div>
           )}
           
-          {/* Glass Layer 1 - Base */}
-          <div className="absolute inset-0 glass rounded-xl border border-slate-600/50 group-hover:border-cyan-500/50 transition-all duration-300" />
+          {/* Glass Layer 1 - Base - MIDDLE LAYER */}
+          <div className="absolute inset-0 z-[1] glass rounded-xl border border-slate-600/50 group-hover:border-cyan-500/50 transition-all duration-300" />
           
-          {/* Glass Layer 2 - Depth on Hover */}
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-800/0 via-slate-800/0 to-slate-900/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
+          {/* Glass Layer 2 - Depth on Hover - MIDDLE LAYER */}
+          <div className="absolute inset-0 z-[2] bg-gradient-to-br from-slate-800/0 via-slate-800/0 to-slate-900/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
           
-          {/* Content */}
-          <div className="relative p-6 h-full flex flex-col gap-4 z-10">
+          {/* Content - TOP LAYER */}
+          <div className="relative p-6 h-full flex flex-col gap-4 z-[10]">
             {/* Corner Accent Decoration */}
             <div className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${DIFFICULTY_GRADIENTS[difficulty]} opacity-20 blur-2xl group-hover:opacity-40 transition-opacity duration-300`} />
             
@@ -138,11 +139,14 @@ function ProblemCard({ title, slug, difficulty, tags, createdAt, previewImage }:
           </div>
 
           {/* Hover Glow Effect */}
-          <div className={`absolute inset-0 bg-gradient-to-br ${DIFFICULTY_GRADIENTS[difficulty]} opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-300 pointer-events-none`} />
+          <div className={`absolute inset-0 z-[3] bg-gradient-to-br ${DIFFICULTY_GRADIENTS[difficulty]} opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-300 pointer-events-none`} />
         </div>
 
+        {/* Click Feedback Overlay */}
+        <div className="absolute inset-0 z-[20] bg-cyan-400/0 group-active:bg-cyan-400/10 transition-colors duration-150 rounded-xl pointer-events-none" />
+
         {/* Focus Ring */}
-        <div className="absolute inset-0 rounded-xl ring-2 ring-transparent group-focus-within:ring-cyan-400 transition-all duration-300" />
+        <div className="absolute inset-0 z-[30] rounded-xl ring-2 ring-transparent group-focus-within:ring-cyan-400 transition-all duration-300 pointer-events-none" />
       </motion.div>
     </Link>
   );
