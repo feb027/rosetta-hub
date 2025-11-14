@@ -1,22 +1,31 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import HubFilters from '../components/HubFilters';
 import ProblemGrid from '../components/ProblemGrid';
 import type { Difficulty, Tag } from '../types/problem';
 import { useProblems } from '../hooks/useProblems';
 import { useDebounce } from '../hooks/useDebounce';
 import { filterProblems } from '../utils/filterProblems';
+import { useURLState } from '../hooks/useURLState';
 
 export default function HomePage() {
   // Load problems dynamically
   const problems = useProblems();
 
-  // Filter state
-  const [searchTerm, setSearchTerm] = useState('');
-  const [difficulty, setDifficulty] = useState<Difficulty | 'all'>('all');
-  const [selectedTags, setSelectedTags] = useState<Set<Tag>>(new Set());
+  // Get filter state from URL
+  const urlState = useURLState();
+
+  // Local state for immediate UI updates (before debounce)
+  const [searchTerm, setSearchTerm] = useState(urlState.searchTerm);
+  const [difficulty, setDifficulty] = useState<Difficulty | 'all'>(urlState.difficulty);
+  const [selectedTags, setSelectedTags] = useState<Set<Tag>>(urlState.selectedTags);
 
   // Debounce search term for better performance
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
+
+  // Update URL when filters change (using debounced search)
+  useEffect(() => {
+    urlState.updateFilters(debouncedSearchTerm, difficulty, selectedTags);
+  }, [debouncedSearchTerm, difficulty, selectedTags, urlState]);
 
   const handleTagToggle = (tag: Tag) => {
     const newTags = new Set(selectedTags);
