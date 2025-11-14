@@ -1,14 +1,27 @@
 import { motion, AnimatePresence } from 'motion/react';
 import ProblemCard from './ProblemCard';
 import EmptyState from './EmptyState';
+import SkeletonCard from './SkeletonCard';
 import type { ProblemMeta } from '../types/problem';
 
 interface ProblemGridProps {
   problems: ProblemMeta[];
   onClearFilters: () => void;
+  isLoading?: boolean;
 }
 
-export default function ProblemGrid({ problems, onClearFilters }: ProblemGridProps) {
+export default function ProblemGrid({ problems, onClearFilters, isLoading = false }: ProblemGridProps) {
+  // Show skeleton cards while loading
+  if (isLoading) {
+    return (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+        {Array.from({ length: 8 }).map((_, index) => (
+          <SkeletonCard key={index} />
+        ))}
+      </div>
+    );
+  }
+
   if (problems.length === 0) {
     return <EmptyState onClearFilters={onClearFilters} />;
   }

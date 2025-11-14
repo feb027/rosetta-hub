@@ -4,16 +4,19 @@ import type { ProblemMeta } from '../types/problem';
 
 /**
  * Custom hook to load and cache problem data
- * @returns Array of ProblemMeta objects
+ * @returns Object with problems array and loading state
  */
-export function useProblems(): ProblemMeta[] {
+export function useProblems(): { problems: ProblemMeta[]; isLoading: boolean } {
   const [problems, setProblems] = useState<ProblemMeta[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     loadProblems().then((loadedProblems) => {
       setProblems(loadedProblems);
+      setIsLoading(false);
     });
   }, []);
 
-  return problems;
+  return { problems, isLoading };
 }

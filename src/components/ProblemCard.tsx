@@ -29,9 +29,9 @@ function ProblemCard({ title, slug, difficulty, tags }: ProblemCardProps) {
         className="glass rounded-xl p-6 h-full w-full flex flex-col gap-4 border border-transparent hover:border-cyan-500/50 transition-colors duration-250 focus-within:ring-2 focus-within:ring-cyan-400 focus-within:outline-none"
       >
         {/* Title */}
-        <h3 className="text-xl font-semibold text-slate-100 line-clamp-2">
+        <h2 className="text-xl font-semibold text-slate-100 line-clamp-2">
           {title}
-        </h3>
+        </h2>
 
         {/* Difficulty Badge */}
         <div className="flex items-center gap-2">

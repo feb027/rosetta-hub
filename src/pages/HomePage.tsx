@@ -9,7 +9,7 @@ import { useURLState } from '../hooks/useURLState';
 
 export default function HomePage() {
   // Load problems dynamically
-  const problems = useProblems();
+  const { problems, isLoading } = useProblems();
 
   // Get filter state from URL
   const { searchTerm: urlSearchTerm, difficulty: urlDifficulty, selectedTags: urlSelectedTags, updateFilters } = useURLState();
@@ -107,7 +107,7 @@ export default function HomePage() {
         )}
 
         {/* Problem Grid */}
-        <ProblemGrid problems={filteredProblems} onClearFilters={handleClearFilters} />
+        <ProblemGrid problems={filteredProblems} onClearFilters={handleClearFilters} isLoading={isLoading} />
       </div>
     </div>
   );

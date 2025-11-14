@@ -5,7 +5,7 @@ import BinarySearchVisualization from '../components/visualizations/BinarySearch
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
-  const problems = useProblems();
+  const { problems, isLoading } = useProblems();
   
   // Map of problem slugs to their visualization components
   const visualizations: Record<string, React.ReactNode> = {
@@ -41,10 +41,15 @@ export default function ProblemDetailPage() {
   }
 
   // Loading state
-  if (problems.length === 0) {
+  if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center p-4">
-        <div className="text-slate-400 text-lg">Loading...</div>
+        <div className="glass rounded-2xl p-12 border border-slate-600/50">
+          <div className="flex flex-col items-center gap-4">
+            <div className="w-12 h-12 border-4 border-cyan-500/30 border-t-cyan-500 rounded-full animate-spin" />
+            <div className="text-slate-400 text-lg">Loading problem...</div>
+          </div>
+        </div>
       </div>
     );
   }

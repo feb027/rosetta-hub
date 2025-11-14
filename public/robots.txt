@@ -1,0 +1,6 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location (update with your actual domain when deployed)
+# Sitemap: https://yourdomain.com/sitemap.xml
