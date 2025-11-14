@@ -130,11 +130,11 @@ export default function BinarySearchVisualization() {
   return (
     <div className="space-y-8">
       {/* Controls */}
-      <div className="glass rounded-xl p-6 border border-slate-600/50">
-        <h3 className="text-xl font-semibold text-slate-100 mb-4">Interactive Controls</h3>
+      <div className="glass rounded-xl p-4 md:p-6 border border-slate-600/50">
+        <h3 className="text-lg md:text-xl font-semibold text-slate-100 mb-4">Interactive Controls</h3>
         
-        <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-          <div className="flex-1">
+        <div className="flex flex-col gap-4">
+          <div className="w-full">
             <label className="block text-sm text-slate-300 mb-2">
               Target Value: <span className="text-cyan-400 font-semibold">{target}</span>
             </label>
@@ -150,40 +150,44 @@ export default function BinarySearchVisualization() {
             />
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex gap-2 justify-center flex-wrap">
             {steps.length === 0 ? (
               <button
                 onClick={handleStart}
-                className="flex items-center gap-2 px-4 py-2 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400 rounded-lg border border-cyan-500/50 transition-all"
+                className="flex items-center gap-2 px-6 py-3 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400 rounded-lg border border-cyan-500/50 transition-all min-h-[44px]"
               >
-                <Play size={16} />
-                Start
+                <Play size={18} />
+                <span className="font-medium">Start</span>
               </button>
             ) : (
               <>
                 <button
                   onClick={handlePrev}
                   disabled={currentStep === 0}
-                  className="p-2 bg-slate-700/50 hover:bg-slate-700 text-slate-300 rounded-lg border border-slate-600/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                  className="p-3 bg-slate-700/50 hover:bg-slate-700 text-slate-300 rounded-lg border border-slate-600/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all min-w-[44px] min-h-[44px] flex items-center justify-center"
+                  aria-label="Previous step"
                 >
                   <ChevronLeft size={20} />
                 </button>
                 <button
                   onClick={() => setIsPlaying(!isPlaying)}
-                  className="p-2 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400 rounded-lg border border-cyan-500/50 transition-all"
+                  className="p-3 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400 rounded-lg border border-cyan-500/50 transition-all min-w-[44px] min-h-[44px] flex items-center justify-center"
+                  aria-label={isPlaying ? 'Pause' : 'Play'}
                 >
                   {isPlaying ? <Pause size={20} /> : <Play size={20} />}
                 </button>
                 <button
                   onClick={handleNext}
                   disabled={currentStep === steps.length - 1}
-                  className="p-2 bg-slate-700/50 hover:bg-slate-700 text-slate-300 rounded-lg border border-slate-600/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                  className="p-3 bg-slate-700/50 hover:bg-slate-700 text-slate-300 rounded-lg border border-slate-600/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all min-w-[44px] min-h-[44px] flex items-center justify-center"
+                  aria-label="Next step"
                 >
                   <ChevronRight size={20} />
                 </button>
                 <button
                   onClick={handleReset}
-                  className="p-2 bg-slate-700/50 hover:bg-slate-700 text-slate-300 rounded-lg border border-slate-600/50 transition-all"
+                  className="p-3 bg-slate-700/50 hover:bg-slate-700 text-slate-300 rounded-lg border border-slate-600/50 transition-all min-w-[44px] min-h-[44px] flex items-center justify-center"
+                  aria-label="Reset"
                 >
                   <RotateCcw size={20} />
                 </button>
@@ -204,58 +208,60 @@ export default function BinarySearchVisualization() {
 
       {/* Visualization */}
       {currentStepData && (
-        <div className="glass rounded-xl p-6 border border-slate-600/50">
-          <h3 className="text-xl font-semibold text-slate-100 mb-6">Array Visualization</h3>
+        <div className="glass rounded-xl p-4 md:p-6 border border-slate-600/50">
+          <h3 className="text-lg md:text-xl font-semibold text-slate-100 mb-4 md:mb-6">Array Visualization</h3>
           
-          <div className="flex justify-center items-end gap-2 min-h-[200px]">
-            <AnimatePresence mode="wait">
-              {currentStepData.array.map((value, index) => {
-                const isLeft = index >= currentStepData.left && index <= currentStepData.right;
-                const isMid = index === currentStepData.mid;
-                const isFound = isMid && currentStepData.found;
-                const isOutOfRange = index < currentStepData.left || index > currentStepData.right;
+          <div className="overflow-x-auto pb-4 -mx-4 px-4 md:mx-0 md:px-0">
+            <div className="flex justify-center items-end gap-1.5 md:gap-2 min-h-[180px] md:min-h-[200px] min-w-max">
+              <AnimatePresence mode="wait">
+                {currentStepData.array.map((value, index) => {
+                  const isLeft = index >= currentStepData.left && index <= currentStepData.right;
+                  const isMid = index === currentStepData.mid;
+                  const isFound = isMid && currentStepData.found;
+                  const isOutOfRange = index < currentStepData.left || index > currentStepData.right;
 
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    className="flex flex-col items-center gap-2"
-                  >
+                  return (
                     <motion.div
-                      animate={{
-                        scale: isMid ? 1.1 : 1,
-                        y: isMid ? -10 : 0,
-                      }}
-                      className={`
-                        w-12 h-12 flex items-center justify-center rounded-lg font-semibold text-sm
-                        border-2 transition-all duration-300
-                        ${isFound ? 'bg-green-500/20 border-green-500 text-green-400' :
-                          isMid ? 'bg-cyan-500/20 border-cyan-500 text-cyan-400' :
-                          isLeft && !isOutOfRange ? 'bg-blue-500/10 border-blue-500/50 text-blue-300' :
-                          'bg-slate-700/30 border-slate-600/30 text-slate-500'}
-                      `}
+                      key={index}
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      className="flex flex-col items-center gap-2"
                     >
-                      {value}
+                      <motion.div
+                        animate={{
+                          scale: isMid ? 1.1 : 1,
+                          y: isMid ? -10 : 0,
+                        }}
+                        className={`
+                          w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-lg font-semibold text-xs md:text-sm
+                          border-2 transition-all duration-300
+                          ${isFound ? 'bg-green-500/20 border-green-500 text-green-400' :
+                            isMid ? 'bg-cyan-500/20 border-cyan-500 text-cyan-400' :
+                            isLeft && !isOutOfRange ? 'bg-blue-500/10 border-blue-500/50 text-blue-300' :
+                            'bg-slate-700/30 border-slate-600/30 text-slate-500'}
+                        `}
+                      >
+                        {value}
+                      </motion.div>
+                      <span className="text-xs text-slate-500">{index}</span>
                     </motion.div>
-                    <span className="text-xs text-slate-500">{index}</span>
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
+                  );
+                })}
+              </AnimatePresence>
+            </div>
           </div>
 
-          <div className="mt-6 flex justify-center gap-6 text-sm">
+          <div className="mt-4 md:mt-6 flex flex-wrap justify-center gap-3 md:gap-6 text-xs md:text-sm">
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded bg-cyan-500/20 border-2 border-cyan-500"></div>
+              <div className="w-3 h-3 md:w-4 md:h-4 rounded bg-cyan-500/20 border-2 border-cyan-500"></div>
               <span className="text-slate-300">Current Mid</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded bg-blue-500/10 border-2 border-blue-500/50"></div>
+              <div className="w-3 h-3 md:w-4 md:h-4 rounded bg-blue-500/10 border-2 border-blue-500/50"></div>
               <span className="text-slate-300">Search Range</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded bg-green-500/20 border-2 border-green-500"></div>
+              <div className="w-3 h-3 md:w-4 md:h-4 rounded bg-green-500/20 border-2 border-green-500"></div>
               <span className="text-slate-300">Found</span>
             </div>
           </div>
@@ -263,9 +269,9 @@ export default function BinarySearchVisualization() {
       )}
 
       {/* Code Example */}
-      <div className="glass rounded-xl p-6 border border-slate-600/50">
-        <h3 className="text-xl font-semibold text-slate-100 mb-4">Code Implementation</h3>
-        <pre className="bg-slate-900/50 rounded-lg p-4 overflow-x-auto text-sm">
+      <div className="glass rounded-xl p-4 md:p-6 border border-slate-600/50">
+        <h3 className="text-lg md:text-xl font-semibold text-slate-100 mb-4">Code Implementation</h3>
+        <pre className="bg-slate-900/50 rounded-lg p-3 md:p-4 overflow-x-auto text-xs md:text-sm">
           <code className="text-slate-300">
 {`function binarySearch(arr: number[], target: number): number {
   let left = 0;
@@ -292,8 +298,8 @@ export default function BinarySearchVisualization() {
       </div>
 
       {/* Complexity Analysis */}
-      <div className="glass rounded-xl p-6 border border-slate-600/50">
-        <h3 className="text-xl font-semibold text-slate-100 mb-4">Complexity Analysis</h3>
+      <div className="glass rounded-xl p-4 md:p-6 border border-slate-600/50">
+        <h3 className="text-lg md:text-xl font-semibold text-slate-100 mb-4">Complexity Analysis</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700/50">
             <h4 className="text-cyan-400 font-semibold mb-2">Time Complexity</h4>
