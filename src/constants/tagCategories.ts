@@ -20,7 +20,7 @@ export const TAG_CATEGORIES: TagCategory[] = [
   {
     name: 'Operations',
     icon: '⚙️',
-    tags: ['sorting', 'math', 'string', 'simulation']
+    tags: ['sorting', 'search', 'math', 'string', 'simulation']
   },
   {
     name: 'Interactive',

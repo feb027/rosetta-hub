@@ -33,12 +33,14 @@ const availableTags: Tag[] = [
   'array',
   'recursion',
   'sorting',
+  'search',
   'graph',
   'dynamic-programming',
   'greedy',
   'simulation',
   'optimization',
   'game',
+  'puzzle',
 ];
 
 const sortOptions: { value: SortOption; label: string }[] = [

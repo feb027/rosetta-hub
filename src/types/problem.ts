@@ -10,6 +10,7 @@ export type Tag =
   | 'array'
   | 'recursion'
   | 'sorting'
+  | 'search'
   | 'graph'
   | 'dynamic-programming'
   | 'greedy'

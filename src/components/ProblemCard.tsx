@@ -13,7 +13,8 @@ import {
   Target, 
   Activity,
   Gamepad2,
-  Puzzle
+  Puzzle,
+  Search
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Tooltip } from 'react-tooltip';
@@ -45,6 +46,7 @@ const TAG_ICONS: Record<Tag, { icon: LucideIcon; label: string; color: string }>
   'array': { icon: Boxes, label: 'Array', color: 'text-orange-400' },
   'recursion': { icon: Repeat, label: 'Recursion', color: 'text-pink-400' },
   'sorting': { icon: ArrowUpDown, label: 'Sorting', color: 'text-yellow-400' },
+  'search': { icon: Search, label: 'Search', color: 'text-sky-400' },
   'graph': { icon: Network, label: 'Graph', color: 'text-indigo-400' },
   'dynamic-programming': { icon: Sparkles, label: 'Dynamic Programming', color: 'text-violet-400' },
   'greedy': { icon: Target, label: 'Greedy', color: 'text-emerald-400' },
@@ -59,11 +61,13 @@ function getIconsForTags(tags: Tag[]): Array<{ icon: LucideIcon; label: string; 
   // Prioritize certain tags for display
   const priorityOrder: Tag[] = [
     'game',
+    'puzzle',
     'algorithm',
     'data-structure',
     'graph',
     'dynamic-programming',
     'sorting',
+    'search',
     'recursion',
     'math',
     'simulation',
