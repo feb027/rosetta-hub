@@ -90,6 +90,23 @@ body {
   animation: shimmer 2s infinite linear;
 }
 
+/* Sort Dropdown Styling */
+.sort-dropdown option {
+  background-color: #1e293b;
+  color: #cbd5e1;
+  padding: 12px 16px;
+  font-size: 14px;
+}
+
+.sort-dropdown option:hover {
+  background-color: #334155;
+}
+
+.sort-dropdown option:checked {
+  background-color: #0ea5e9;
+  color: #f1f5f9;
+}
+
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   *,
