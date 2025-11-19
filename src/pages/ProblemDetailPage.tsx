@@ -8,11 +8,10 @@ import BinarySearchVisualization from '../components/visualizations/BinarySearch
 import HundredDoorsVisualization from '../components/visualizations/HundredDoorsVisualization';
 import HundredPrisonersVisualization from '../components/visualizations/HundredPrisonersVisualization';
 import FifteenPuzzleVisualization from '../components/visualizations/FifteenPuzzleVisualization';
+import FourRingsPuzzleVisualization from '../components/visualizations/FourRingsPuzzleVisualization';
 import TwentyOneGameVisualization from '../components/visualizations/TwentyOneGameVisualization';
 import TwentyFourGameVisualization from '../components/visualizations/TwentyFourGameVisualization';
 import TwentyFourGameSolverVisualization from '../components/visualizations/TwentyFourGameSolverVisualization';
-import FourRingsPuzzleVisualization from '../components/visualizations/FourRingsPuzzleVisualization';
-
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const { problems, isLoading } = useProblems();
@@ -25,6 +24,7 @@ export default function ProblemDetailPage() {
     '100-doors': <HundredDoorsVisualization />,
     '100-prisoners': <HundredPrisonersVisualization />,
     '15-puzzle-game': <FifteenPuzzleVisualization/>,
+    '4-rings-puzzle': <FourRingsPuzzleVisualization />,
     '21-game': <TwentyOneGameVisualization />,
     '24-game': <TwentyFourGameVisualization />,
     '24-game-solve': <TwentyFourGameSolverVisualization />,

@@ -37,7 +37,6 @@ export default function FifteenPuzzleVisualization() {
   const [hintTile, setHintTile] = useState<number | null>(null);
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [showKeyboardHelp, setShowKeyboardHelp] = useState(false);
-  const [animateOnShuffle, setAnimateOnShuffle] = useState(false);
   const timerRef = useRef<number | null>(null);
   const audioContext = useRef<AudioContext | null>(null);
 
@@ -137,9 +136,6 @@ export default function FifteenPuzzleVisualization() {
 
 
   const shuffleBoard = () => {
-    // Disable layout animations during shuffle
-    setAnimateOnShuffle(false);
-    
     let newBoard: number[];
     const shuffleCount = difficulty === 'easy' ? 20 : difficulty === 'medium' ? 50 : 100;
     
@@ -174,9 +170,6 @@ export default function FifteenPuzzleVisualization() {
     
     // Play shuffle sound
     playSound(800, 0.15, 'sawtooth');
-    
-    // Re-enable animations after a brief delay
-    setTimeout(() => setAnimateOnShuffle(true), 100);
   };
 
   const getValidMoves = (emptyIdx: number): number[] => {
