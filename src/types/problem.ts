@@ -17,7 +17,11 @@ export type Tag =
   | 'simulation'
   | 'optimization'
   | 'game'
-  | 'puzzle';
+  | 'puzzle'
+  | 'visualization'
+  | 'combinatorics'
+  | 'loop'
+  | 'processing';
 
 export interface ProblemMeta {
   title: string;

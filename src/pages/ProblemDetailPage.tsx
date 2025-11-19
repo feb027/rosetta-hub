@@ -1,7 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowLeft, ArrowUp, BookOpen, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ArrowUp, BookOpen, ExternalLink, Code2, Info } from 'lucide-react';
 import { useProblems } from '../hooks/useProblems';
 import { DIFFICULTY_COLORS } from '../constants/colors';
 import BinarySearchVisualization from '../components/visualizations/BinarySearchVisualization';
@@ -12,6 +12,11 @@ import FourRingsPuzzleVisualization from '../components/visualizations/FourRings
 import TwentyOneGameVisualization from '../components/visualizations/TwentyOneGameVisualization';
 import TwentyFourGameVisualization from '../components/visualizations/TwentyFourGameVisualization';
 import TwentyFourGameSolverVisualization from '../components/visualizations/TwentyFourGameSolverVisualization';
+import NineBillionNamesVisualization from '../components/visualizations/NineBillionNamesVisualization';
+import NinetyNineBottlesVisualization from '../components/visualizations/NinetyNineBottlesVisualization';
+import APlusBVisualization from '../components/visualizations/APlusBVisualization';
+import AbbreviationsAutomaticVisualization from '../components/visualizations/AbbreviationsAutomaticVisualization';
+
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const { problems, isLoading } = useProblems();
@@ -28,6 +33,10 @@ export default function ProblemDetailPage() {
     '21-game': <TwentyOneGameVisualization />,
     '24-game': <TwentyFourGameVisualization />,
     '24-game-solve': <TwentyFourGameSolverVisualization />,
+    '9-billion-names': <NineBillionNamesVisualization />,
+    '99-bottles': <NinetyNineBottlesVisualization />,
+    'a-plus-b': <APlusBVisualization />,
+    'abbreviations-automatic': <AbbreviationsAutomaticVisualization />,
   };
   
   // Find the problem by slug
@@ -53,10 +62,11 @@ export default function ProblemDetailPage() {
   // 404 - Problem not found
   if (problems.length > 0 && !problem) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4">
-        <div className="text-center max-w-md">
-          <div className="glass rounded-2xl p-12 border border-slate-600/50">
-            <div className="text-6xl mb-6">🔍</div>
+      <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-slate-900/[0.04] bg-[bottom_1px_center] dark:bg-grid-slate-400/[0.05]" />
+        <div className="text-center max-w-md relative z-10">
+          <div className="glass rounded-2xl p-12 border border-slate-700/50 shadow-2xl">
+            <div className="text-6xl mb-6 animate-bounce">🔍</div>
             <h1 className="text-4xl font-bold text-slate-100 mb-4">
               Problem Not Found
             </h1>
@@ -65,9 +75,10 @@ export default function ProblemDetailPage() {
             </p>
             <Link
               to="/"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400 rounded-lg transition-all duration-200 border border-cyan-500/30 hover:border-cyan-500/50"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 rounded-xl transition-all duration-200 border border-cyan-500/20 hover:border-cyan-500/40 hover:shadow-lg hover:shadow-cyan-500/10"
             >
-              ← Return to Hub
+              <ArrowLeft size={18} />
+              <span>Return to Hub</span>
             </Link>
           </div>
         </div>
@@ -79,10 +90,15 @@ export default function ProblemDetailPage() {
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center p-4">
-        <div className="glass rounded-2xl p-12 border border-slate-600/50">
-          <div className="flex flex-col items-center gap-4">
-            <div className="w-12 h-12 border-4 border-cyan-500/30 border-t-cyan-500 rounded-full animate-spin" />
-            <div className="text-slate-400 text-lg">Loading problem...</div>
+        <div className="glass rounded-2xl p-12 border border-slate-700/50 shadow-xl">
+          <div className="flex flex-col items-center gap-6">
+            <div className="relative">
+              <div className="w-16 h-16 border-4 border-cyan-500/20 border-t-cyan-500 rounded-full animate-spin" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse" />
+              </div>
+            </div>
+            <div className="text-slate-400 text-lg font-medium animate-pulse">Loading problem...</div>
           </div>
         </div>
       </div>
@@ -94,10 +110,29 @@ export default function ProblemDetailPage() {
     return null;
   }
 
-  // Problem found - display details
   return (
-    <div className="min-h-screen p-4 md:p-6 lg:p-8 pb-20">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen pb-20 relative">
+      {/* Immersive Background Header */}
+      <div className="absolute top-0 left-0 right-0 h-[500px] overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/0 via-slate-900/80 to-slate-950" />
+        <div className="absolute top-[-20%] left-[-10%] w-[70%] h-[70%] bg-cyan-500/5 rounded-full blur-[100px]" />
+        <div className="absolute top-[10%] right-[-10%] w-[50%] h-[50%] bg-blue-600/5 rounded-full blur-[100px]" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 relative z-10 pt-8 md:pt-12">
+        {/* Top Navigation */}
+        <div className="mb-8">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors group"
+          >
+            <div className="p-2 rounded-lg bg-slate-800/50 border border-slate-700/50 group-hover:border-cyan-500/30 group-hover:bg-cyan-500/10 transition-all">
+              <ArrowLeft size={18} className="group-hover:-translate-x-0.5 transition-transform" />
+            </div>
+            <span className="font-medium">Back to Hub</span>
+          </Link>
+        </div>
+
         {/* Floating Back Button - Appears on scroll */}
         <AnimatePresence>
           {showBackButton && (
@@ -105,20 +140,20 @@ export default function ProblemDetailPage() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
-              className="fixed left-16 md:left-20 top-24 z-40"
+              className="fixed left-6 md:left-10 top-24 z-40 hidden xl:block"
             >
               <Link
                 to="/"
-                className="group flex items-center gap-2 px-4 py-2.5 bg-slate-800/90 hover:bg-slate-700/90 backdrop-blur-md border border-slate-600/50 hover:border-cyan-500/50 rounded-lg transition-all shadow-lg hover:shadow-cyan-500/20 text-slate-300 hover:text-cyan-400"
+                className="group flex items-center gap-2 px-4 py-2.5 bg-slate-900/80 hover:bg-slate-800/90 backdrop-blur-md border border-slate-700/50 hover:border-cyan-500/50 rounded-xl transition-all shadow-lg hover:shadow-cyan-500/20 text-slate-300 hover:text-cyan-400"
               >
                 <ArrowLeft size={18} className="transition-transform group-hover:-translate-x-1" />
-                <span className="text-sm font-medium hidden md:inline">Back to Hub</span>
+                <span className="text-sm font-medium">Back</span>
               </Link>
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* Scroll to Top Button - Bottom Right */}
+        {/* Scroll to Top Button */}
         <AnimatePresence>
           {showScrollTop && (
             <motion.div
@@ -129,152 +164,173 @@ export default function ProblemDetailPage() {
             >
               <button
                 onClick={scrollToTop}
-                className="group flex items-center gap-2 px-4 py-2.5 bg-slate-800/90 hover:bg-slate-700/90 backdrop-blur-md border border-slate-600/50 hover:border-cyan-500/50 rounded-lg transition-all shadow-lg hover:shadow-cyan-500/20 text-slate-300 hover:text-cyan-400"
+                className="group p-3 bg-slate-900/80 hover:bg-cyan-500/20 backdrop-blur-md border border-slate-700/50 hover:border-cyan-500/50 rounded-xl transition-all shadow-lg hover:shadow-cyan-500/20 text-slate-300 hover:text-cyan-400"
                 title="Scroll to top"
               >
-                <ArrowUp size={18} className="transition-transform group-hover:-translate-y-1" />
-                <span className="text-sm font-medium hidden md:inline">Top</span>
+                <ArrowUp size={20} className="transition-transform group-hover:-translate-y-1" />
               </button>
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* Problem Header - Enhanced */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="glass rounded-xl p-6 md:p-8 border border-slate-600/50 mb-6 relative overflow-hidden"
-        >
-          {/* Decorative gradient */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 blur-3xl pointer-events-none" />
-          
-          <div className="relative">
-            {/* Title and Difficulty */}
-            <div className="flex flex-wrap items-start gap-3 mb-4">
-              <h1 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 flex-1">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-8 items-start">
+          {/* Main Content Column */}
+          <div className="space-y-8">
+            {/* Problem Header */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="flex flex-wrap items-center gap-3 mb-4">
+                <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border ${DIFFICULTY_COLORS[problem.difficulty]} bg-opacity-10`}>
+                  {problem.difficulty}
+                </span>
+                {problem.createdAt && (
+                  <span className="text-slate-500 text-sm font-mono">
+                    {new Date(problem.createdAt).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+                  </span>
+                )}
+              </div>
+              
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-slate-100 to-slate-400 mb-6 leading-tight">
                 {problem.title}
               </h1>
-              <span
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold ${DIFFICULTY_COLORS[problem.difficulty]} shadow-lg`}
-              >
-                {problem.difficulty.charAt(0).toUpperCase() + problem.difficulty.slice(1)}
-              </span>
-            </div>
 
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2 mb-4">
-              {problem.tags.map((tag, index) => (
-                <motion.span
-                  key={tag}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.05 }}
-                  className="px-2.5 py-1 bg-slate-700/50 text-slate-300 rounded-md text-xs border border-slate-600/50 hover:border-cyan-500/50 hover:bg-slate-700/70 transition-all cursor-default"
-                >
-                  {tag}
-                </motion.span>
-              ))}
-            </div>
-
-            {/* Description */}
-            {problem.description && (
-              <div className="relative">
-                <div className="absolute -left-3 top-0 w-1 h-full bg-gradient-to-b from-cyan-500/50 to-blue-500/50 rounded-full" />
-                <p className="text-slate-300 text-sm leading-relaxed whitespace-pre-line pl-3">
-                  {problem.description}
-                </p>
+              <div className="flex flex-wrap gap-2">
+                {problem.tags.map((tag, index) => (
+                  <motion.span
+                    key={tag}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: index * 0.05 }}
+                    className="px-3 py-1.5 bg-slate-800/50 text-slate-300 rounded-lg text-xs font-medium border border-slate-700/50 hover:border-cyan-500/30 hover:bg-slate-800 hover:text-cyan-300 transition-all cursor-default"
+                  >
+                    #{tag}
+                  </motion.span>
+                ))}
               </div>
-            )}
+            </motion.div>
 
-            {/* Metadata Footer */}
-            <div className="mt-4 pt-4 border-t border-slate-700/50 flex flex-wrap items-center gap-4 text-xs text-slate-400">
-              {problem.createdAt && (
-                <div className="flex items-center gap-2">
-                  <BookOpen size={14} />
-                  <span>Added {new Date(problem.createdAt).toLocaleDateString('en-US', { 
-                    month: 'long', 
-                    day: 'numeric', 
-                    year: 'numeric' 
-                  })}</span>
+            {/* Visualization Container */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="relative group"
+            >
+              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500" />
+              <div className="relative glass rounded-2xl border border-slate-700/50 overflow-hidden shadow-2xl">
+                {/* Window Controls Decoration */}
+                <div className="h-10 bg-slate-900/50 border-b border-slate-700/50 flex items-center px-4 gap-2">
+                  <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/50" />
+                  <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50" />
+                  <div className="ml-auto text-xs text-slate-500 font-mono flex items-center gap-1">
+                    <Code2 size={12} />
+                    <span>Interactive Mode</span>
+                  </div>
                 </div>
-              )}
-              {problem.rosettaCodeUrl && (
-                <a
-                  href={problem.rosettaCodeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-cyan-400 hover:text-cyan-300 transition-colors group"
-                >
-                  <ExternalLink size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  <span>View on Rosetta Code</span>
-                </a>
-              )}
-            </div>
+
+                {/* Visualization Content */}
+                <div className="p-1 bg-slate-950/30">
+                  {visualizations[problem.slug] ? (
+                    <div className="visualization-container min-h-[400px] flex items-center justify-center">
+                      {visualizations[problem.slug]}
+                    </div>
+                  ) : (
+                    <div className="p-12 text-center relative overflow-hidden min-h-[400px] flex flex-col items-center justify-center">
+                      <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5" />
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ delay: 0.3, type: 'spring' }}
+                        className="text-6xl mb-6"
+                      >
+                        🚧
+                      </motion.div>
+                      <h2 className="text-2xl font-bold text-slate-100 mb-3">
+                        Visualization In Progress
+                      </h2>
+                      <p className="text-slate-400 max-w-md mx-auto mb-8">
+                        Our engineers are currently crafting an interactive experience for this problem. 
+                        Please check back later!
+                      </p>
+                      <div className="flex gap-4 justify-center">
+                        <div className="px-4 py-2 rounded-lg bg-slate-800/50 border border-slate-700/50 text-xs text-slate-400">
+                          Status: <span className="text-yellow-400">Development</span>
+                        </div>
+                        <div className="px-4 py-2 rounded-lg bg-slate-800/50 border border-slate-700/50 text-xs text-slate-400">
+                          ETA: <span className="text-cyan-400">Coming Soon</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </motion.div>
           </div>
-        </motion.div>
 
-        {/* Visualization or Placeholder */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          {visualizations[problem.slug] ? (
-            <div className="visualization-container">
-              {visualizations[problem.slug]}
-            </div>
-          ) : (
-            <div className="glass rounded-xl p-8 border border-slate-600/50 text-center relative overflow-hidden">
-              {/* Decorative background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-800/50 to-slate-900/50 pointer-events-none" />
+          {/* Sidebar Column */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="space-y-6 lg:sticky lg:top-24"
+          >
+            {/* Description Card */}
+            <div className="glass rounded-2xl p-6 border border-slate-700/50 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
               
-              <div className="max-w-2xl mx-auto relative">
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.3, type: 'spring' }}
-                  className="text-5xl mb-4"
-                >
-                  🚧
-                </motion.div>
-                <h2 className="text-xl font-bold text-slate-100 mb-3">
-                  Visualization Coming Soon
-                </h2>
-                <p className="text-slate-400 text-sm mb-6">
-                  We're working on creating an interactive visualization for this problem.
-                  Check back soon!
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-left">
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.4 }}
-                    className="bg-slate-800/50 rounded-lg p-3 border border-slate-700/50 hover:border-cyan-500/30 transition-colors"
+              <div className="flex items-center gap-2 mb-4 text-cyan-400">
+                <Info size={20} />
+                <h3 className="font-bold text-lg">About this Problem</h3>
+              </div>
+              
+              {problem.description ? (
+                <div className="prose prose-invert prose-sm max-w-none text-slate-300 leading-relaxed">
+                  <p className="whitespace-pre-line">{problem.description}</p>
+                </div>
+              ) : (
+                <p className="text-slate-500 italic text-sm">No description available.</p>
+              )}
+            </div>
+
+            {/* Metadata Card */}
+            <div className="glass rounded-2xl p-6 border border-slate-700/50">
+              <h3 className="font-bold text-slate-200 mb-4 text-sm uppercase tracking-wider">Resources</h3>
+              
+              <div className="space-y-3">
+                {problem.rosettaCodeUrl && (
+                  <a
+                    href={problem.rosettaCodeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-3 rounded-xl bg-slate-800/50 border border-slate-700/50 hover:border-cyan-500/30 hover:bg-slate-800 transition-all group"
                   >
-                    <div className="text-cyan-400 font-semibold mb-2 text-sm">Coming Soon:</div>
-                    <ul className="text-slate-400 text-xs space-y-1">
-                      <li>• Interactive visualization</li>
-                      <li>• Step-by-step walkthrough</li>
-                    </ul>
-                  </motion.div>
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.5 }}
-                    className="bg-slate-800/50 rounded-lg p-3 border border-slate-700/50 hover:border-cyan-500/30 transition-colors"
-                  >
-                    <div className="text-cyan-400 font-semibold mb-2 text-sm">Future Features:</div>
-                    <ul className="text-slate-400 text-xs space-y-1">
-                      <li>• Code examples</li>
-                      <li>• Complexity analysis</li>
-                    </ul>
-                  </motion.div>
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 rounded-lg bg-slate-700/50 text-slate-300 group-hover:text-cyan-300 transition-colors">
+                        <BookOpen size={16} />
+                      </div>
+                      <span className="text-sm font-medium text-slate-300 group-hover:text-slate-100">Rosetta Code</span>
+                    </div>
+                    <ExternalLink size={14} className="text-slate-500 group-hover:text-cyan-400 transition-colors" />
+                  </a>
+                )}
+                
+                <div className="p-4 rounded-xl bg-slate-800/30 border border-slate-700/30">
+                  <div className="flex items-center gap-2 mb-2 text-xs font-medium text-slate-400">
+                    <Code2 size={14} />
+                    <span>Implementation</span>
+                  </div>
+                  <p className="text-xs text-slate-500">
+                    This visualization is implemented using React and Motion. View the source code on GitHub to learn more.
+                  </p>
                 </div>
               </div>
             </div>
-          )}
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </div>
   );

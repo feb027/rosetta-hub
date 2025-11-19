@@ -14,7 +14,7 @@ export default function ProblemGrid({ problems, onClearFilters, isLoading = fals
   // Show skeleton cards while loading
   if (isLoading) {
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
         {Array.from({ length: 8 }).map((_, index) => (
           <motion.div
             key={index}
@@ -40,7 +40,7 @@ export default function ProblemGrid({ problems, onClearFilters, isLoading = fals
   return (
     <motion.div
       layout
-      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 lg:gap-8"
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8"
     >
       <AnimatePresence mode="popLayout">
         {problems.map((problem, index) => (

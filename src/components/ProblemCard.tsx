@@ -14,7 +14,10 @@ import {
   Activity,
   Gamepad2,
   Puzzle,
-  Search
+  Search,
+  Monitor,
+  Sigma,
+  Cpu
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Tooltip } from 'react-tooltip';
@@ -54,6 +57,10 @@ const TAG_ICONS: Record<Tag, { icon: LucideIcon; label: string; color: string }>
   'optimization': { icon: Target, label: 'Optimization', color: 'text-red-400' },
   'game': { icon: Gamepad2, label: 'Game', color: 'text-fuchsia-400' },
   'puzzle': { icon: Puzzle, label: 'Puzzle', color: 'text-amber-400' },
+  'visualization': { icon: Monitor, label: 'Visualization', color: 'text-cyan-400' },
+  'combinatorics': { icon: Sigma, label: 'Combinatorics', color: 'text-blue-400' },
+  'loop': { icon: Repeat, label: 'Loop', color: 'text-pink-400' },
+  'processing': { icon: Cpu, label: 'Processing', color: 'text-emerald-400' },
 };
 
 // Get icons for a problem based on its tags
@@ -119,11 +126,21 @@ function ProblemCard({ title, slug, difficulty, tags, createdAt, previewImage }:
   // Get contextual icons based on tags
   const techIcons = getIconsForTags(tags);
 
+  // Mouse move handler for spotlight effect
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    const { currentTarget: target } = e;
+    const rect = target.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    target.style.setProperty("--mouse-x", `${x}px`);
+    target.style.setProperty("--mouse-y", `${y}px`);
+  }
+
   return (
     <>
       <Link 
         to={`/visualizations/${slug}`} 
-        className="block h-full w-full group"
+        className="block h-full w-full group relative"
         aria-label={`View ${title} problem - ${DIFFICULTY_LABELS[difficulty]} difficulty`}
         data-tooltip-id={`preview-${slug}`}
         data-tooltip-place="top"
@@ -131,19 +148,28 @@ function ProblemCard({ title, slug, difficulty, tags, createdAt, previewImage }:
       <motion.div
         initial={{ scale: 1, y: 0 }}
         whileHover={{
-          scale: 1.03,
-          y: -8,
-          transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] }
+          scale: 1.02,
+          y: -5,
+          transition: { duration: 0.3, ease: "easeOut" }
         }}
         whileTap={{ scale: 0.98 }}
-        className="relative h-full w-full overflow-hidden rounded-xl"
+        onMouseMove={handleMouseMove}
+        className="relative h-full w-full overflow-hidden rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-colors duration-300 group-hover:shadow-2xl group-hover:shadow-cyan-500/10"
       >
-        {/* Difficulty Gradient Border */}
-        <div className={`absolute inset-0 bg-gradient-to-br ${DIFFICULTY_GRADIENTS[difficulty]} opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl`} />
+        {/* Spotlight Effect */}
+        <div 
+          className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+          style={{
+            background: `radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(34, 211, 238, 0.15), transparent 40%)`
+          }}
+        />
+
+        {/* Difficulty Gradient Border (Subtle) */}
+        <div className={`absolute inset-0 bg-gradient-to-br ${DIFFICULTY_GRADIENTS[difficulty]} opacity-0 group-hover:opacity-20 transition-opacity duration-500`} />
         
-        {/* Main Card with Glassmorphism Layers */}
-        <div className="relative h-full flex flex-col">
-          {/* Background Preview Image - BOTTOM LAYER */}
+        {/* Main Card Content */}
+        <div className="relative h-full flex flex-col z-20">
+          {/* Background Preview Image - Subtle */}
           {previewImage && (
             <div className="absolute inset-0 z-0 overflow-hidden">
               <img 
@@ -151,116 +177,100 @@ function ProblemCard({ title, slug, difficulty, tags, createdAt, previewImage }:
                 alt="" 
                 loading="lazy"
                 decoding="async"
-                className="w-full h-full object-contain object-center rounded-xl opacity-20 group-hover:opacity-40 transition-opacity duration-300 scale-90"
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                }}
+                className="w-full h-full object-cover object-center opacity-[0.08] group-hover:opacity-[0.15] transition-opacity duration-500 scale-105 group-hover:scale-110 transform"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-slate-900/40" />
             </div>
           )}
           
-          {/* Glass Layer 1 - Base - MIDDLE LAYER */}
-          <div className="absolute inset-0 z-[1] glass rounded-xl border border-slate-600/50 group-hover:border-cyan-500/50 transition-all duration-300" />
-          
-          {/* Glass Layer 2 - Depth on Hover - MIDDLE LAYER */}
-          <div className="absolute inset-0 z-[2] bg-gradient-to-br from-slate-800/0 via-slate-800/0 to-slate-900/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
-          
-          {/* Content - TOP LAYER */}
-          <div className="relative p-6 h-full flex flex-col gap-4 z-[10]">
-            {/* Corner Accent Decoration */}
-            <div className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${DIFFICULTY_GRADIENTS[difficulty]} opacity-20 blur-2xl group-hover:opacity-40 transition-opacity duration-300`} />
+          {/* Content Container */}
+          <div className="relative p-6 h-full flex flex-col gap-4">
             
-            {/* Date Badge */}
-            {formattedDate && (
-              <div className="absolute top-4 right-4 px-2 py-1 rounded-md bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 text-[10px] text-slate-400 font-medium">
-                {formattedDate}
-              </div>
-            )}
+            {/* Header: Date & Difficulty */}
+            <div className="flex justify-between items-start">
+               <span className={`px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider border ${DIFFICULTY_COLORS[difficulty]} bg-opacity-10`}>
+                {DIFFICULTY_LABELS[difficulty]}
+              </span>
+              {formattedDate && (
+                <span className="text-[10px] text-slate-500 font-medium font-mono">
+                  {formattedDate}
+                </span>
+              )}
+            </div>
 
             {/* Title */}
-            <h2 className="text-xl font-semibold text-slate-100 line-clamp-2 group-hover:text-cyan-300 transition-colors duration-300">
+            <h2 className="text-lg md:text-xl font-bold text-slate-100 line-clamp-2 group-hover:text-cyan-300 transition-colors duration-300 leading-tight">
               {title}
             </h2>
 
-            {/* Difficulty Badge */}
-            <div className="flex items-center gap-2">
-              <span className={`px-3 py-1 rounded-full text-sm font-medium border ${DIFFICULTY_COLORS[difficulty]} group-hover:scale-105 transition-transform duration-300`}>
-                {DIFFICULTY_LABELS[difficulty]}
-              </span>
-            </div>
-
             {/* Tags */}
-            <div className="flex flex-wrap gap-2 mt-auto">
+            <div className="flex flex-wrap gap-1.5 mt-auto">
               {tags.slice(0, 3).map((tag) => (
                 <span
                   key={tag}
-                  className="px-2 py-1 text-xs rounded-md bg-slate-700/50 text-slate-300 border border-slate-600/50 backdrop-blur-sm group-hover:bg-slate-700/70 group-hover:border-slate-500/50 transition-all duration-300"
+                  className="px-2 py-1 text-[10px] rounded-md bg-slate-800/80 text-slate-400 border border-slate-700/50 group-hover:border-slate-600 transition-colors"
                 >
                   {tag}
                 </span>
               ))}
               {tags.length > 3 && (
-                <span className="px-2 py-1 text-xs rounded-md bg-slate-700/50 text-slate-400 border border-slate-600/50 backdrop-blur-sm">
+                <span className="px-2 py-1 text-[10px] rounded-md bg-slate-800/50 text-slate-500 border border-slate-700/30">
                   +{tags.length - 3}
                 </span>
               )}
             </div>
 
-            {/* Contextual Icons Row */}
-            <div className="flex items-center gap-2 pt-2 border-t border-slate-700/50 mt-auto">
-              {techIcons.map((tech, index) => (
-                <div
-                  key={index}
-                  className="group/icon relative"
-                  title={tech.label}
-                >
-                  <tech.icon 
-                    size={16} 
-                    className={`${tech.color} opacity-60 group-hover:opacity-100 transition-opacity duration-300`}
-                  />
-                </div>
-              ))}
-              <span className="ml-auto text-[10px] text-slate-500 group-hover:text-slate-400 transition-colors duration-300">
-                Interactive
+            {/* Footer: Icons & Label */}
+            <div className="flex items-center gap-3 pt-3 border-t border-slate-800/50 mt-2">
+              <div className="flex -space-x-2">
+                {techIcons.map((tech, index) => (
+                  <div
+                    key={index}
+                    className="relative z-10 bg-slate-900 rounded-full p-1 ring-2 ring-slate-900 group-hover:ring-slate-800 transition-all"
+                    title={tech.label}
+                  >
+                    <tech.icon 
+                      size={14} 
+                      className={`${tech.color}`}
+                    />
+                  </div>
+                ))}
+              </div>
+              <span className="ml-auto text-[10px] font-medium text-slate-500 group-hover:text-cyan-400 transition-colors flex items-center gap-1">
+                Explore <span className="group-hover:translate-x-0.5 transition-transform">→</span>
               </span>
             </div>
           </div>
-
-          {/* Hover Glow Effect */}
-          <div className={`absolute inset-0 z-[3] bg-gradient-to-br ${DIFFICULTY_GRADIENTS[difficulty]} opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-300 pointer-events-none`} />
         </div>
-
-        {/* Click Feedback Overlay */}
-        <div className="absolute inset-0 z-[20] bg-cyan-400/0 group-active:bg-cyan-400/10 transition-colors duration-150 rounded-xl pointer-events-none" />
-
-        {/* Focus Ring */}
-        <div className="absolute inset-0 z-[30] rounded-xl ring-2 ring-transparent group-focus-within:ring-cyan-400 transition-all duration-300 pointer-events-none" />
       </motion.div>
     </Link>
 
-    {/* Preview Tooltip - Positioned Above Card */}
+    {/* Preview Tooltip */}
     {previewImage && (
       <Tooltip
         id={`preview-${slug}`}
         delayHide={0}
-        delayShow={300}
-        className="!p-0 !bg-transparent !border-0 !shadow-2xl !opacity-100"
+        delayShow={400}
+        className="!p-0 !bg-transparent !border-0 !shadow-2xl !opacity-100 z-50"
         style={{ zIndex: 9999 }}
+        offset={20}
       >
-        <div className="relative w-96 h-64 rounded-xl overflow-hidden border-2 border-cyan-500/50 shadow-2xl bg-slate-900">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95, y: 10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          className="relative w-80 h-56 rounded-xl overflow-hidden border border-slate-700 shadow-2xl bg-slate-900"
+        >
           <img 
             src={previewImage} 
             alt={`Preview of ${title}`}
-            loading="lazy"
-            decoding="async"
-            className="w-full h-full object-contain object-center"
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-transparent pointer-events-none" />
-          <div className="absolute bottom-0 left-0 right-0 p-4 pointer-events-none">
-            <h3 className="text-white font-semibold text-lg">{title}</h3>
-            <p className="text-slate-300 text-sm">{DIFFICULTY_LABELS[difficulty]} • Interactive Visualization</p>
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 p-4">
+            <h3 className="text-white font-bold text-sm">{title}</h3>
+            <p className="text-cyan-400 text-xs font-medium mt-0.5">Interactive Visualization</p>
           </div>
-        </div>
+        </motion.div>
       </Tooltip>
     )}
   </>

@@ -10,7 +10,7 @@ export const TAG_CATEGORIES: TagCategory[] = [
   {
     name: 'Concepts',
     icon: '💡',
-    tags: ['algorithm', 'recursion', 'dynamic-programming', 'greedy', 'optimization']
+    tags: ['algorithm', 'recursion', 'dynamic-programming', 'greedy', 'optimization', 'combinatorics', 'loop', 'processing']
   },
   {
     name: 'Data Structures',
@@ -25,6 +25,6 @@ export const TAG_CATEGORIES: TagCategory[] = [
   {
     name: 'Interactive',
     icon: '🎮',
-    tags: ['game', 'puzzle']
+    tags: ['game', 'puzzle', 'visualization']
   }
 ];
