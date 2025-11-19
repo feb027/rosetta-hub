@@ -136,8 +136,16 @@ export default function HomePage() {
             <a 
               href="/about" 
               className="px-4 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/50 transition-all text-sm font-medium"
+              href="/about" 
+              className="px-4 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/50 transition-all text-sm font-medium"
             >
               About Project
+            </a>
+            <a 
+              href="/changelog" 
+              className="px-4 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/50 transition-all text-sm font-medium"
+            >
+              Changelog
             </a>
           </nav>
         </header>
