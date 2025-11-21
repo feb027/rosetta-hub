@@ -3,92 +3,10 @@ import { Calendar, Tag, GitCommit, ArrowLeft, Rocket, Bug, Zap, Sparkles } from 
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 
-interface ChangeItem {
-  type: 'added' | 'changed' | 'fixed';
-  content: string;
-  details?: string[];
-}
+import changelogRaw from '../../CHANGELOG.md?raw';
+import { parseChangelog, type Release, type ChangeItem } from '../utils/changelogParser';
 
-interface Release {
-  version: string;
-  date: string;
-  changes: ChangeItem[];
-}
-
-const RELEASES: Release[] = [
-  {
-    version: "Unreleased",
-    date: "2025-11-19",
-    changes: [
-      {
-        type: 'added',
-        content: 'New Problem: "9 Billion Names of God the Integer"',
-        details: [
-          'Added metadata and NineBillionNamesVisualization component',
-          'Implemented Ferrers Diagram visualization with pagination',
-          'Added "Calculation Mode" for larger integers'
-        ]
-      },
-      {
-        type: 'added',
-        content: 'New Problem: "99 Bottles of Beer"',
-        details: [
-          'Added metadata and NinetyNineBottlesVisualization component',
-          'Implemented "Neon Jukebox" visualization with karaoke-style lyrics'
-        ]
-      },
-      {
-        type: 'added',
-        content: 'New Problem: "A + B"',
-        details: [
-          'Added metadata and APlusBVisualization component',
-          'Implemented "Cyber-Minimalist Data Fusion" visualization'
-        ]
-      },
-      {
-        type: 'added',
-        content: 'New Problem: "Abbreviations, automatic"',
-        details: [
-          'Added metadata and AbbreviationsAutomaticVisualization component',
-          'Implemented "Digital Text Distiller" visualization'
-        ]
-      },
-      {
-        type: 'added',
-        content: 'Feature: Pagination for Home Page',
-        details: [
-          'Implemented client-side pagination (9 items per page)',
-          'Added glassmorphic pagination controls',
-          'Added "Showing X-Y of Z" result count display'
-        ]
-      },
-      {
-        type: 'added',
-        content: 'System: Tag Categories & Icons',
-        details: [
-          'Added loop, processing, visualization, and combinatorics tags',
-          'Mapped new tags to icons (Repeat, Cpu, Monitor, Sigma)'
-        ]
-      },
-      {
-        type: 'changed',
-        content: 'UI: Updated ProblemGrid to strictly enforce a 3-column layout',
-      },
-      {
-        type: 'changed',
-        content: 'UI: Refined HomePage hero section and filter layout',
-      },
-      {
-        type: 'fixed',
-        content: 'Bug: Resolved iconData is undefined error',
-      },
-      {
-        type: 'fixed',
-        content: 'Bug: Fixed variable name conflict in NineBillionNamesVisualization',
-      }
-    ]
-  }
-];
+const RELEASES: Release[] = parseChangelog(changelogRaw);
 
 const TypeIcon = ({ type }: { type: ChangeItem['type'] }) => {
   switch (type) {

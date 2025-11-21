@@ -16,6 +16,19 @@ import NineBillionNamesVisualization from '../components/visualizations/NineBill
 import NinetyNineBottlesVisualization from '../components/visualizations/NinetyNineBottlesVisualization';
 import APlusBVisualization from '../components/visualizations/APlusBVisualization';
 import AbbreviationsAutomaticVisualization from '../components/visualizations/AbbreviationsAutomaticVisualization';
+import ABCCorrelationVisualization from '../components/visualizations/ABCCorrelationVisualization';
+import ABCProblemVisualization from '../components/visualizations/ABCProblemVisualization';
+import ABCWordsVisualization from '../components/visualizations/ABCWordsVisualization';
+import AbelianSandpileVisualization from '../components/visualizations/AbelianSandpileVisualization';
+import AbelianSandpileIdentityVisualization from '../components/visualizations/AbelianSandpileIdentityVisualization';
+import AbundantOddNumbersVisualization from '../components/visualizations/AbundantOddNumbersVisualization';
+import AccumulatorFactoryVisualization from '../components/visualizations/AccumulatorFactoryVisualization';
+import AchillesNumbersVisualization from '../components/visualizations/AchillesNumbersVisualization';
+import AliquotSequenceVisualization from '../components/visualizations/AliquotSequenceVisualization';
+import AlmkvistGiulleraVisualization from '../components/visualizations/AlmkvistGiulleraVisualization';
+import AmbVisualization from '../components/visualizations/AmbVisualization';
+import AnadromesVisualization from '../components/visualizations/AnadromesVisualization';
+import AnagramGeneratorVisualization from '../components/visualizations/AnagramGeneratorVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -37,6 +50,19 @@ export default function ProblemDetailPage() {
     '99-bottles': <NinetyNineBottlesVisualization />,
     'a-plus-b': <APlusBVisualization />,
     'abbreviations-automatic': <AbbreviationsAutomaticVisualization />,
+    'abc-correlation': <ABCCorrelationVisualization />,
+    'abc-problem': <ABCProblemVisualization />,
+    'abc-words': <ABCWordsVisualization />,
+    'abelian-sandpile': <AbelianSandpileVisualization />,
+    'abelian-sandpile-identity': <AbelianSandpileIdentityVisualization />,
+    'abundant-odd-numbers': <AbundantOddNumbersVisualization />,
+    'accumulator-factory': <AccumulatorFactoryVisualization />,
+    'achilles-numbers': <AchillesNumbersVisualization />,
+    'aliquot-sequence-classifications': <AliquotSequenceVisualization />,
+    'almkvist-giullera-formula': <AlmkvistGiulleraVisualization />,
+    'amb': <AmbVisualization />,
+    'anadromes': <AnadromesVisualization />,
+    'anagram-generator': <AnagramGeneratorVisualization />,
   };
   
   // Find the problem by slug

@@ -17,7 +17,14 @@ import {
   Search,
   Monitor,
   Sigma,
-  Cpu
+  Cpu,
+  Undo2,
+  Grid,
+  Palette,
+  SigmaSquare,
+  Box,
+  Code2,
+  RefreshCw
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Tooltip } from 'react-tooltip';
@@ -61,10 +68,17 @@ const TAG_ICONS: Record<Tag, { icon: LucideIcon; label: string; color: string }>
   'combinatorics': { icon: Sigma, label: 'Combinatorics', color: 'text-blue-400' },
   'loop': { icon: Repeat, label: 'Loop', color: 'text-pink-400' },
   'processing': { icon: Cpu, label: 'Processing', color: 'text-emerald-400' },
+  'backtracking': { icon: Undo2, label: 'Backtracking', color: 'text-rose-400' },
+  'cellular-automaton': { icon: Grid, label: 'Cellular Automaton', color: 'text-emerald-400' },
+  'graphics': { icon: Palette, label: 'Graphics', color: 'text-fuchsia-400' },
+  'algebra': { icon: SigmaSquare, label: 'Algebra', color: 'text-indigo-400' },
+  'number-theory': { icon: Calculator, label: 'Number Theory', color: 'text-violet-400' },
+  'closure': { icon: Box, label: 'Closure', color: 'text-amber-600' },
+  'function': { icon: Code2, label: 'Function', color: 'text-blue-500' },
+  'generator': { icon: RefreshCw, label: 'Generator', color: 'text-purple-500' },
 };
 
-// Get icons for a problem based on its tags
-function getIconsForTags(tags: Tag[]): Array<{ icon: LucideIcon; label: string; color: string }> {
+function getIconsForTags(tags: Tag[]) {
   // Prioritize certain tags for display
   const priorityOrder: Tag[] = [
     'game',

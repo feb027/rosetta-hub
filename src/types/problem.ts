@@ -21,7 +21,15 @@ export type Tag =
   | 'visualization'
   | 'combinatorics'
   | 'loop'
-  | 'processing';
+  | 'processing'
+  | 'backtracking'
+  | 'cellular-automaton'
+  | 'graphics'
+  | 'algebra'
+  | 'number-theory'
+  | 'closure'
+  | 'function'
+  | 'generator';
 
 export interface ProblemMeta {
   title: string;
