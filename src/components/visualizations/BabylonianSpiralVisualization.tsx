@@ -160,6 +160,7 @@ export default function BabylonianSpiralVisualization() {
   const intervalRef = useRef<number | null>(null);
   const starsRef = useRef<Array<{ x: number; y: number; size: number; twinkle: number }>>([]);
   const animFrameRef = useRef<number>(0);
+  const lastTransformRef = useRef<{ scale: number; centerX: number; centerY: number } | null>(null);
 
 
   // Generate stars once
@@ -276,69 +277,81 @@ export default function BabylonianSpiralVisualization() {
     return { minX: minX - padding, maxX: maxX + padding, minY: minY - padding, maxY: maxY + padding };
   }, []);
 
-  // Canvas rendering with requestAnimationFrame for smoothness
+  // Continuous canvas rendering loop
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    let running = true;
+
     const render = () => {
+      if (!running) return;
+      
       const width = canvas.width;
       const height = canvas.height;
       const bounds = getBounds(visiblePoints);
       
-      // Calculate scale
+      // Calculate scale and center
       const rangeX = bounds.maxX - bounds.minX;
       const rangeY = bounds.maxY - bounds.minY;
-      const baseScale = autoFit 
-        ? Math.min(width / rangeX, height / rangeY) * 0.85
-        : Math.min(width, height) / 100;
-      const scale = baseScale * zoom;
       
-      const centerX = width / 2 + panOffset.x - (autoFit ? ((bounds.minX + bounds.maxX) / 2) * scale : 0);
-      const centerY = height / 2 + panOffset.y + (autoFit ? ((bounds.minY + bounds.maxY) / 2) * scale : 0);
+      let scale: number;
+      let centerX: number;
+      let centerY: number;
+      
+      if (autoFit) {
+        // Auto-fit mode: scale to fit all points
+        scale = Math.min(width / rangeX, height / rangeY) * 0.85 * zoom;
+        centerX = width / 2 - ((bounds.minX + bounds.maxX) / 2) * scale + panOffset.x;
+        centerY = height / 2 + ((bounds.minY + bounds.maxY) / 2) * scale + panOffset.y;
+        // Store transform for when user starts dragging
+        lastTransformRef.current = { scale, centerX, centerY };
+      } else {
+        // Manual mode: use stored transform + pan offset
+        if (lastTransformRef.current) {
+          scale = lastTransformRef.current.scale * zoom;
+          centerX = lastTransformRef.current.centerX + panOffset.x;
+          centerY = lastTransformRef.current.centerY + panOffset.y;
+        } else {
+          scale = Math.min(width, height) / 100 * zoom;
+          centerX = width / 2 + panOffset.x;
+          centerY = height / 2 + panOffset.y;
+        }
+      }
 
-      // Clear with gradient
-      const gradient = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, width * 0.7);
-      gradient.addColorStop(0, '#1a1a2e');
-      gradient.addColorStop(0.6, '#16213e');
-      gradient.addColorStop(1, '#0f0f23');
-      ctx.fillStyle = gradient;
+      // Clear with solid dark background
+      ctx.fillStyle = '#0a0a1a';
       ctx.fillRect(0, 0, width, height);
 
-      // Stars
+      // Stars - very subtle, behind everything
       if (showStars) {
         const time = Date.now() / 1000;
-        ctx.save();
         for (const star of starsRef.current) {
-          const twinkle = 0.4 + 0.6 * Math.sin(time * 1.5 + star.twinkle);
-          ctx.globalAlpha = 0.3 + twinkle * 0.7;
-          ctx.fillStyle = '#fff8dc';
+          const twinkle = 0.3 + 0.7 * Math.sin(time * 1.2 + star.twinkle);
+          ctx.fillStyle = `rgba(200, 200, 180, ${0.15 * twinkle})`;
           ctx.beginPath();
-          ctx.arc(star.x * width, star.y * height, star.size * twinkle, 0, Math.PI * 2);
+          ctx.arc(star.x * width, star.y * height, star.size * 0.8, 0, Math.PI * 2);
           ctx.fill();
         }
-        ctx.restore();
       }
 
       // Grid
-      if (showGrid && scale > 2) {
-        ctx.strokeStyle = 'rgba(100, 149, 237, 0.08)';
+      if (showGrid && scale > 1.5) {
+        ctx.strokeStyle = 'rgba(100, 149, 237, 0.06)';
         ctx.lineWidth = 1;
-        const gridStep = scale > 20 ? 1 : scale > 5 ? 5 : 10;
-        const startX = Math.floor(bounds.minX / gridStep) * gridStep;
-        const startY = Math.floor(bounds.minY / gridStep) * gridStep;
+        const gridStep = scale > 15 ? 1 : scale > 4 ? 5 : 10;
         
         ctx.beginPath();
-        for (let x = startX; x <= bounds.maxX; x += gridStep) {
+        for (let x = Math.floor(bounds.minX / gridStep) * gridStep; x <= bounds.maxX; x += gridStep) {
           const screenX = centerX + x * scale;
           if (screenX >= 0 && screenX <= width) {
             ctx.moveTo(screenX, 0);
             ctx.lineTo(screenX, height);
           }
         }
-        for (let y = startY; y <= bounds.maxY; y += gridStep) {
+        for (let y = Math.floor(bounds.minY / gridStep) * gridStep; y <= bounds.maxY; y += gridStep) {
           const screenY = centerY - y * scale;
           if (screenY >= 0 && screenY <= height) {
             ctx.moveTo(0, screenY);
@@ -349,8 +362,8 @@ export default function BabylonianSpiralVisualization() {
       }
 
       // Axes
-      ctx.strokeStyle = 'rgba(100, 149, 237, 0.25)';
-      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = 'rgba(100, 149, 237, 0.2)';
+      ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.moveTo(0, centerY);
       ctx.lineTo(width, centerY);
@@ -359,73 +372,90 @@ export default function BabylonianSpiralVisualization() {
       ctx.stroke();
 
       const pts = SPIRAL_POINTS.slice(0, visiblePoints);
-      if (pts.length < 2) return;
+      if (pts.length < 2) {
+        animFrameRef.current = requestAnimationFrame(render);
+        return;
+      }
 
-      // Draw path - use single path for performance
+      // Draw spiral path
       ctx.beginPath();
       ctx.moveTo(centerX + pts[0].x * scale, centerY - pts[0].y * scale);
       for (let i = 1; i < pts.length; i++) {
         ctx.lineTo(centerX + pts[i].x * scale, centerY - pts[i].y * scale);
       }
-      ctx.strokeStyle = 'rgba(255, 200, 50, 0.7)';
-      ctx.lineWidth = Math.max(1, 2 / Math.sqrt(zoom));
+      ctx.strokeStyle = '#ffc832';
+      ctx.lineWidth = Math.max(1.5, 2.5 / Math.sqrt(Math.max(1, zoom)));
       ctx.stroke();
 
-      // Draw points - only if not too many or zoomed in
-      const drawPoints = pts.length < 500 || scale > 3;
-      if (drawPoints) {
-        const pointRadius = Math.max(2, Math.min(5, 4 / Math.sqrt(pts.length / 100)));
+      // Draw points - only if reasonable count or zoomed in
+      const shouldDrawPoints = pts.length < 600 || scale > 2;
+      if (shouldDrawPoints) {
+        const pointRadius = Math.max(2, Math.min(4, 3.5 / Math.sqrt(pts.length / 100)));
         
         for (let i = 0; i < pts.length; i++) {
           const pt = pts[i];
           const screenX = centerX + pt.x * scale;
           const screenY = centerY - pt.y * scale;
           
-          // Skip if off screen
+          // Skip off-screen
           if (screenX < -10 || screenX > width + 10 || screenY < -10 || screenY > height + 10) continue;
           
           const isSelected = selectedPoint === i;
           const isLast = i === pts.length - 1;
 
-          // Glow for selected/last
+          // Glow
           if (isSelected || isLast) {
-            const glowGrad = ctx.createRadialGradient(screenX, screenY, 0, screenX, screenY, 15);
-            glowGrad.addColorStop(0, isSelected ? 'rgba(0, 255, 200, 0.6)' : 'rgba(255, 215, 0, 0.6)');
+            const glowGrad = ctx.createRadialGradient(screenX, screenY, 0, screenX, screenY, 12);
+            glowGrad.addColorStop(0, isSelected ? 'rgba(0, 255, 200, 0.7)' : 'rgba(255, 215, 0, 0.7)');
             glowGrad.addColorStop(1, 'transparent');
             ctx.fillStyle = glowGrad;
             ctx.beginPath();
-            ctx.arc(screenX, screenY, 15, 0, Math.PI * 2);
+            ctx.arc(screenX, screenY, 12, 0, Math.PI * 2);
             ctx.fill();
           }
 
-          // Point
+          // Point dot
           ctx.beginPath();
-          ctx.arc(screenX, screenY, isSelected ? 6 : isLast ? 5 : pointRadius, 0, Math.PI * 2);
-          const hue = 40 + (i / pts.length) * 20;
-          ctx.fillStyle = isSelected ? '#00ffc8' : `hsl(${hue}, 85%, 55%)`;
+          ctx.arc(screenX, screenY, isSelected ? 5 : isLast ? 4 : pointRadius, 0, Math.PI * 2);
+          const hue = 35 + (i / pts.length) * 25;
+          ctx.fillStyle = isSelected ? '#00ffc8' : `hsl(${hue}, 90%, 55%)`;
           ctx.fill();
         }
       }
 
-      // Origin
+      // Origin marker
       ctx.fillStyle = '#ff6b6b';
       ctx.beginPath();
-      ctx.arc(centerX, centerY, 5, 0, Math.PI * 2);
+      ctx.arc(centerX, centerY, 4, 0, Math.PI * 2);
       ctx.fill();
       ctx.strokeStyle = 'white';
       ctx.lineWidth = 1.5;
       ctx.stroke();
+
+      animFrameRef.current = requestAnimationFrame(render);
     };
 
-    animFrameRef.current = requestAnimationFrame(render);
-    return () => cancelAnimationFrame(animFrameRef.current);
+    render();
+    
+    return () => {
+      running = false;
+      cancelAnimationFrame(animFrameRef.current);
+    };
   }, [visiblePoints, zoom, panOffset, showStars, showGrid, selectedPoint, autoFit, getBounds]);
 
   // Mouse handlers
   const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    const wasAutoFit = autoFit;
     setIsDragging(true);
-    setDragStart({ x: e.clientX - panOffset.x, y: e.clientY - panOffset.y });
-    setAutoFit(false);
+    
+    if (wasAutoFit) {
+      // Switching from autoFit to manual - reset pan offset since transform is stored
+      setDragStart({ x: e.clientX, y: e.clientY });
+      setPanOffset({ x: 0, y: 0 });
+      setAutoFit(false);
+    } else {
+      setDragStart({ x: e.clientX - panOffset.x, y: e.clientY - panOffset.y });
+    }
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
