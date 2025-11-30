@@ -24,7 +24,8 @@ import {
   SigmaSquare,
   Box,
   Code2,
-  RefreshCw
+  RefreshCw,
+  Lock
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Tooltip } from 'react-tooltip';
@@ -78,6 +79,7 @@ const TAG_ICONS: Record<Tag, { icon: LucideIcon; label: string; color: string }>
   'generator': { icon: RefreshCw, label: 'Generator', color: 'text-purple-500' },
   'animation': { icon: Activity, label: 'Animation', color: 'text-rose-400' },
   'validation': { icon: Target, label: 'Validation', color: 'text-emerald-400' },
+  'cryptography': { icon: Lock, label: 'Cryptography', color: 'text-emerald-400' },
 };
 
 function getIconsForTags(tags: Tag[]) {
