@@ -18,6 +18,18 @@ All notable changes to this project will be documented in this file.
   - "Jump to Answer" button to skip near the solution.
   - Stats panel comparing answer vs Babbage's guess.
   - Sound effects for gear ticks, steam bursts, and triumphant fanfare on discovery.
+- **New Problem**: "Babylonian Spiral"
+  - Added metadata and `BabylonianSpiralVisualization` component.
+  - Implemented "Ancient Mathematical Journey" with starfield canvas visualization.
+  - Features interactive HTML5 canvas with pan and zoom controls.
+  - Animated point-by-point spiral revelation with musical progression sounds.
+  - Twinkling star background with toggle option.
+  - Click any point on canvas to select and view coordinates.
+  - Point scrubber slider for manual navigation through sequence.
+  - Coordinate table showing first 40 points with click-to-select.
+  - Color gradient from gold to orange based on sequence position.
+  - Keyboard shortcuts: Space (play), arrows (step), +/- (zoom), drag (pan).
+  - Sound effects for point reveal, selection, zoom, and completion fanfare.
 - **New Problem**: "AVL Tree"
   - Added metadata and `AVLTreeVisualization` component.
   - Implemented "Balance Architect" with tree structure visualization theme.

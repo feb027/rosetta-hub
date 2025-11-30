@@ -56,6 +56,7 @@ import PythagoreanMeansVisualization from '../components/visualizations/Pythagor
 import RootMeanSquareVisualization from '../components/visualizations/RootMeanSquareVisualization';
 import AVLTreeVisualization from '../components/visualizations/AVLTreeVisualization';
 import BabbageProblemVisualization from '../components/visualizations/BabbageProblemVisualization';
+import BabylonianSpiralVisualization from '../components/visualizations/BabylonianSpiralVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -121,6 +122,7 @@ export default function ProblemDetailPage() {
     'root-mean-square': <RootMeanSquareVisualization />,
     'avl-tree': <AVLTreeVisualization />,
     'babbage-problem': <BabbageProblemVisualization />,
+    'babylonian-spiral': <BabylonianSpiralVisualization />,
   };
   
   // Find the problem by slug
