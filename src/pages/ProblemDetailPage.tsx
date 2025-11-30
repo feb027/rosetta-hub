@@ -59,6 +59,7 @@ import BabbageProblemVisualization from '../components/visualizations/BabbagePro
 import BabylonianSpiralVisualization from '../components/visualizations/BabylonianSpiralVisualization';
 import BalancedBracketsVisualization from '../components/visualizations/BalancedBracketsVisualization';
 import BalancedTernaryVisualization from '../components/visualizations/BalancedTernaryVisualization';
+import BarnsleyFernVisualization from '../components/visualizations/BarnsleyFernVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -127,6 +128,7 @@ export default function ProblemDetailPage() {
     'babylonian-spiral': <BabylonianSpiralVisualization />,
     'balanced-brackets': <BalancedBracketsVisualization />,
     'balanced-ternary': <BalancedTernaryVisualization />,
+    'barnsley-fern': <BarnsleyFernVisualization />,
   };
   
   // Find the problem by slug

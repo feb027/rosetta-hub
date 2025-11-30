@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Barnsley Fern"
+  - Added metadata and `BarnsleyFernVisualization` component.
+  - Implemented "Fractal Garden" with botanical/nature theme.
+  - Features animated canvas rendering of the classic IFS fractal.
+  - Real-time point-by-point fern growth with progress tracking.
+  - Four color presets: Classic Green, Autumn, Ocean, Sunset.
+  - Configurable point count (10K to 200K) and rendering speed.
+  - Transform statistics showing actual vs expected probabilities.
+  - Download generated fern as PNG image.
+  - Height-based color gradient for natural appearance.
+  - Sound effects for growth progression and completion.
+  - Keyboard shortcuts: Space (play/pause), R (reset), S (save).
 - **New Problem**: "Balanced Ternary"
   - Added metadata and `BalancedTernaryVisualization` component.
   - Implemented "Trit Calculator" with retro-futuristic base-3 computing theme.
