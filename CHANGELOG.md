@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Arbitrary-precision Integers (included)"
+  - Added metadata and `ArbitraryPrecisionVisualization` component.
+  - Implemented "Big Number Observatory" with cosmic/space theme.
+  - Features step-by-step computation of 5^(4^(3^2)) using JavaScript BigInt.
+  - Animated starfield background with twinkling stars.
+  - Three-step exponent breakdown: 3²=9, 4⁹=262144, 5^262144.
+  - Progress bar tracking computation stages.
+  - Digit counter displaying the massive 183,231-digit result.
+  - First/last 20 digits verification against expected values.
+  - Color-coded verification status (emerald for match, rose for mismatch).
+  - Result preview with truncated display for the enormous number.
+  - Sound effects for computation steps, completion, and verification.
 - **New Problem**: "Apply a Callback to an Array"
   - Added metadata and `ApplyCallbackVisualization` component.
   - Implemented "Function Factory" with industrial conveyor belt theme.
