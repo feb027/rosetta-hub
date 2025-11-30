@@ -90,6 +90,7 @@ import ArraysVisualization from '../components/visualizations/ArraysVisualizatio
 import AssertionsVisualization from '../components/visualizations/AssertionsVisualization';
 import AssociativeArrayCreationVisualization from '../components/visualizations/AssociativeArrayCreationVisualization';
 import AssociativeArrayIterationVisualization from '../components/visualizations/AssociativeArrayIterationVisualization';
+import AtomicUpdatesVisualization from '../components/visualizations/AtomicUpdatesVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -189,6 +190,7 @@ export default function ProblemDetailPage() {
     'assertions': <AssertionsVisualization />,
     'associative-array-creation': <AssociativeArrayCreationVisualization />,
     'associative-array-iteration': <AssociativeArrayIterationVisualization />,
+    'atomic-updates': <AtomicUpdatesVisualization />,
   };
   
   // Find the problem by slug

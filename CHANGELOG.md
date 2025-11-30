@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Atomic Updates"
+  - Added metadata and `AtomicUpdatesVisualization` component.
+  - Implemented "Reactor Control Room" with nuclear reactor bucket theme.
+  - Features 6 buckets with animated value bars showing current levels.
+  - Two concurrent operations: Equalize (balance values) and Redistribute (random shuffle).
+  - Real-time transfer visualization with from/to highlighting.
+  - Total invariant display proving sum preservation (always 1000).
+  - Transfer amount indicators (+/-) appearing during operations.
+  - Operation type legend explaining Equalize vs Redistribute.
+  - Transfer log tracking all atomic operations.
+  - Adjustable simulation speed slider.
+  - Stats panel: total ops, equalize count, redistribute count, sum check.
+  - Radiation pattern background for reactor aesthetic.
+  - Sound effects for equalize, redistribute, start, and stop.
+  - Keyboard shortcuts: Space (start/stop), R (reset).
 - **New Problem**: "Associative Array/Iteration"
   - Added metadata and `AssociativeArrayIterationVisualization` component.
   - Implemented "Data Stream Pipeline" with conveyor belt processing theme.
