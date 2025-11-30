@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Arithmetic/Rational"
+  - Added metadata and `ArithmeticRationalVisualization` component.
+  - Implemented "Fraction Workshop" with visual fraction arithmetic theme.
+  - Features four operations: Addition, Subtraction, Multiplication, Division.
+  - Large fraction displays with numerator/denominator stacked format.
+  - Visual progress bars showing fraction values on a number line.
+  - Automatic simplification using GCD (greatest common divisor).
+  - Step-by-step calculation breakdown (toggleable).
+  - Color-coded fractions: A (cyan), B (amber), Result (emerald).
+  - Decimal equivalents shown below each fraction.
+  - Preset fraction pairs for quick testing.
+  - Sound effects for input changes and operation selection.
 - **New Problem**: "Arithmetic/Integer"
   - Added metadata and `ArithmeticIntegerVisualization` component.
   - Implemented "Calculator Console" with retro scientific calculator theme.
