@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Bell Numbers"
+  - Added metadata and `BellNumbersVisualization` component.
+  - Implemented "Partition Garden" with colorful set partition theme.
+  - Features visual representation of all partitions for sets n=0 to n=6.
+  - Color-coded partition groups with animated flower-like elements.
+  - Bell Triangle (Aitken's Array) view with up to 50 rows.
+  - Interactive n selector (0-6) with instant partition generation.
+  - Animated partition reveal with bloom sound effects.
+  - Set notation display for each partition.
+  - First 15 Bell Numbers quick reference with clickable values.
+  - Highlighted Bell numbers (first column) in triangle view.
+  - BigInt support for large Bell numbers (B₅₀ has 50+ digits).
+  - Stats panel: set size, Bell number, partitions shown, elements.
+  - Garden gradient background with radial decorations.
+  - Sound effects for bloom, tick, complete, and triangle toggle.
+  - Keyboard shortcuts: Space (play/pause), T (toggle triangle), R (reset).
 - **New Problem**: "Averages/Simple Moving Average"
   - Added metadata and `SimpleMovingAverageVisualization` component.
   - Implemented "Stream Analytics" with financial data streaming theme.

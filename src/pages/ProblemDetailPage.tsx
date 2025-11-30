@@ -96,6 +96,7 @@ import MeanTimeOfDayVisualization from '../components/visualizations/MeanTimeOfD
 import AveragesMedianVisualization from '../components/visualizations/AveragesMedianVisualization';
 import AveragesModeVisualization from '../components/visualizations/AveragesModeVisualization';
 import SimpleMovingAverageVisualization from '../components/visualizations/SimpleMovingAverageVisualization';
+import BellNumbersVisualization from '../components/visualizations/BellNumbersVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -201,6 +202,7 @@ export default function ProblemDetailPage() {
     'averages-median': <AveragesMedianVisualization />,
     'averages-mode': <AveragesModeVisualization />,
     'simple-moving-average': <SimpleMovingAverageVisualization />,
+    'bell-numbers': <BellNumbersVisualization />,
   };
   
   // Find the problem by slug
