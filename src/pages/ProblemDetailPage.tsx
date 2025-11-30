@@ -85,6 +85,7 @@ import ArbitraryPrecisionVisualization from '../components/visualizations/Arbitr
 import ArithmeticComplexVisualization from '../components/visualizations/ArithmeticComplexVisualization';
 import ArithmeticIntegerVisualization from '../components/visualizations/ArithmeticIntegerVisualization';
 import ArithmeticRationalVisualization from '../components/visualizations/ArithmeticRationalVisualization';
+import ArrayConcatenationVisualization from '../components/visualizations/ArrayConcatenationVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -179,6 +180,7 @@ export default function ProblemDetailPage() {
     'arithmetic-complex': <ArithmeticComplexVisualization />,
     'arithmetic-integer': <ArithmeticIntegerVisualization />,
     'arithmetic-rational': <ArithmeticRationalVisualization />,
+    'array-concatenation': <ArrayConcatenationVisualization />,
   };
   
   // Find the problem by slug

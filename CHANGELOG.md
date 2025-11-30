@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Array Concatenation"
+  - Added metadata and `ArrayConcatenationVisualization` component.
+  - Implemented "Train Coupling Yard" with animated train car theme.
+  - Features array elements as train cars with wheels and couplers.
+  - Three-phase animation: idle, moving, coupled.
+  - Color-coded arrays: A (cyan), B (amber) with preserved colors in result.
+  - Railroad track background with wooden ties.
+  - Smoke particle effects during animation.
+  - Custom array input fields supporting numbers and strings.
+  - Preset examples: Numbers, Letters, Mixed, Single.
+  - Code display showing concat() and spread operator methods.
+  - Sound effects for train whistle, chugging, and coupling.
 - **New Problem**: "Arithmetic/Rational"
   - Added metadata and `ArithmeticRationalVisualization` component.
   - Implemented "Fraction Workshop" with visual fraction arithmetic theme.
