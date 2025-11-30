@@ -61,6 +61,7 @@ import BalancedBracketsVisualization from '../components/visualizations/Balanced
 import BalancedTernaryVisualization from '../components/visualizations/BalancedTernaryVisualization';
 import BarnsleyFernVisualization from '../components/visualizations/BarnsleyFernVisualization';
 import Base64EncodeDecodeVisualization from '../components/visualizations/Base64EncodeDecodeVisualization';
+import TwentyFortyEightVisualization from '../components/visualizations/TwentyFortyEightVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -131,6 +132,7 @@ export default function ProblemDetailPage() {
     'balanced-ternary': <BalancedTernaryVisualization />,
     'barnsley-fern': <BarnsleyFernVisualization />,
     'base64-encode-decode': <Base64EncodeDecodeVisualization />,
+    '2048-game': <TwentyFortyEightVisualization />,
   };
   
   // Find the problem by slug

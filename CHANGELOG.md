@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "2048"
+  - Added metadata and `TwentyFortyEightVisualization` component.
+  - Implemented "Neon Arcade Edition" with glowing tile theme.
+  - Features smooth tile sliding and merging animations with Motion.
+  - Color-coded tiles from cyan (2) through pink (2048+).
+  - Touch/swipe support for mobile gameplay.
+  - Keyboard controls: Arrow keys or WASD for movement.
+  - Score tracking with persistent best score.
+  - Win detection at 2048 with "Keep Playing" option.
+  - Game over detection when no moves possible.
+  - Stats display: moves, highest tile, last direction, tile count.
+  - Tile progression legend showing achieved milestones.
+  - Sound effects for move, merge, spawn, win, and lose.
+  - Confetti celebration on reaching 2048.
+  - Keyboard shortcuts: Arrows/WASD (move), R (new game).
 - **New Problem**: "Base64 Encode/Decode"
   - Added metadata and `Base64EncodeDecodeVisualization` component.
   - Implemented "Data Encoder" with data transmission lab theme.
