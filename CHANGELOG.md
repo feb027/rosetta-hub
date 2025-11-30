@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Arrays"
+  - Added metadata and `ArraysVisualization` component.
+  - Implemented "Memory Blocks" with RAM/memory allocation theme.
+  - Features visual memory cells with hex addresses and index badges.
+  - Two array modes: Fixed-length and Dynamic arrays.
+  - Interactive operations: Create, Assign, Retrieve, Push, Delete.
+  - Click-to-edit values directly on memory cells.
+  - Hover actions for quick retrieve and delete operations.
+  - Live code preview showing JavaScript array syntax.
+  - Operation log tracking all array manipulations.
+  - Circuit board pattern background for tech aesthetic.
+  - Stats panel: type, length, defined count, undefined count.
+  - Sound effects for create, assign, retrieve, push, delete, and errors.
+  - Keyboard shortcuts: C (create), R (reset), Enter (submit).
 - **New Problem**: "Array Concatenation"
   - Added metadata and `ArrayConcatenationVisualization` component.
   - Implemented "Train Coupling Yard" with animated train car theme.
