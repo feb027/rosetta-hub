@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Babbage Problem"
+  - Added metadata and `BabbageProblemVisualization` component.
+  - Implemented "The Analytical Engine" with Victorian-era steampunk theme.
+  - Features animated brass gears and mechanical display aesthetic.
+  - Real-time search for smallest integer whose square ends in 269,696.
+  - Digit-by-digit comparison showing matching progress against target.
+  - Manual verification input to test any number.
+  - "Test Babbage's Guess" button to verify his 99,736 conjecture.
+  - Computation log showing test history in punch-card style.
+  - Speed control slider for engine computation rate.
+  - "Jump to Answer" button to skip near the solution.
+  - Stats panel comparing answer vs Babbage's guess.
+  - Sound effects for gear ticks, steam bursts, and triumphant fanfare on discovery.
 - **New Problem**: "AVL Tree"
   - Added metadata and `AVLTreeVisualization` component.
   - Implemented "Balance Architect" with tree structure visualization theme.
