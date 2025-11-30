@@ -99,6 +99,7 @@ import SimpleMovingAverageVisualization from '../components/visualizations/Simpl
 import BellNumbersVisualization from '../components/visualizations/BellNumbersVisualization';
 import BenfordsLawVisualization from '../components/visualizations/BenfordsLawVisualization';
 import BerlekampMasseyVisualization from '../components/visualizations/BerlekampMasseyVisualization';
+import BernoulliNumbersVisualization from '../components/visualizations/BernoulliNumbersVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -207,6 +208,7 @@ export default function ProblemDetailPage() {
     'bell-numbers': <BellNumbersVisualization />,
     'benfords-law': <BenfordsLawVisualization />,
     'berlekamp-massey': <BerlekampMasseyVisualization />,
+    'bernoulli-numbers': <BernoulliNumbersVisualization />,
   };
   
   // Find the problem by slug

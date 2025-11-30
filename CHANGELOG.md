@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Bernoulli Numbers"
+  - Added metadata and `BernoulliNumbersVisualization` component.
+  - Implemented "Fraction Factory" with industrial production line theme.
+  - Features Akiyama-Tanigawa algorithm visualization with working array.
+  - Exact fraction arithmetic using BigInt for numerator/denominator.
+  - Animated conveyor belt effect during computation.
+  - Working array A[] display showing intermediate calculations.
+  - Results table with index, fraction, and decimal approximation.
+  - Toggle to show/hide zero values (odd Bₙ except B₁ are zero).
+  - Configurable range from B₀ to B₆₀.
+  - Notable values quick reference panel.
+  - Step-by-step or compute-all execution modes.
+  - Progress bar with production line animation.
+  - Stats panel: target, computed, non-zero count, zero count.
+  - Factory pattern background with gear animations.
+  - Sound effects for tick, produce, complete, gear, and zero.
+  - Keyboard shortcuts: Space (play/pause), A (all), Z (zeros), R (reset).
 - **New Problem**: "Berlekamp-Massey Algorithm"
   - Added metadata and `BerlekampMasseyVisualization` component.
   - Implemented "LFSR Decoder Lab" with cryptographic sequence analysis theme.
