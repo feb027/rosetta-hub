@@ -78,6 +78,7 @@ import AlmostPrimeVisualization from '../components/visualizations/AlmostPrimeVi
 import AnglesConversionVisualization from '../components/visualizations/AnglesConversionVisualization';
 import AnimatePendulumVisualization from '../components/visualizations/AnimatePendulumVisualization';
 import AnimationVisualization from '../components/visualizations/AnimationVisualization';
+import AnonymousRecursionVisualization from '../components/visualizations/AnonymousRecursionVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -165,6 +166,7 @@ export default function ProblemDetailPage() {
     'angles-conversion': <AnglesConversionVisualization />,
     'animate-pendulum': <AnimatePendulumVisualization />,
     'animation': <AnimationVisualization />,
+    'anonymous-recursion': <AnonymousRecursionVisualization />,
   };
   
   // Find the problem by slug

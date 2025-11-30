@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Anonymous Recursion"
+  - Added metadata and `AnonymousRecursionVisualization` component.
+  - Implemented "Lambda Lab" with futuristic recursion tree visualization theme.
+  - Features animated recursion tree showing Fibonacci computation.
+  - Depth-based color coding for call frames (cyan, emerald, amber, rose, etc.).
+  - Real-time status indicators: pending, computing, returning, complete.
+  - Negative input detection demonstrating the validation check.
+  - Interactive input selector with preset values (3, 5, 8, 10, -1 for error).
+  - Statistics panel showing total calls and max recursion depth.
+  - JavaScript code display showing anonymous recursion via IIFE pattern.
+  - Fibonacci sequence reference table with result highlighting.
+  - Adjustable animation speed from 100ms to 800ms.
+  - Sound effects for calls, returns, base cases, errors, and completion.
 - **New Problem**: "Animation"
   - Added metadata and `AnimationVisualization` component.
   - Implemented "Neon Marquee" with retro LED display board theme.
