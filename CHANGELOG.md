@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Associative Array/Iteration"
+  - Added metadata and `AssociativeArrayIterationVisualization` component.
+  - Implemented "Data Stream Pipeline" with conveyor belt processing theme.
+  - Features three iteration modes: Entries, Keys, Values.
+  - Animated item-by-item processing with visual highlighting.
+  - Conveyor belt background animation during iteration.
+  - Mode-specific dimming (keys dim values, values dim keys).
+  - Console output panel showing iteration results in real-time.
+  - Live code preview showing JavaScript for...of syntax.
+  - Presets: Person data, Colors, Scores.
+  - Adjustable animation speed slider.
+  - Stats panel: mode, total items, processed, remaining.
+  - Sound effects for tick, start, complete, and mode changes.
+  - Keyboard shortcuts: Space (play/pause), 1/2/3 (mode), R (reset).
 - **New Problem**: "Associative Array/Creation"
   - Added metadata and `AssociativeArrayCreationVisualization` component.
   - Implemented "Key-Value Vault" with secure storage facility theme.

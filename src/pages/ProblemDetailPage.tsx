@@ -89,6 +89,7 @@ import ArrayConcatenationVisualization from '../components/visualizations/ArrayC
 import ArraysVisualization from '../components/visualizations/ArraysVisualization';
 import AssertionsVisualization from '../components/visualizations/AssertionsVisualization';
 import AssociativeArrayCreationVisualization from '../components/visualizations/AssociativeArrayCreationVisualization';
+import AssociativeArrayIterationVisualization from '../components/visualizations/AssociativeArrayIterationVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -187,6 +188,7 @@ export default function ProblemDetailPage() {
     'arrays': <ArraysVisualization />,
     'assertions': <AssertionsVisualization />,
     'associative-array-creation': <AssociativeArrayCreationVisualization />,
+    'associative-array-iteration': <AssociativeArrayIterationVisualization />,
   };
   
   // Find the problem by slug
