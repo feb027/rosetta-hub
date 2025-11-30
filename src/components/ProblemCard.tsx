@@ -77,6 +77,7 @@ const TAG_ICONS: Record<Tag, { icon: LucideIcon; label: string; color: string }>
   'function': { icon: Code2, label: 'Function', color: 'text-blue-500' },
   'generator': { icon: RefreshCw, label: 'Generator', color: 'text-purple-500' },
   'animation': { icon: Activity, label: 'Animation', color: 'text-rose-400' },
+  'validation': { icon: Target, label: 'Validation', color: 'text-emerald-400' },
 };
 
 function getIconsForTags(tags: Tag[]) {
