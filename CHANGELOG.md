@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Berlekamp-Massey Algorithm"
+  - Added metadata and `BerlekampMasseyVisualization` component.
+  - Implemented "LFSR Decoder Lab" with cryptographic sequence analysis theme.
+  - Features step-by-step visualization of the algorithm over GF(2).
+  - Animated sequence bits with current position highlighting.
+  - Connection polynomial C(x) display with coefficient breakdown.
+  - Temporary polynomial B(x) tracking for updates.
+  - Real-time discrepancy (Δ) calculation with color-coded status.
+  - Linear complexity (L) tracking throughout execution.
+  - Presets: Binary Example, GF(2) Pattern, Simple, Longer sequences.
+  - Custom binary sequence input with comma-separated values.
+  - Step-by-step or run-all execution modes.
+  - Final result showing LFSR connection polynomial and complexity.
+  - Circuit pattern background for tech lab aesthetic.
+  - Stats panel: sequence length, linear complexity, current Δ, processed.
+  - Sound effects for tick, update, complete, shift, and error.
+  - Keyboard shortcuts: Space (play/pause), A (run all), R (reset).
 - **New Problem**: "Benford's Law"
   - Added metadata and `BenfordsLawVisualization` component.
   - Implemented "Digit Detective" with forensic data analysis theme.

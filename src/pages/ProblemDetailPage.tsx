@@ -98,6 +98,7 @@ import AveragesModeVisualization from '../components/visualizations/AveragesMode
 import SimpleMovingAverageVisualization from '../components/visualizations/SimpleMovingAverageVisualization';
 import BellNumbersVisualization from '../components/visualizations/BellNumbersVisualization';
 import BenfordsLawVisualization from '../components/visualizations/BenfordsLawVisualization';
+import BerlekampMasseyVisualization from '../components/visualizations/BerlekampMasseyVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -205,6 +206,7 @@ export default function ProblemDetailPage() {
     'simple-moving-average': <SimpleMovingAverageVisualization />,
     'bell-numbers': <BellNumbersVisualization />,
     'benfords-law': <BenfordsLawVisualization />,
+    'berlekamp-massey': <BerlekampMasseyVisualization />,
   };
   
   // Find the problem by slug
