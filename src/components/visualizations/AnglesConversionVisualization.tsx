@@ -352,15 +352,6 @@ export default function AnglesConversionVisualization() {
                 </defs>
               </svg>
               
-              {/* Center display - HTML overlay */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="text-center">
-                  <div className="text-2xl font-bold font-mono text-cyan-300">
-                    {result ? formatNumber(result.normalized.degrees) : '—'}°
-                  </div>
-                  <div className="text-[10px] text-slate-500">normalized</div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
