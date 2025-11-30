@@ -30,7 +30,8 @@ export type Tag =
   | 'closure'
   | 'function'
   | 'generator'
-  | 'animation';
+  | 'animation'
+  | 'validation';
 
 export interface ProblemMeta {
   title: string;

@@ -57,6 +57,7 @@ import RootMeanSquareVisualization from '../components/visualizations/RootMeanSq
 import AVLTreeVisualization from '../components/visualizations/AVLTreeVisualization';
 import BabbageProblemVisualization from '../components/visualizations/BabbageProblemVisualization';
 import BabylonianSpiralVisualization from '../components/visualizations/BabylonianSpiralVisualization';
+import BalancedBracketsVisualization from '../components/visualizations/BalancedBracketsVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -123,6 +124,7 @@ export default function ProblemDetailPage() {
     'avl-tree': <AVLTreeVisualization />,
     'babbage-problem': <BabbageProblemVisualization />,
     'babylonian-spiral': <BabylonianSpiralVisualization />,
+    'balanced-brackets': <BalancedBracketsVisualization />,
   };
   
   // Find the problem by slug

@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Balanced Brackets"
+  - Added metadata and `BalancedBracketsVisualization` component.
+  - Implemented "Syntax Validator" with code editor / IDE theme.
+  - Features animated bracket-by-bracket validation with stack visualization.
+  - Real-time stack display showing push/pop operations.
+  - Color-coded brackets: cyan for push, emerald for pop, red for errors.
+  - Current position highlighted with amber glow and action indicator.
+  - Generate random bracket strings with configurable pair count.
+  - Preset examples including valid and invalid bracket sequences.
+  - Validation log showing step-by-step operations with stack state.
+  - Progress bar with percentage completion.
+  - Speed control slider for animation rate.
+  - Scanline effect for futuristic IDE aesthetic.
+  - Sound effects for push, pop, error, success, and failure.
+  - Keyboard shortcuts: Space (play/pause), G (generate), R (reset).
 - **New Problem**: "Babbage Problem"
   - Added metadata and `BabbageProblemVisualization` component.
   - Implemented "The Analytical Engine" with Victorian-era steampunk theme.
