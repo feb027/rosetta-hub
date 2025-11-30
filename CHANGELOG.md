@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Assertions"
+  - Added metadata and `AssertionsVisualization` component.
+  - Implemented "Quality Control Inspector" with factory inspection station theme.
+  - Features animated value box on conveyor belt with scanning effects.
+  - Three-phase inspection: Scanning → Judging → Result with visual feedback.
+  - Status lights indicating current inspection phase.
+  - Animated scan line effect during value inspection.
+  - Result stamp animation (PASSED/FAILED) with rotation effect.
+  - Presets including "The Answer" (42), "Off by One", "Double", etc.
+  - Test history log with pass/fail icons and assertion details.
+  - Live code preview showing console.assert() syntax.
+  - Stats panel: total tests, passed, failed, pass rate percentage.
+  - Warning stripes background for industrial aesthetic.
+  - Sound effects for scan, pass chime, fail buzz, and alarm.
+  - Keyboard shortcuts: Space (run), R (reset).
 - **New Problem**: "Arrays"
   - Added metadata and `ArraysVisualization` component.
   - Implemented "Memory Blocks" with RAM/memory allocation theme.
