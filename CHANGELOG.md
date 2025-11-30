@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Associative Array/Creation"
+  - Added metadata and `AssociativeArrayCreationVisualization` component.
+  - Implemented "Key-Value Vault" with secure storage facility theme.
+  - Features animated key-value pair cards with key/value sections.
+  - Interactive operations: Add/Update entries, Search by key, Delete.
+  - Animated search sequence highlighting each key during lookup.
+  - Unlock icon animation when key is found successfully.
+  - Presets: Colors (hex codes), Fruits (emojis), Capitals, Empty.
+  - Live code preview showing JavaScript Map syntax.
+  - Operation log tracking all map manipulations.
+  - Vault door pattern background with radial dots.
+  - Stats panel: size, keys, capacity, available slots.
+  - Sound effects for add, delete, search, found, and not-found.
+  - Keyboard shortcuts: Enter (add/search), R (reset).
 - **New Problem**: "Assertions"
   - Added metadata and `AssertionsVisualization` component.
   - Implemented "Quality Control Inspector" with factory inspection station theme.

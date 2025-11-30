@@ -88,6 +88,7 @@ import ArithmeticRationalVisualization from '../components/visualizations/Arithm
 import ArrayConcatenationVisualization from '../components/visualizations/ArrayConcatenationVisualization';
 import ArraysVisualization from '../components/visualizations/ArraysVisualization';
 import AssertionsVisualization from '../components/visualizations/AssertionsVisualization';
+import AssociativeArrayCreationVisualization from '../components/visualizations/AssociativeArrayCreationVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -185,6 +186,7 @@ export default function ProblemDetailPage() {
     'array-concatenation': <ArrayConcatenationVisualization />,
     'arrays': <ArraysVisualization />,
     'assertions': <AssertionsVisualization />,
+    'associative-array-creation': <AssociativeArrayCreationVisualization />,
   };
   
   // Find the problem by slug
