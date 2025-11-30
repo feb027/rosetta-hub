@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Active Object"
+  - Added metadata and `ActiveObjectVisualization` component.
+  - Implemented "Signal Integrator Lab" with oscilloscope-style display theme.
+  - Features real-time trapezoid integration of input signals.
+  - Dual waveform display showing input K(t) and integrated output S.
+  - Configurable input modes: Sine wave (adjustable frequency) or constant value.
+  - Live meters showing time, current input, output, and mode.
+  - Built-in test procedure: 2s sine wave → 0.5s zero → verify output ≈ 0.
+  - Test progress indicator with phase tracking.
+  - Formula display showing trapezoid integration method.
+  - Sound effects for ticks, start, stop, phase changes, and completion.
+  - Keyboard shortcuts: Space (start/stop), R (reset), T (run test).
 - **New Problem**: "Active Directory"
   - Added metadata and `ActiveDirectoryVisualization` component.
   - Implemented "Corporate Directory Explorer" with LDAP simulation theme.
