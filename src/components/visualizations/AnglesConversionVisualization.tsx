@@ -289,20 +289,20 @@ export default function AnglesConversionVisualization() {
 
           {/* Right: Dial Visualization */}
           <div className="flex items-center justify-center">
-            <div className="relative w-56 h-56">
+            <div className="relative w-64 h-64">
               {/* Outer ring with markings */}
-              <svg viewBox="0 0 200 200" className="w-full h-full">
+              <svg viewBox="0 0 220 220" className="w-full h-full">
                 {/* Background circle */}
-                <circle cx="100" cy="100" r="95" fill="none" stroke="rgba(100,116,139,0.2)" strokeWidth="2" />
-                <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(100,116,139,0.1)" strokeWidth="1" />
+                <circle cx="110" cy="110" r="85" fill="none" stroke="rgba(100,116,139,0.2)" strokeWidth="2" />
+                <circle cx="110" cy="110" r="70" fill="none" stroke="rgba(100,116,139,0.1)" strokeWidth="1" />
                 
                 {/* Degree markings */}
                 {Array.from({ length: 36 }).map((_, i) => {
                   const angle = (i * 10 - 90) * (Math.PI / 180);
-                  const x1 = 100 + 85 * Math.cos(angle);
-                  const y1 = 100 + 85 * Math.sin(angle);
-                  const x2 = 100 + (i % 9 === 0 ? 70 : 78) * Math.cos(angle);
-                  const y2 = 100 + (i % 9 === 0 ? 70 : 78) * Math.sin(angle);
+                  const x1 = 110 + 80 * Math.cos(angle);
+                  const y1 = 110 + 80 * Math.sin(angle);
+                  const x2 = 110 + (i % 9 === 0 ? 65 : 73) * Math.cos(angle);
+                  const y2 = 110 + (i % 9 === 0 ? 65 : 73) * Math.sin(angle);
                   return (
                     <line
                       key={i}
@@ -313,36 +313,44 @@ export default function AnglesConversionVisualization() {
                   );
                 })}
                 
-                {/* Cardinal labels */}
-                {[0, 90, 180, 270].map((deg, i) => {
-                  const angle = (deg - 90) * (Math.PI / 180);
-                  const x = 100 + 60 * Math.cos(angle);
-                  const y = 100 + 60 * Math.sin(angle);
-                  return (
-                    <text
-                      key={i}
-                      x={x} y={y}
-                      textAnchor="middle"
-                      dominantBaseline="middle"
-                      className="fill-cyan-400 text-xs font-mono"
-                    >
-                      {deg}°
-                    </text>
-                  );
-                })}
+                {/* Cardinal labels - outside the dial */}
+                {[
+                  { deg: 0, x: 110, y: 12 },
+                  { deg: 90, x: 205, y: 110 },
+                  { deg: 180, x: 110, y: 208 },
+                  { deg: 270, x: 15, y: 110 },
+                ].map(({ deg, x, y }) => (
+                  <text
+                    key={deg}
+                    x={x} y={y}
+                    textAnchor="middle"
+                    dominantBaseline="middle"
+                    className="fill-cyan-400/70 text-[10px] font-mono"
+                  >
+                    {deg}°
+                  </text>
+                ))}
                 
                 {/* Needle */}
                 <motion.g
                   animate={{ rotate: getDialRotation() }}
                   transition={{ type: 'spring', stiffness: 100, damping: 15 }}
-                  style={{ transformOrigin: '100px 100px' }}
+                  style={{ transformOrigin: '110px 110px' }}
                 >
-                  <line x1="100" y1="100" x2="100" y2="25" stroke="url(#needleGradient)" strokeWidth="3" strokeLinecap="round" />
-                  <circle cx="100" cy="25" r="4" fill="#06b6d4" />
+                  <line x1="110" y1="110" x2="110" y2="35" stroke="url(#needleGradient)" strokeWidth="3" strokeLinecap="round" />
+                  <circle cx="110" cy="35" r="4" fill="#06b6d4" />
                 </motion.g>
                 
                 {/* Center dot */}
-                <circle cx="100" cy="100" r="6" fill="#0f172a" stroke="#06b6d4" strokeWidth="2" />
+                <circle cx="110" cy="110" r="6" fill="#0f172a" stroke="#06b6d4" strokeWidth="2" />
+                
+                {/* Center display text */}
+                <text x="110" y="105" textAnchor="middle" className="fill-cyan-300 text-lg font-bold font-mono">
+                  {result ? formatNumber(result.normalized.degrees) : '—'}°
+                </text>
+                <text x="110" y="122" textAnchor="middle" className="fill-slate-500 text-[8px]">
+                  normalized
+                </text>
                 
                 <defs>
                   <linearGradient id="needleGradient" x1="0%" y1="100%" x2="0%" y2="0%">
@@ -351,16 +359,6 @@ export default function AnglesConversionVisualization() {
                   </linearGradient>
                 </defs>
               </svg>
-              
-              {/* Center display */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center mt-8">
-                  <div className="text-2xl font-bold font-mono text-cyan-300">
-                    {result ? formatNumber(result.normalized.degrees) : '—'}°
-                  </div>
-                  <div className="text-[10px] text-slate-500">normalized</div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
