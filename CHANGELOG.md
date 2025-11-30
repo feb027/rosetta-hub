@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Averages/Simple Moving Average"
+  - Added metadata and `SimpleMovingAverageVisualization` component.
+  - Implemented "Stream Analytics" with financial data streaming theme.
+  - Features sliding window visualization with configurable period (P).
+  - Real-time SVG chart showing raw values and SMA line.
+  - Animated window slots displaying current P values in calculation.
+  - Color-coded data points: cyan for in-window, gray for processed.
+  - Live calculation display showing formula breakdown.
+  - Computation log table with step, input, window, and SMA columns.
+  - Presets: Stock Prices, Temperature, Sensor Data, Rosetta Example.
+  - Period selector (2-7) with slider control.
+  - Add values to stream interactively with max 20 values.
+  - Stats panel: period, processed count, window size, current SMA.
+  - Grid pattern background for analytics dashboard aesthetic.
+  - Sound effects for tick, slide, complete, add, and remove.
+  - Keyboard shortcuts: Space (play/pause), → (step), R (reset).
 - **New Problem**: "Averages/Mode"
   - Added metadata and `AveragesModeVisualization` component.
   - Implemented "Voting Booth" with election/ballot theme.
