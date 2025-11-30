@@ -68,6 +68,7 @@ import AckermannFunctionVisualization from '../components/visualizations/Ackerma
 import ActiveDirectoryVisualization from '../components/visualizations/ActiveDirectoryVisualization';
 import ActiveObjectVisualization from '../components/visualizations/ActiveObjectVisualization';
 import AddVariableRuntimeVisualization from '../components/visualizations/AddVariableRuntimeVisualization';
+import AdditivePrimesVisualization from '../components/visualizations/AdditivePrimesVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -145,6 +146,7 @@ export default function ProblemDetailPage() {
     'active-directory': <ActiveDirectoryVisualization />,
     'active-object': <ActiveObjectVisualization />,
     'add-variable-runtime': <AddVariableRuntimeVisualization />,
+    'additive-primes': <AdditivePrimesVisualization />,
   };
   
   // Find the problem by slug

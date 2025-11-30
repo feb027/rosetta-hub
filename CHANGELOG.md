@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Additive Primes"
+  - Added metadata and `AdditivePrimesVisualization` component.
+  - Implemented "Prime Distillery" with filtering/distillation theme.
+  - Features animated scanning of numbers 2-500 for additive primes.
+  - Three-stage filter visualization: primality check → digit sum → digit sum primality.
+  - Color-coded results: emerald for pass, rose for fail, teal for additive primes.
+  - Discovered primes grid with click-to-inspect functionality.
+  - Test any number input with instant additive prime verification.
+  - Progress bar with shimmer animation during scanning.
+  - Stats panel: checked count, found count, remaining, hit rate percentage.
+  - Speed control slider for animation rate adjustment.
+  - Instant complete button to reveal all 54 additive primes.
+  - Sound effects for checking, discovery, failure, and completion.
+  - Keyboard shortcuts: Space (play/pause), I (instant), R (reset).
 - **New Problem**: "Add a Variable to a Class Instance at Runtime"
   - Added metadata and `AddVariableRuntimeVisualization` component.
   - Implemented "Property Forge" with workshop/blacksmith theme.
