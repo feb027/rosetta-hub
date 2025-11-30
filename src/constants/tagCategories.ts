@@ -15,7 +15,7 @@ export const TAG_CATEGORIES: TagCategory[] = [
   {
     name: 'Data Structures',
     icon: '📦',
-    tags: ['data-structure', 'array', 'graph']
+    tags: ['data-structure', 'array', 'graph', 'tree']
   },
   {
     name: 'Operations',

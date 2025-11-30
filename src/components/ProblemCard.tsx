@@ -80,6 +80,7 @@ const TAG_ICONS: Record<Tag, { icon: LucideIcon; label: string; color: string }>
   'animation': { icon: Activity, label: 'Animation', color: 'text-rose-400' },
   'validation': { icon: Target, label: 'Validation', color: 'text-emerald-400' },
   'cryptography': { icon: Lock, label: 'Cryptography', color: 'text-emerald-400' },
+  'tree': { icon: Network, label: 'Tree', color: 'text-green-400' },
 };
 
 function getIconsForTags(tags: Tag[]) {
