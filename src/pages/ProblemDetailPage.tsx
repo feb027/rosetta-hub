@@ -80,6 +80,7 @@ import AnimatePendulumVisualization from '../components/visualizations/AnimatePe
 import AnimationVisualization from '../components/visualizations/AnimationVisualization';
 import AnonymousRecursionVisualization from '../components/visualizations/AnonymousRecursionVisualization';
 import AppendRecordVisualization from '../components/visualizations/AppendRecordVisualization';
+import ApplyCallbackVisualization from '../components/visualizations/ApplyCallbackVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -169,6 +170,7 @@ export default function ProblemDetailPage() {
     'animation': <AnimationVisualization />,
     'anonymous-recursion': <AnonymousRecursionVisualization />,
     'append-record-to-file': <AppendRecordVisualization />,
+    'apply-callback-to-array': <ApplyCallbackVisualization />,
   };
   
   // Find the problem by slug

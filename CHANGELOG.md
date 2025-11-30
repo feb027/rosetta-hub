@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Apply a Callback to an Array"
+  - Added metadata and `ApplyCallbackVisualization` component.
+  - Implemented "Function Factory" with industrial conveyor belt theme.
+  - Features animated array elements passing through a function machine.
+  - Six callback functions: square (x²), double (2x), increment (x+1), cube (x³), negate (-x), abs (|x|).
+  - Visual conveyor belt with input array, function machine, and output array.
+  - Animated processing state with pulsing highlights on current element.
+  - Preset input arrays: 1-5, Evens, Negatives, Primes.
+  - Custom input field for user-defined arrays.
+  - Live code display showing JavaScript map() syntax with current callback.
+  - Adjustable animation speed from 200ms to 1200ms.
+  - Sound effects for processing, completion, and conveyor movement.
 - **New Problem**: "Append a Record to the End of a Text File"
   - Added metadata and `AppendRecordVisualization` component.
   - Implemented "File Terminal" with retro terminal/console theme.
