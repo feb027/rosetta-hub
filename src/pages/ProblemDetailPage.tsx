@@ -79,6 +79,7 @@ import AnglesConversionVisualization from '../components/visualizations/AnglesCo
 import AnimatePendulumVisualization from '../components/visualizations/AnimatePendulumVisualization';
 import AnimationVisualization from '../components/visualizations/AnimationVisualization';
 import AnonymousRecursionVisualization from '../components/visualizations/AnonymousRecursionVisualization';
+import AppendRecordVisualization from '../components/visualizations/AppendRecordVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -167,6 +168,7 @@ export default function ProblemDetailPage() {
     'animate-pendulum': <AnimatePendulumVisualization />,
     'animation': <AnimationVisualization />,
     'anonymous-recursion': <AnonymousRecursionVisualization />,
+    'append-record-to-file': <AppendRecordVisualization />,
   };
   
   // Find the problem by slug

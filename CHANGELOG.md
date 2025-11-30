@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Append a Record to the End of a Text File"
+  - Added metadata and `AppendRecordVisualization` component.
+  - Implemented "File Terminal" with retro terminal/console theme.
+  - Features interactive passwd-style file operations simulation.
+  - Color-coded record fields: account (cyan), UID/GID (amber), GECOS (emerald), directory (sky), shell (rose).
+  - File mode indicators: Write (amber), Append (emerald), Read (cyan), Closed (slate).
+  - Operations log showing fopen/fprintf/fclose calls with timestamps.
+  - "Run Demo" button for automated full sequence demonstration.
+  - Manual step-by-step controls: Open(W), Write, Close, Open(A), Append, Open(R).
+  - Editable new record form with account, UID, fullname, and email fields.
+  - Highlighted newly appended records with animation.
+  - Format reference showing passwd field structure and file modes.
+  - Sound effects for open, write, close, success, and error operations.
 - **New Problem**: "Anonymous Recursion"
   - Added metadata and `AnonymousRecursionVisualization` component.
   - Implemented "Lambda Lab" with futuristic recursion tree visualization theme.
