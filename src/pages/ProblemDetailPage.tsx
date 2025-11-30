@@ -58,6 +58,7 @@ import AVLTreeVisualization from '../components/visualizations/AVLTreeVisualizat
 import BabbageProblemVisualization from '../components/visualizations/BabbageProblemVisualization';
 import BabylonianSpiralVisualization from '../components/visualizations/BabylonianSpiralVisualization';
 import BalancedBracketsVisualization from '../components/visualizations/BalancedBracketsVisualization';
+import BalancedTernaryVisualization from '../components/visualizations/BalancedTernaryVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -125,6 +126,7 @@ export default function ProblemDetailPage() {
     'babbage-problem': <BabbageProblemVisualization />,
     'babylonian-spiral': <BabylonianSpiralVisualization />,
     'balanced-brackets': <BalancedBracketsVisualization />,
+    'balanced-ternary': <BalancedTernaryVisualization />,
   };
   
   // Find the problem by slug

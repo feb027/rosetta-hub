@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Balanced Ternary"
+  - Added metadata and `BalancedTernaryVisualization` component.
+  - Implemented "Trit Calculator" with retro-futuristic base-3 computing theme.
+  - Features animated trit displays with color-coded values (+/0/-).
+  - Bidirectional converter between decimal and balanced ternary.
+  - Place value breakdown table showing power contributions.
+  - Full arithmetic calculator supporting addition, subtraction, and multiplication.
+  - Operations performed directly on balanced ternary (no decimal conversion).
+  - Real-time decimal verification for all calculations.
+  - Preset examples including classic test cases (-436, etc.).
+  - Sound effects for conversion, calculation, and results.
+  - Keyboard shortcuts: Enter (calculate), R (clear).
 - **New Problem**: "Balanced Brackets"
   - Added metadata and `BalancedBracketsVisualization` component.
   - Implemented "Syntax Validator" with code editor / IDE theme.
