@@ -172,7 +172,10 @@ export default function AlmostPrimeVisualization() {
       const item: FactorizedNumber = { n, factors, k: factors.length, isTarget };
       
       setCurrentNumber(n);
-      setConveyorItems(prev => [...prev.slice(-5), item]);
+      setConveyorItems(prev => {
+        const newItems = [...prev, item];
+        return newItems.slice(-6); // Keep only last 6 items
+      });
       
       if (isTarget) {
         found = [...found, item];
@@ -377,15 +380,16 @@ export default function AlmostPrimeVisualization() {
           </div>
 
           {/* Conveyor items */}
-          <div className="flex gap-2 overflow-hidden h-12 items-center justify-center">
-            <AnimatePresence>
-              {conveyorItems.slice(-6).map((item, idx) => (
+          <div className="flex gap-2 overflow-hidden h-12 items-center justify-center max-w-full">
+            <AnimatePresence mode="popLayout">
+              {conveyorItems.map((item, idx) => (
                 <motion.div
-                  key={`${item.n}-${idx}`}
-                  initial={{ x: 50, opacity: 0 }}
-                  animate={{ x: 0, opacity: idx === conveyorItems.length - 1 ? 1 : 0.5 }}
-                  exit={{ x: -50, opacity: 0 }}
-                  className={`px-3 py-2 rounded-lg border text-sm font-mono ${
+                  key={item.n}
+                  initial={{ x: 50, opacity: 0, scale: 0.8 }}
+                  animate={{ x: 0, opacity: idx === conveyorItems.length - 1 ? 1 : 0.4, scale: 1 }}
+                  exit={{ x: -50, opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.2 }}
+                  className={`px-3 py-2 rounded-lg border text-sm font-mono flex-shrink-0 ${
                     item.isTarget
                       ? `${color.bg} ${color.border} ${color.text}`
                       : 'bg-zinc-800/50 border-zinc-700 text-zinc-500'
