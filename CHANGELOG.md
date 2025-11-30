@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Averages/Median"
+  - Added metadata and `AveragesMedianVisualization` component.
+  - Implemented "Sorting Racetrack" with race car theme.
+  - Features colorful race cars representing values with wheels.
+  - Animated sorting sequence moving cars to sorted positions.
+  - Finish line pattern on right side of track.
+  - Median car(s) highlighted with trophy medal and bounce animation.
+  - Handles both odd (single middle) and even (average of two) cases.
+  - Presets: Odd Count, Even Count, Two Values, Single, Sorted.
+  - Add/remove racers interactively with max 10 values.
+  - Position numbers shown after sorting.
+  - Stats panel: count, type (odd/even), min, max.
+  - Sound effects for add, remove, sort steps, and medal.
+  - Keyboard shortcuts: Space (start race), R (reset).
 - **New Problem**: "Averages/Mean Time of Day"
   - Added metadata and `MeanTimeOfDayVisualization` component.
   - Implemented "Nocturnal Observatory" with 24-hour clock face theme.

@@ -93,6 +93,7 @@ import AssociativeArrayIterationVisualization from '../components/visualizations
 import AtomicUpdatesVisualization from '../components/visualizations/AtomicUpdatesVisualization';
 import ArithmeticMeanVisualization from '../components/visualizations/ArithmeticMeanVisualization';
 import MeanTimeOfDayVisualization from '../components/visualizations/MeanTimeOfDayVisualization';
+import AveragesMedianVisualization from '../components/visualizations/AveragesMedianVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -195,6 +196,7 @@ export default function ProblemDetailPage() {
     'atomic-updates': <AtomicUpdatesVisualization />,
     'arithmetic-mean': <ArithmeticMeanVisualization />,
     'mean-time-of-day': <MeanTimeOfDayVisualization />,
+    'averages-median': <AveragesMedianVisualization />,
   };
   
   // Find the problem by slug
