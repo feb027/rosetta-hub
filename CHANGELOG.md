@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Almost Prime"
+  - Added metadata and `AlmostPrimeVisualization` component.
+  - Implemented "Prime Factory" with industrial assembly line theme.
+  - Features animated conveyor belt scanning numbers for k-almost-primes.
+  - Interactive k selector (1-5) with color-coded factory switches.
+  - Real-time prime factorization display for each scanned number.
+  - Collection bins showing found k-almost-primes with factor breakdown.
+  - Progress bar tracking discovery progress (10 numbers per k).
+  - Results table showing first 10 k-almost-primes for k=1 to 5.
+  - "Generate All" button for instant complete results.
+  - Animated conveyor belt with industrial pattern background.
+  - Rotating gear decorations and factory aesthetic.
+  - Speed control slider for animation rate adjustment.
+  - Expandable info panel explaining k-almost-primes concept.
+  - Sound effects for scan, accept, reject, complete, and gear actions.
+  - Keyboard shortcuts: Space (run), 1-5 (select k), R (reset).
 - **New Problem**: "Align Columns"
   - Added metadata and `AlignColumnsVisualization` component.
   - Implemented "Typography Workshop" with vintage printing press / typesetting theme.

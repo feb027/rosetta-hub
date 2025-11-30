@@ -74,6 +74,7 @@ import ADFGVXCipherVisualization from '../components/visualizations/ADFGVXCipher
 import AKSTestForPrimesVisualization from '../components/visualizations/AKSTestForPrimesVisualization';
 import AlgebraicDataTypesVisualization from '../components/visualizations/AlgebraicDataTypesVisualization';
 import AlignColumnsVisualization from '../components/visualizations/AlignColumnsVisualization';
+import AlmostPrimeVisualization from '../components/visualizations/AlmostPrimeVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -157,6 +158,7 @@ export default function ProblemDetailPage() {
     'aks-test-for-primes': <AKSTestForPrimesVisualization />,
     'algebraic-data-types': <AlgebraicDataTypesVisualization />,
     'align-columns': <AlignColumnsVisualization />,
+    'almost-prime': <AlmostPrimeVisualization />,
   };
   
   // Find the problem by slug
