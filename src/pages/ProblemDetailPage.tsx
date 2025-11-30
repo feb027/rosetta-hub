@@ -75,6 +75,7 @@ import AKSTestForPrimesVisualization from '../components/visualizations/AKSTestF
 import AlgebraicDataTypesVisualization from '../components/visualizations/AlgebraicDataTypesVisualization';
 import AlignColumnsVisualization from '../components/visualizations/AlignColumnsVisualization';
 import AlmostPrimeVisualization from '../components/visualizations/AlmostPrimeVisualization';
+import AnglesConversionVisualization from '../components/visualizations/AnglesConversionVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -159,6 +160,7 @@ export default function ProblemDetailPage() {
     'algebraic-data-types': <AlgebraicDataTypesVisualization />,
     'align-columns': <AlignColumnsVisualization />,
     'almost-prime': <AlmostPrimeVisualization />,
+    'angles-conversion': <AnglesConversionVisualization />,
   };
   
   // Find the problem by slug

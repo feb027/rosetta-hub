@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Angles (geometric), normalization and conversion"
+  - Added metadata and `AnglesConversionVisualization` component.
+  - Implemented "Universal Angle Translator" with rotating dial/protractor theme.
+  - Features interactive SVG compass dial with animated needle.
+  - Four angle units: Degrees, Gradians, Mils, and Radians.
+  - Real-time conversion and normalization as you type.
+  - Color-coded unit cards showing all converted values simultaneously.
+  - Clickable test values from Rosetta Code specification.
+  - "Run All Tests" button generating complete results table.
+  - Dial needle animates with spring physics to show normalized angle.
+  - Cardinal direction labels (0°, 90°, 180°, 270°) on dial.
+  - Expandable reference panel explaining each unit system.
+  - Sound effects for click, convert, tick, and complete actions.
 - **New Problem**: "Almost Prime"
   - Added metadata and `AlmostPrimeVisualization` component.
   - Implemented "Prime Factory" with industrial assembly line theme.
