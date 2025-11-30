@@ -69,6 +69,7 @@ import ActiveDirectoryVisualization from '../components/visualizations/ActiveDir
 import ActiveObjectVisualization from '../components/visualizations/ActiveObjectVisualization';
 import AddVariableRuntimeVisualization from '../components/visualizations/AddVariableRuntimeVisualization';
 import AdditivePrimesVisualization from '../components/visualizations/AdditivePrimesVisualization';
+import AddressOfVariableVisualization from '../components/visualizations/AddressOfVariableVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -147,6 +148,7 @@ export default function ProblemDetailPage() {
     'active-object': <ActiveObjectVisualization />,
     'add-variable-runtime': <AddVariableRuntimeVisualization />,
     'additive-primes': <AdditivePrimesVisualization />,
+    'address-of-variable': <AddressOfVariableVisualization />,
   };
   
   // Find the problem by slug

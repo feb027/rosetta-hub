@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Address of a Variable"
+  - Added metadata and `AddressOfVariableVisualization` component.
+  - Implemented "Memory Inspector" with RAM/pointer visualization theme.
+  - Features interactive memory cells with hex addresses and typed values.
+  - Four data types: int (cyan), float (emerald), char (amber), string (pink).
+  - Pointer system with visual linking to memory addresses.
+  - Click-to-link interface for connecting pointers to memory cells.
+  - Real-time C-style code preview showing declarations and pointer operations.
+  - Dereferencing display showing *ptr values for each pointer.
+  - Multiple pointers can reference the same memory address.
+  - Allocate new variables with custom names, values, and types.
+  - Activity log tracking all memory operations.
+  - Sound effects for allocate, link, unlink, delete, and errors.
+  - Keyboard shortcuts: P (new pointer), Esc (deselect), R (reset).
 - **New Problem**: "Additive Primes"
   - Added metadata and `AdditivePrimesVisualization` component.
   - Implemented "Prime Distillery" with filtering/distillation theme.
