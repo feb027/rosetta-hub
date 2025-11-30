@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Averages/Arithmetic Mean"
+  - Added metadata and `ArithmeticMeanVisualization` component.
+  - Implemented "Balance Lab" with weighted blocks visualization theme.
+  - Features animated bar chart where height represents value magnitude.
+  - Step-by-step summation animation highlighting each value.
+  - Running sum display during calculation.
+  - Mean line indicator showing result position on chart.
+  - Empty set handling with NaN/undefined result display.
+  - Add/remove values interactively with max 12 values.
+  - Presets: 1-10, Grades, Temps, Single, Empty.
+  - Formula display showing μ = Σx / n calculation.
+  - Stats panel: count (n), sum (Σ), min, max.
+  - Grid background for laboratory aesthetic.
+  - Sound effects for add, remove, tick, complete, and error.
+  - Keyboard shortcuts: Space (calculate), R (reset), Enter (add).
 - **New Problem**: "Atomic Updates"
   - Added metadata and `AtomicUpdatesVisualization` component.
   - Implemented "Reactor Control Room" with nuclear reactor bucket theme.
