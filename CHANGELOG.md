@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "AKS Test for Primes"
+  - Added metadata and `AKSTestForPrimesVisualization` component.
+  - Implemented "Polynomial Primality Lab" with mathematical theorem visualization theme.
+  - Features animated polynomial expansion of (x-1)^p using binomial coefficients.
+  - Step-by-step visualization: Expand → Subtract → Check divisibility.
+  - Interactive coefficient grid showing divisibility test for each term.
+  - Color-coded results: teal/emerald for divisible (pass), rose for non-divisible (fail).
+  - Progress bar tracking coefficient verification progress.
+  - Quick preset buttons for testing primes (3, 5, 7, 11, 13) and composites (4, 9, 15).
+  - "Find All Primes" feature to discover primes under 35 or 50 using the theorem.
+  - Clickable prime results to test individual numbers.
+  - Worked example showing p=3 with full calculation breakdown.
+  - Speed control slider for animation rate adjustment.
+  - Sound effects for expansion, checking, pass/fail, and prime/composite results.
+  - Keyboard shortcuts: Space (test/pause), R (reset).
 - **New Problem**: "ADFGVX Cipher"
   - Added metadata and `ADFGVXCipherVisualization` component.
   - Implemented "Military Cipher Machine" with WWI German field cipher theme.

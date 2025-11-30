@@ -71,6 +71,7 @@ import AddVariableRuntimeVisualization from '../components/visualizations/AddVar
 import AdditivePrimesVisualization from '../components/visualizations/AdditivePrimesVisualization';
 import AddressOfVariableVisualization from '../components/visualizations/AddressOfVariableVisualization';
 import ADFGVXCipherVisualization from '../components/visualizations/ADFGVXCipherVisualization';
+import AKSTestForPrimesVisualization from '../components/visualizations/AKSTestForPrimesVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -151,6 +152,7 @@ export default function ProblemDetailPage() {
     'additive-primes': <AdditivePrimesVisualization />,
     'address-of-variable': <AddressOfVariableVisualization />,
     'adfgvx-cipher': <ADFGVXCipherVisualization />,
+    'aks-test-for-primes': <AKSTestForPrimesVisualization />,
   };
   
   // Find the problem by slug
