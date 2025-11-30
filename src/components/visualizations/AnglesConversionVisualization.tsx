@@ -342,15 +342,7 @@ export default function AnglesConversionVisualization() {
                 </motion.g>
                 
                 {/* Center dot */}
-                <circle cx="110" cy="110" r="6" fill="#0f172a" stroke="#06b6d4" strokeWidth="2" />
-                
-                {/* Center display text */}
-                <text x="110" y="105" textAnchor="middle" className="fill-cyan-300 text-lg font-bold font-mono">
-                  {result ? formatNumber(result.normalized.degrees) : '—'}°
-                </text>
-                <text x="110" y="122" textAnchor="middle" className="fill-slate-500 text-[8px]">
-                  normalized
-                </text>
+                <circle cx="110" cy="110" r="8" fill="#0f172a" stroke="#06b6d4" strokeWidth="2" />
                 
                 <defs>
                   <linearGradient id="needleGradient" x1="0%" y1="100%" x2="0%" y2="0%">
@@ -359,6 +351,16 @@ export default function AnglesConversionVisualization() {
                   </linearGradient>
                 </defs>
               </svg>
+              
+              {/* Center display - HTML overlay */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="text-center">
+                  <div className="text-2xl font-bold font-mono text-cyan-300">
+                    {result ? formatNumber(result.normalized.degrees) : '—'}°
+                  </div>
+                  <div className="text-[10px] text-slate-500">normalized</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
