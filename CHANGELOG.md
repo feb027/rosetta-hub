@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Averages/Mean Time of Day"
+  - Added metadata and `MeanTimeOfDayVisualization` component.
+  - Implemented "Nocturnal Observatory" with 24-hour clock face theme.
+  - Features SVG clock visualization with hour markers (0-24).
+  - Time entries displayed as vectors from center to clock edge.
+  - Circular statistics calculation handling midnight wraparound.
+  - Mean time shown as emerald vector on clock face.
+  - Animated starfield background for night sky aesthetic.
+  - Presets: Bat Activity, Morning, Noon, Midnight Cross.
+  - Time input with seconds precision.
+  - Time list showing angle conversion for each entry.
+  - Stats panel: count, earliest, latest, mean time.
+  - Sound effects for add, remove, tick, and complete.
+  - Keyboard shortcuts: Space (calculate), R (reset).
 - **New Problem**: "Averages/Arithmetic Mean"
   - Added metadata and `ArithmeticMeanVisualization` component.
   - Implemented "Balance Lab" with weighted blocks visualization theme.
