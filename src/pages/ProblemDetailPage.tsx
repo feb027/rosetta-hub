@@ -73,6 +73,7 @@ import AddressOfVariableVisualization from '../components/visualizations/Address
 import ADFGVXCipherVisualization from '../components/visualizations/ADFGVXCipherVisualization';
 import AKSTestForPrimesVisualization from '../components/visualizations/AKSTestForPrimesVisualization';
 import AlgebraicDataTypesVisualization from '../components/visualizations/AlgebraicDataTypesVisualization';
+import AlignColumnsVisualization from '../components/visualizations/AlignColumnsVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -155,6 +156,7 @@ export default function ProblemDetailPage() {
     'adfgvx-cipher': <ADFGVXCipherVisualization />,
     'aks-test-for-primes': <AKSTestForPrimesVisualization />,
     'algebraic-data-types': <AlgebraicDataTypesVisualization />,
+    'align-columns': <AlignColumnsVisualization />,
   };
   
   // Find the problem by slug

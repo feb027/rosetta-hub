@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Align Columns"
+  - Added metadata and `AlignColumnsVisualization` component.
+  - Implemented "Typography Workshop" with vintage printing press / typesetting theme.
+  - Features movable type blocks that slide into alignment positions.
+  - Three alignment modes: Left, Center, and Right justified.
+  - Animated block-by-block alignment with spring physics.
+  - Color-coded columns with warm printing press palette (amber, orange, rose, etc.).
+  - Composing stick visualization showing type blocks in rows.
+  - Real-time progress bar tracking aligned blocks.
+  - Multiple preset examples: Rosetta Code, Simple, Code Table, Menu.
+  - Editable input area with $ delimiter support.
+  - Column width legend showing character counts per column.
+  - Generated output display with copy-to-clipboard functionality.
+  - Stats panel: rows, columns, total blocks, current alignment.
+  - Speed control slider for animation rate adjustment.
+  - Sound effects for click, slide, lock, complete, and print actions.
+  - Keyboard shortcuts: Space (run), L/C/→ (alignment), R (reset).
 - **New Problem**: "Algebraic Data Types"
   - Added metadata and `AlgebraicDataTypesVisualization` component.
   - Implemented "Red-Black Tree Forge" with interactive tree building theme.
