@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Base64 Encode/Decode"
+  - Added metadata and `Base64EncodeDecodeVisualization` component.
+  - Implemented "Data Encoder" with data transmission lab theme.
+  - Combined encode and decode functionality in single visualization.
+  - Features animated character-by-character processing.
+  - Binary breakdown showing 8-bit to 6-bit conversion process.
+  - Interactive Base64 character set reference (64 chars + padding).
+  - Mode toggle between encode and decode operations.
+  - Copy to clipboard functionality for output.
+  - Swap button to reverse encode/decode with output as new input.
+  - Preset examples including Unicode text support.
+  - Size comparison showing encoding overhead (~33%).
+  - Sound effects for processing steps and completion.
+  - Keyboard shortcuts: Enter (process), E/D (mode), R (reset).
 - **New Problem**: "Barnsley Fern"
   - Added metadata and `BarnsleyFernVisualization` component.
   - Implemented "Fractal Garden" with botanical/nature theme.
