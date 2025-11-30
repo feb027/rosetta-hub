@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Add a Variable to a Class Instance at Runtime"
+  - Added metadata and `AddVariableRuntimeVisualization` component.
+  - Implemented "Property Forge" with workshop/blacksmith theme.
+  - Features interactive object instances with dynamic property attachment.
+  - Four property types: string (green), number (cyan), boolean (amber), function (pink).
+  - Real-time code generation showing JavaScript/TypeScript syntax.
+  - Forge animation with metallic sound effects when adding properties.
+  - Multiple object instances support (up to 4) with different class names.
+  - Quick preset properties for rapid testing (nickname, powerLevel, etc.).
+  - Property removal with visual feedback and sound effects.
+  - Activity log tracking all property additions and removals.
+  - Stats panel showing count of each property type across all objects.
+  - Blueprint grid background for technical aesthetic.
+  - Sound effects for forge, attach, remove, new object, and errors.
+  - Keyboard shortcuts: Enter (add property), N (new object), C (toggle code), R (reset).
 - **New Problem**: "Active Object"
   - Added metadata and `ActiveObjectVisualization` component.
   - Implemented "Signal Integrator Lab" with oscilloscope-style display theme.

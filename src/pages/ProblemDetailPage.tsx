@@ -67,6 +67,7 @@ import AbundantDeficientPerfectVisualization from '../components/visualizations/
 import AckermannFunctionVisualization from '../components/visualizations/AckermannFunctionVisualization';
 import ActiveDirectoryVisualization from '../components/visualizations/ActiveDirectoryVisualization';
 import ActiveObjectVisualization from '../components/visualizations/ActiveObjectVisualization';
+import AddVariableRuntimeVisualization from '../components/visualizations/AddVariableRuntimeVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -143,6 +144,7 @@ export default function ProblemDetailPage() {
     'ackermann-function': <AckermannFunctionVisualization />,
     'active-directory': <ActiveDirectoryVisualization />,
     'active-object': <ActiveObjectVisualization />,
+    'add-variable-runtime': <AddVariableRuntimeVisualization />,
   };
   
   // Find the problem by slug
