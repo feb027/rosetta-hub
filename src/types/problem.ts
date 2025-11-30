@@ -31,7 +31,8 @@ export type Tag =
   | 'function'
   | 'generator'
   | 'animation'
-  | 'validation';
+  | 'validation'
+  | 'cryptography';
 
 export interface ProblemMeta {
   title: string;

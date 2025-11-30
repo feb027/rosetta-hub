@@ -70,6 +70,7 @@ import ActiveObjectVisualization from '../components/visualizations/ActiveObject
 import AddVariableRuntimeVisualization from '../components/visualizations/AddVariableRuntimeVisualization';
 import AdditivePrimesVisualization from '../components/visualizations/AdditivePrimesVisualization';
 import AddressOfVariableVisualization from '../components/visualizations/AddressOfVariableVisualization';
+import ADFGVXCipherVisualization from '../components/visualizations/ADFGVXCipherVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -149,6 +150,7 @@ export default function ProblemDetailPage() {
     'add-variable-runtime': <AddVariableRuntimeVisualization />,
     'additive-primes': <AdditivePrimesVisualization />,
     'address-of-variable': <AddressOfVariableVisualization />,
+    'adfgvx-cipher': <ADFGVXCipherVisualization />,
   };
   
   // Find the problem by slug

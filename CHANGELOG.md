@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "ADFGVX Cipher"
+  - Added metadata and `ADFGVXCipherVisualization` component.
+  - Implemented "Military Cipher Machine" with WWI German field cipher theme.
+  - Features interactive 6×6 Polybius square with A-Z and 0-9 characters.
+  - Two-stage encryption: Polybius substitution → columnar transposition.
+  - Encrypt/Decrypt mode toggle with animated step-by-step process.
+  - Visual character-by-character substitution showing ADFGVX coordinates.
+  - Columnar transposition table with keyword-based column ordering.
+  - Shuffle button to randomize the Polybius square.
+  - Hover over square cells to see coordinate mappings.
+  - Copy result to clipboard functionality.
+  - Step progress indicator (Input → Substitution → Transposition → Result).
+  - Quick reference showing the six ADFGVX letters and their Morse code significance.
+  - Sound effects for encryption steps, shuffling, and completion.
+  - Keyboard shortcuts: Space (run), S (shuffle), R (reset).
+- **New Tag**: Added `cryptography` tag to the tag system.
 - **New Problem**: "Address of a Variable"
   - Added metadata and `AddressOfVariableVisualization` component.
   - Implemented "Memory Inspector" with RAM/pointer visualization theme.
