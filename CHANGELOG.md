@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Active Directory"
+  - Added metadata and `ActiveDirectoryVisualization` component.
+  - Implemented "Corporate Directory Explorer" with LDAP simulation theme.
+  - Combines both "Active Directory/Connect" and "Active Directory/Search for a user" tasks.
+  - Features simulated LDAP connection with authentication flow.
+  - Interactive directory tree with expandable Organizational Units (OUs).
+  - User search with multiple filter options (name, email, department, all).
+  - Live LDAP filter syntax preview showing query construction.
+  - Detailed user profile view with DN, username, email, department, groups.
+  - Connection log showing step-by-step LDAP operations.
+  - Status indicators for Server, Auth, Directory, and Search states.
+  - Randomly generated mock AD data with 5 departments and 15-25 users.
+  - Sound effects for connect, disconnect, search, found, and clicks.
+  - Keyboard shortcuts: Enter (search).
 - **New Problem**: "Ackermann Function"
   - Added metadata and `AckermannFunctionVisualization` component.
   - Implemented "Recursion Depth Explorer" with call tree visualization theme.

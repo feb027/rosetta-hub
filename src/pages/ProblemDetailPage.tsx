@@ -65,6 +65,7 @@ import TwentyFortyEightVisualization from '../components/visualizations/TwentyFo
 import AbstractTypeVisualization from '../components/visualizations/AbstractTypeVisualization';
 import AbundantDeficientPerfectVisualization from '../components/visualizations/AbundantDeficientPerfectVisualization';
 import AckermannFunctionVisualization from '../components/visualizations/AckermannFunctionVisualization';
+import ActiveDirectoryVisualization from '../components/visualizations/ActiveDirectoryVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -139,6 +140,7 @@ export default function ProblemDetailPage() {
     'abstract-type': <AbstractTypeVisualization />,
     'abundant-deficient-perfect': <AbundantDeficientPerfectVisualization />,
     'ackermann-function': <AckermannFunctionVisualization />,
+    'active-directory': <ActiveDirectoryVisualization />,
   };
   
   // Find the problem by slug
