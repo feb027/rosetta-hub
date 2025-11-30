@@ -15,37 +15,42 @@ function Pagination({ currentPage, totalPages, onPageChange, siblingCount = 1 }:
 
   // Generate page numbers with ellipsis
   const pageNumbers = useMemo(() => {
+    // For small page counts, show all pages
+    if (totalPages <= 7) {
+      return Array.from({ length: totalPages }, (_, i) => i + 1);
+    }
+
     const pages: (number | 'ellipsis-start' | 'ellipsis-end')[] = [];
     
     // Always show first page
     pages.push(1);
     
-    // Calculate range around current page
-    const leftSibling = Math.max(2, currentPage - siblingCount);
-    const rightSibling = Math.min(totalPages - 1, currentPage + siblingCount);
+    // Calculate the range around current page
+    const leftBound = Math.max(2, currentPage - siblingCount);
+    const rightBound = Math.min(totalPages - 1, currentPage + siblingCount);
     
-    // Add ellipsis after first page if needed
-    if (leftSibling > 2) {
+    // Show ellipsis or page 2
+    if (leftBound > 2) {
       pages.push('ellipsis-start');
-    } else if (leftSibling === 2) {
+    } else if (leftBound === 2) {
       pages.push(2);
     }
     
-    // Add pages around current page
-    for (let i = leftSibling; i <= rightSibling; i++) {
-      if (i !== 1 && i !== totalPages) {
+    // Add middle pages (excluding 1 and totalPages)
+    for (let i = leftBound; i <= rightBound; i++) {
+      if (i > 1 && i < totalPages && !pages.includes(i)) {
         pages.push(i);
       }
     }
     
-    // Add ellipsis before last page if needed
-    if (rightSibling < totalPages - 1) {
+    // Show ellipsis or second-to-last page
+    if (rightBound < totalPages - 1) {
       pages.push('ellipsis-end');
-    } else if (rightSibling === totalPages - 1 && totalPages > 1) {
+    } else if (rightBound === totalPages - 1 && !pages.includes(totalPages - 1)) {
       pages.push(totalPages - 1);
     }
     
-    // Always show last page (if more than 1 page)
+    // Always show last page
     if (totalPages > 1) {
       pages.push(totalPages);
     }

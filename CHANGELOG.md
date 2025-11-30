@@ -176,6 +176,9 @@ All notable changes to this project will be documented in this file.
 - **Bug**: Fixed back button in ProblemDetailPage not preserving pagination state
   - Back button now uses React Router's location state to return to the exact page
   - All back navigation links (top, floating, 404) now preserve URL query parameters
+- **Bug**: Fixed Pagination component showing duplicate page numbers
+  - Rewrote pagination logic to prevent duplicate keys in React rendering
+  - Shows all pages for ≤7 total pages, uses smart ellipsis for larger counts
 
 ### Changed
 - **UI**: Redesigned Pagination component for scalability (1000+ problems support)
