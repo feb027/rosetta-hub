@@ -82,6 +82,7 @@ import AnonymousRecursionVisualization from '../components/visualizations/Anonym
 import AppendRecordVisualization from '../components/visualizations/AppendRecordVisualization';
 import ApplyCallbackVisualization from '../components/visualizations/ApplyCallbackVisualization';
 import ArbitraryPrecisionVisualization from '../components/visualizations/ArbitraryPrecisionVisualization';
+import ArithmeticComplexVisualization from '../components/visualizations/ArithmeticComplexVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -173,6 +174,7 @@ export default function ProblemDetailPage() {
     'append-record-to-file': <AppendRecordVisualization />,
     'apply-callback-to-array': <ApplyCallbackVisualization />,
     'arbitrary-precision-integers': <ArbitraryPrecisionVisualization />,
+    'arithmetic-complex': <ArithmeticComplexVisualization />,
   };
   
   // Find the problem by slug

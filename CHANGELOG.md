@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Arithmetic/Complex"
+  - Added metadata and `ArithmeticComplexVisualization` component.
+  - Implemented "Complex Plane Navigator" with interactive 2D coordinate plane.
+  - Features canvas-based visualization of complex numbers as vectors.
+  - Five operations: Addition, Multiplication, Negation, Inversion, Conjugation.
+  - Interactive sliders for real and imaginary parts of both operands.
+  - Color-coded vectors: A (cyan), B (amber), Result (emerald dashed).
+  - Real-time result display with magnitude |R| and angle θ.
+  - Toggleable grid overlay on the complex plane.
+  - Preset value buttons for quick testing.
+  - Formula reference for each complex operation.
+  - Sound effects for slider changes and operation selection.
 - **New Problem**: "Arbitrary-precision Integers (included)"
   - Added metadata and `ArbitraryPrecisionVisualization` component.
   - Implemented "Big Number Observatory" with cosmic/space theme.
