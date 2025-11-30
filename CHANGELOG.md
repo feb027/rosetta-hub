@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Algebraic Data Types"
+  - Added metadata and `AlgebraicDataTypesVisualization` component.
+  - Implemented "Red-Black Tree Forge" with interactive tree building theme.
+  - Features SVG-based tree visualization with animated node insertion.
+  - Color-coded nodes: red nodes with red fill, black nodes with dark fill.
+  - Automatic rebalancing with rotation and color-flip operations.
+  - Real-time operation log showing inserts, rotations, and color flips.
+  - Tree statistics panel: node count, height, and black height.
+  - "Build Sample Tree" button for quick demonstration.
+  - Quick insert buttons and random insert functionality.
+  - Toggleable ADT code display showing Haskell-style type definitions.
+  - Red-Black Tree properties reference panel.
+  - Node highlighting on insertion with glow animation.
+  - Sound effects for insert, rotate, flip, and click actions.
+  - Keyboard shortcuts: Space (random insert), Enter (insert), R (reset).
 - **New Problem**: "AKS Test for Primes"
   - Added metadata and `AKSTestForPrimesVisualization` component.
   - Implemented "Polynomial Primality Lab" with mathematical theorem visualization theme.
