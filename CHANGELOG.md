@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Averages/Mode"
+  - Added metadata and `AveragesModeVisualization` component.
+  - Implemented "Voting Booth" with election/ballot theme.
+  - Features values as candidates with vote count bars.
+  - Animated counting sequence highlighting each candidate.
+  - Vote bar visualization showing relative frequencies.
+  - Winner badge (award icon) for mode value(s).
+  - Handles multimodal cases (bimodal, trimodal, etc.).
+  - Input collection display with removable value chips.
+  - Presets: Single Mode, Bimodal, Trimodal, All Unique, All Same.
+  - Add votes interactively with max 20 values.
+  - Stats panel: total votes, unique values, mode count, max frequency.
+  - Ballot pattern background for election aesthetic.
+  - Sound effects for add, remove, count, and winner fanfare.
+  - Keyboard shortcuts: Space (count), R (reset).
 - **New Problem**: "Averages/Median"
   - Added metadata and `AveragesMedianVisualization` component.
   - Implemented "Sorting Racetrack" with race car theme.
