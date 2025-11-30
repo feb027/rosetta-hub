@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Abstract Type"
+  - Added metadata and `AbstractTypeVisualization` component.
+  - Implemented "Type Blueprint Factory" with architectural blueprint theme.
+  - Features interactive SVG hierarchy visualization of type relationships.
+  - Three preset examples: Shape Hierarchy, Animal Kingdom, Vehicle System.
+  - Animated build sequence showing interfaces → abstract classes → concrete types.
+  - Click any type to view detailed method list with implementation status.
+  - Toggle code view showing TypeScript declarations for all types.
+  - Color-coded types: cyan (interface), amber (abstract), emerald (concrete).
+  - Dashed borders for interfaces and abstract classes, solid for concrete.
+  - Connection lines showing implements (dashed) and extends (solid) relationships.
+  - Stats panel showing count of each type category.
+  - Sound effects for type building, connections, selection, and completion.
+  - Keyboard shortcuts: Space (build), R (reset), C (toggle code), Esc (deselect).
 - **New Problem**: "2048"
   - Added metadata and `TwentyFortyEightVisualization` component.
   - Implemented "Neon Arcade Edition" with glowing tile theme.
