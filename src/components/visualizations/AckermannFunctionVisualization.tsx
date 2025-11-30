@@ -397,39 +397,44 @@ export default function AckermannFunctionVisualization() {
         )}
 
         {/* Current Call Display */}
-        <AnimatePresence>
-          {currentCall && (
-            <motion.div
-              key={currentCall.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className={`rounded-xl border p-4 ${RULE_COLORS[currentCall.rule].bg} ${RULE_COLORS[currentCall.rule].border}`}
-            >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <div className={`text-3xl font-mono font-bold ${RULE_COLORS[currentCall.rule].text}`}>
-                    A({currentCall.m}, {currentCall.n})
+        {currentCall && (
+          <motion.div
+            key="current-call"
+            initial={false}
+            animate={{ 
+              backgroundColor: currentCall.rule === 'base' 
+                ? 'rgba(16, 185, 129, 0.2)' 
+                : currentCall.rule === 'zero-n' 
+                  ? 'rgba(245, 158, 11, 0.2)' 
+                  : 'rgba(6, 182, 212, 0.2)'
+            }}
+            transition={{ duration: 0.15 }}
+            className={`rounded-xl border p-4 ${RULE_COLORS[currentCall.rule].border}`}
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className={`text-3xl font-mono font-bold transition-colors duration-150 ${RULE_COLORS[currentCall.rule].text}`}>
+                  A({currentCall.m}, {currentCall.n})
+                </div>
+                {currentCall.result !== undefined && (
+                  <div className="flex items-center gap-2">
+                    <span className="text-slate-500">=</span>
+                    <span className="text-2xl font-mono font-bold text-white">{currentCall.result}</span>
                   </div>
-                  {currentCall.result !== undefined && (
-                    <div className="flex items-center gap-2">
-                      <span className="text-slate-500">=</span>
-                      <span className="text-2xl font-mono font-bold text-white">{currentCall.result}</span>
-                    </div>
-                  )}
-                </div>
-                <div className="text-right">
-                  <div className="text-xs text-slate-500">Depth</div>
-                  <div className="text-lg font-mono text-slate-300">{currentCall.depth}</div>
-                </div>
+                )}
               </div>
-              <div className="mt-2 text-sm text-slate-400">
-                {currentCall.rule === 'base' && `Base case: ${currentCall.n} + 1 = ${currentCall.result}`}
-                {currentCall.rule === 'zero-n' && `Zero n: A(${currentCall.m - 1}, 1)`}
-                {currentCall.rule === 'recursive' && `Recursive: A(${currentCall.m - 1}, A(${currentCall.m}, ${currentCall.n - 1}))`}
+              <div className="text-right">
+                <div className="text-xs text-slate-500">Depth</div>
+                <div className="text-lg font-mono text-slate-300">{currentCall.depth}</div>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            </div>
+            <div className="mt-2 text-sm text-slate-400">
+              {currentCall.rule === 'base' && `Base case: ${currentCall.n} + 1 = ${currentCall.result}`}
+              {currentCall.rule === 'zero-n' && `Zero n: A(${currentCall.m - 1}, 1)`}
+              {currentCall.rule === 'recursive' && `Recursive: A(${currentCall.m - 1}, A(${currentCall.m}, ${currentCall.n - 1}))`}
+            </div>
+          </motion.div>
+        )}
 
         {/* Call Tree Visualization */}
         {calls.length > 0 && (
@@ -441,17 +446,15 @@ export default function AckermannFunctionVisualization() {
                   <div className="w-8 text-xs text-slate-600 font-mono text-right">{depth}</div>
                   <div className="flex-1 flex flex-wrap gap-1">
                     {nodes.slice(0, 30).map((node) => (
-                      <motion.div
+                      <div
                         key={node.id}
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        className={`px-2 py-1 rounded text-xs font-mono border ${RULE_COLORS[node.rule].bg} ${RULE_COLORS[node.rule].border} ${RULE_COLORS[node.rule].text} ${
-                          node.id === currentStep ? 'ring-2 ring-white/50' : ''
+                        className={`px-2 py-1 rounded text-xs font-mono border transition-all duration-100 ${RULE_COLORS[node.rule].bg} ${RULE_COLORS[node.rule].border} ${RULE_COLORS[node.rule].text} ${
+                          node.id === currentStep ? 'ring-2 ring-white/50 scale-110' : ''
                         }`}
                         title={`A(${node.m}, ${node.n}) = ${node.result ?? '?'}`}
                       >
                         ({node.m},{node.n})
-                      </motion.div>
+                      </div>
                     ))}
                     {nodes.length > 30 && (
                       <span className="text-xs text-slate-600">+{nodes.length - 30} more</span>
@@ -476,10 +479,9 @@ export default function AckermannFunctionVisualization() {
               <span>{((currentStep + 1) / calls.length * 100).toFixed(0)}%</span>
             </div>
             <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
-              <motion.div
-                className="h-full bg-gradient-to-r from-teal-500 to-cyan-400 rounded-full"
-                initial={{ width: 0 }}
-                animate={{ width: `${((currentStep + 1) / calls.length) * 100}%` }}
+              <div
+                className="h-full bg-gradient-to-r from-teal-500 to-cyan-400 rounded-full transition-all duration-100"
+                style={{ width: `${((currentStep + 1) / calls.length) * 100}%` }}
               />
             </div>
           </div>
