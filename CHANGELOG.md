@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Animation"
+  - Added metadata and `AnimationVisualization` component.
+  - Implemented "Neon Marquee" with retro LED display board theme.
+  - Features glowing text characters with neon glow effects.
+  - Click-to-reverse direction interaction (core task requirement).
+  - Smooth character-by-character rotation animation with Motion.
+  - Two rotation modes: Right (last char to front) and Left (first char to end).
+  - Adjustable animation speed from 50ms to 500ms intervals.
+  - Custom text input with preset examples (Hello World!, ROSETTA CODE, etc.).
+  - Statistics panel showing rotations, reversals, and character count.
+  - Scanline and LED grid background effects for retro aesthetic.
+  - Sound effects for rotation ticks and direction changes.
+  - Keyboard-friendly with full playback controls.
 - **New Problem**: "Animate a Pendulum"
   - Added metadata and `AnimatePendulumVisualization` component.
   - Implemented "Physics Playground" with realistic pendulum simulation theme.
