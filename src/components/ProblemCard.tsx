@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { 
   ArrowUpDown, 
@@ -76,6 +76,7 @@ const TAG_ICONS: Record<Tag, { icon: LucideIcon; label: string; color: string }>
   'closure': { icon: Box, label: 'Closure', color: 'text-amber-600' },
   'function': { icon: Code2, label: 'Function', color: 'text-blue-500' },
   'generator': { icon: RefreshCw, label: 'Generator', color: 'text-purple-500' },
+  'animation': { icon: Activity, label: 'Animation', color: 'text-rose-400' },
 };
 
 function getIconsForTags(tags: Tag[]) {
@@ -132,6 +133,8 @@ function getIconsForTags(tags: Tag[]) {
 }
 
 function ProblemCard({ title, slug, difficulty, tags, createdAt, previewImage }: ProblemCardProps) {
+  const location = useLocation();
+  
   // Format date if available
   const formattedDate = createdAt 
     ? new Date(createdAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
@@ -139,6 +142,9 @@ function ProblemCard({ title, slug, difficulty, tags, createdAt, previewImage }:
 
   // Get contextual icons based on tags
   const techIcons = getIconsForTags(tags);
+  
+  // Preserve current URL with search params for back navigation
+  const currentUrl = location.pathname + location.search;
 
   // Mouse move handler for spotlight effect
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
@@ -154,6 +160,7 @@ function ProblemCard({ title, slug, difficulty, tags, createdAt, previewImage }:
     <>
       <Link 
         to={`/visualizations/${slug}`} 
+        state={{ from: currentUrl }}
         className="block h-full w-full group relative"
         aria-label={`View ${title} problem - ${DIFFICULTY_LABELS[difficulty]} difficulty`}
         data-tooltip-id={`preview-${slug}`}

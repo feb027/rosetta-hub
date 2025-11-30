@@ -4,7 +4,7 @@
 
 **Rosetta Code Hub** is an ambitious portfolio project transforming classic programming problems from [Rosetta Code](https://rosettacode.org/) into stunning, interactive visualizations. Learn algorithms, data structures, and computational thinking through immersive visual demonstrations.
 
-> 🚧 **Project Status**: Actively in development | **Progress**: 25+ visualizations completed | **Goal**: 1000+ problems from Rosetta Code
+> 🚧 **Project Status**: Actively in development | **Progress**: 50+ visualizations completed | **Goal**: 1000+ problems from Rosetta Code
 
 [Documentation](#dokumentasi) • [Roadmap](#roadmap) • [Featured Visualizations](#-featured-visualizations)
 
@@ -13,7 +13,7 @@
 ## ✨ Fitur Utama
 
 ### 🎯 Interactive Visual Learning
-- **25+ Programming Problems** visualized (and counting!)
+- **50+ Programming Problems** visualized (and counting!)
 - Each visualization is unique and hand-crafted with care
 - Real-time animations showcasing algorithm execution step-by-step
 - Beautiful UI with smooth transitions and micro-interactions
@@ -199,86 +199,18 @@ Every visualization is designed to be **educational AND beautiful**:
 
 ---
 
-## 🧪 Featured Visualizations
-
-### 🔥 Abelian Sandpile Model
-Watch grains of sand topple in mesmerizing patterns with **neon glow effects** and hold-to-paint interaction.
-
-### 🎲 100 Prisoners Problem
-Experience the famous logic puzzle with **animated prison cells** showing optimal strategy vs random guessing.
-
-### 🧮 9 Billion Names of God
-Generate integer partitions with **Ferrers diagrams** - visual number theory at its finest.
-
-### ⚡ Sandpile Algebra Lab
-Explore mathematical group theory through **interactive 3x3 grids** with step-by-step toppling visualization.
-
-### 🎵 99 Bottles of Beer
-A **neon jukebox** with karaoke-style lyrics and interactive bottle wall - coding meets music.
-
-### 🌌 Cosmic Aliquot Explorer
-Journey through number theory with **space-themed visualization** and ambient sound effects.
-
----
-
 ## 🗺️ Roadmap
 
 ### 🎯 The Ambitious Goal
 
 This is an **ongoing portfolio project** with a bold vision:
 
-- 📊 **Current Progress**: 25 visualizations completed
+- 📊 **Current Progress**: 50+ visualizations completed
 - 🎯 **Milestone 1**: Reach 100 visualizations → Deploy live demo
 - 🚀 **Ultimate Goal**: Visualize all **1000+ problems** from Rosetta Code
 - 💪 **Commitment**: Continuous development even after reaching 100 problems
 
 > *"Transform code into art, one visualization at a time."*
-
----
-
-### Version 0.5 - Foundation Phase (Current ✅)
-
-- [x] 25+ problem visualizations
-- [x] Tag-based filtering system
-- [x] Responsive dark mode design
-- [x] Pagination system
-- [x] About & Changelog pages
-- [x] Premium design system with glassmorphism
-
-### Version 1.0 - First Deployment (Target: 100 Problems �)
-
-- [ ] Reach 100 unique visualizations
-- [ ] Search functionality with fuzzy matching
-- [ ] Bookmark/favorite problems
-- [ ] Share visualization states via URL
-- [ ] Performance mode toggle
-- [ ] **Deploy live demo to production**
-
-### Phase 2: Enhanced Features (100-250 Problems 📋)
-
-- [ ] Code playground integration
-- [ ] Export visualizations as video/GIF
-- [ ] Solution code snippets in multiple languages
-- [ ] Multi-language UI support
-- [ ] Keyboard shortcuts overlay
-- [ ] Advanced filtering and sorting
-
-### Phase 3: Advanced Visualizations (250-500 Problems �)
-
-- [ ] 3D visualizations with Three.js
-- [ ] Sound synthesis for algorithm sonification
-- [ ] WebGL-powered complex animations
-- [ ] AI-powered problem recommendations
-- [ ] Interactive tutorials and explanations
-
-### Phase 4: Community & Scale (500-1000+ Problems 🌍)
-
-- [ ] User-submitted visualizations
-- [ ] Community voting and curation
-- [ ] Learning paths & curated courses
-- [ ] Progress tracking and achievements
-- [ ] Community challenges and competitions
-- [ ] **Complete all 1000+ Rosetta Code tasks**
 
 ---
 

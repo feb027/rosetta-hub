@@ -6,11 +6,14 @@ interface URLStateReturn {
   searchTerm: string;
   difficulty: Difficulty | 'all';
   selectedTags: Set<Tag>;
+  page: number;
   updateFilters: (
     searchTerm: string,
     difficulty: Difficulty | 'all',
-    selectedTags: Set<Tag>
+    selectedTags: Set<Tag>,
+    page?: number
   ) => void;
+  updatePage: (page: number) => void;
 }
 
 /**
@@ -40,12 +43,17 @@ export function useURLState(): URLStateReturn {
       : []
   );
 
+  // Read page from URL query params
+  const pageParam = searchParams.get('page');
+  const page = pageParam ? Math.max(1, parseInt(pageParam, 10) || 1) : 1;
+
   // Implement updateFilters function to write to URL
   const updateFilters = useCallback(
     (
       newSearchTerm: string,
       newDifficulty: Difficulty | 'all',
-      newSelectedTags: Set<Tag>
+      newSelectedTags: Set<Tag>,
+      newPage: number = 1
     ) => {
       const params = new URLSearchParams();
 
@@ -64,16 +72,37 @@ export function useURLState(): URLStateReturn {
         params.set('tags', Array.from(newSelectedTags).join(','));
       }
 
+      // Add page if not 1
+      if (newPage > 1) {
+        params.set('page', String(newPage));
+      }
+
       // Use replace: true to avoid history pollution
       setSearchParams(params, { replace: true });
     },
     [setSearchParams]
   );
 
+  // Update only the page parameter
+  const updatePage = useCallback(
+    (newPage: number) => {
+      const params = new URLSearchParams(searchParams);
+      if (newPage > 1) {
+        params.set('page', String(newPage));
+      } else {
+        params.delete('page');
+      }
+      setSearchParams(params, { replace: true });
+    },
+    [searchParams, setSearchParams]
+  );
+
   return {
     searchTerm,
     difficulty,
     selectedTags,
+    page,
     updateFilters,
+    updatePage,
   };
 }

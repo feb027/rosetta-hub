@@ -29,7 +29,8 @@ export type Tag =
   | 'number-theory'
   | 'closure'
   | 'function'
-  | 'generator';
+  | 'generator'
+  | 'animation';
 
 export interface ProblemMeta {
   title: string;

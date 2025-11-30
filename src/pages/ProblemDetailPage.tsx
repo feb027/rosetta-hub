@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft, ArrowUp, BookOpen, ExternalLink, Code2, Info } from 'lucide-react';
@@ -29,12 +29,42 @@ import AlmkvistGiulleraVisualization from '../components/visualizations/Almkvist
 import AmbVisualization from '../components/visualizations/AmbVisualization';
 import AnadromesVisualization from '../components/visualizations/AnadromesVisualization';
 import AnagramGeneratorVisualization from '../components/visualizations/AnagramGeneratorVisualization';
+import DerangedAnagramsVisualization from '../components/visualizations/DerangedAnagramsVisualization';
+import AnaprimesVisualization from '../components/visualizations/AnaprimesVisualization';
+import AngleDifferenceVisualization from '../components/visualizations/AngleDifferenceVisualization';
+import AnimatedSpinnersVisualization from '../components/visualizations/AnimatedSpinnersVisualization';
+import AntiPrimesVisualization from '../components/visualizations/AntiPrimesVisualization';
+import DigitalFilterVisualization from '../components/visualizations/DigitalFilterVisualization';
+import ApproximateEqualityVisualization from '../components/visualizations/ApproximateEqualityVisualization';
+import AperysConstantVisualization from '../components/visualizations/AperysConstantVisualization';
+import ArchimedeanSpiralVisualization from '../components/visualizations/ArchimedeanSpiralVisualization';
+import ArenaStoragePoolVisualization from '../components/visualizations/ArenaStoragePoolVisualization';
+import ArithmeticDerivativeVisualization from '../components/visualizations/ArithmeticDerivativeVisualization';
+import ArithmeticEvaluationVisualization from '../components/visualizations/ArithmeticEvaluationVisualization';
+import ArithmeticNumbersVisualization from '../components/visualizations/ArithmeticNumbersVisualization';
+import ArithmeticGeometricMeanVisualization from '../components/visualizations/ArithmeticGeometricMeanVisualization';
+import AGMCalculatePiVisualization from '../components/visualizations/AGMCalculatePiVisualization';
+import ArrayLengthVisualization from '../components/visualizations/ArrayLengthVisualization';
+import AscendingPrimesVisualization from '../components/visualizations/AscendingPrimesVisualization';
+import ASCIIArtDiagramVisualization from '../components/visualizations/ASCIIArtDiagramVisualization';
+import AssociativeArrayMergingVisualization from '../components/visualizations/AssociativeArrayMergingVisualization';
+import AttractiveNumbersVisualization from '../components/visualizations/AttractiveNumbersVisualization';
+import AutogramCheckerVisualization from '../components/visualizations/AutogramCheckerVisualization';
+import AverageLoopLengthVisualization from '../components/visualizations/AverageLoopLengthVisualization';
+import MeanAngleVisualization from '../components/visualizations/MeanAngleVisualization';
+import PythagoreanMeansVisualization from '../components/visualizations/PythagoreanMeansVisualization';
+import RootMeanSquareVisualization from '../components/visualizations/RootMeanSquareVisualization';
+import AVLTreeVisualization from '../components/visualizations/AVLTreeVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
+  const location = useLocation();
   const { problems, isLoading } = useProblems();
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [showBackButton, setShowBackButton] = useState(false);
+  
+  // Preserve the search params from where user came from
+  const backUrl = location.state?.from || '/';
   
   // Map of problem slugs to their visualization components
   const visualizations: Record<string, React.ReactNode> = {
@@ -63,6 +93,32 @@ export default function ProblemDetailPage() {
     'amb': <AmbVisualization />,
     'anadromes': <AnadromesVisualization />,
     'anagram-generator': <AnagramGeneratorVisualization />,
+    'deranged-anagrams': <DerangedAnagramsVisualization />,
+    'anaprimes': <AnaprimesVisualization />,
+    'angle-difference': <AngleDifferenceVisualization />,
+    'animated-spinners': <AnimatedSpinnersVisualization />,
+    'anti-primes': <AntiPrimesVisualization />,
+    'digital-filter': <DigitalFilterVisualization />,
+    'approximate-equality': <ApproximateEqualityVisualization />,
+    'aperys-constant': <AperysConstantVisualization />,
+    'archimedean-spiral': <ArchimedeanSpiralVisualization />,
+    'arena-storage-pool': <ArenaStoragePoolVisualization />,
+    'arithmetic-derivative': <ArithmeticDerivativeVisualization />,
+    'arithmetic-evaluation': <ArithmeticEvaluationVisualization />,
+    'arithmetic-numbers': <ArithmeticNumbersVisualization />,
+    'arithmetic-geometric-mean': <ArithmeticGeometricMeanVisualization />,
+    'agm-calculate-pi': <AGMCalculatePiVisualization />,
+    'array-length': <ArrayLengthVisualization />,
+    'ascending-primes': <AscendingPrimesVisualization />,
+    'ascii-art-diagram': <ASCIIArtDiagramVisualization />,
+    'associative-array-merging': <AssociativeArrayMergingVisualization />,
+    'attractive-numbers': <AttractiveNumbersVisualization />,
+    'autogram-checker': <AutogramCheckerVisualization />,
+    'average-loop-length': <AverageLoopLengthVisualization />,
+    'mean-angle': <MeanAngleVisualization />,
+    'pythagorean-means': <PythagoreanMeansVisualization />,
+    'root-mean-square': <RootMeanSquareVisualization />,
+    'avl-tree': <AVLTreeVisualization />,
   };
   
   // Find the problem by slug
@@ -100,7 +156,7 @@ export default function ProblemDetailPage() {
               The problem "{slug}" doesn't exist in our collection.
             </p>
             <Link
-              to="/"
+              to={backUrl}
               className="inline-flex items-center gap-2 px-6 py-3 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 rounded-xl transition-all duration-200 border border-cyan-500/20 hover:border-cyan-500/40 hover:shadow-lg hover:shadow-cyan-500/10"
             >
               <ArrowLeft size={18} />
@@ -149,7 +205,7 @@ export default function ProblemDetailPage() {
         {/* Top Navigation */}
         <div className="mb-8">
           <Link
-            to="/"
+            to={backUrl}
             className="inline-flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors group"
           >
             <div className="p-2 rounded-lg bg-slate-800/50 border border-slate-700/50 group-hover:border-cyan-500/30 group-hover:bg-cyan-500/10 transition-all">
@@ -169,7 +225,7 @@ export default function ProblemDetailPage() {
               className="fixed left-6 md:left-10 top-24 z-40 hidden xl:block"
             >
               <Link
-                to="/"
+                to={backUrl}
                 className="group flex items-center gap-2 px-4 py-2.5 bg-slate-900/80 hover:bg-slate-800/90 backdrop-blur-md border border-slate-700/50 hover:border-cyan-500/50 rounded-xl transition-all shadow-lg hover:shadow-cyan-500/20 text-slate-300 hover:text-cyan-400"
               >
                 <ArrowLeft size={18} className="transition-transform group-hover:-translate-x-1" />

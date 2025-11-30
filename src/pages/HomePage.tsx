@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect, useCallback } from 'react';
 import { motion } from 'motion/react';
 import HubFilters, { type SortOption } from '../components/HubFilters';
 import ProblemGrid from '../components/ProblemGrid';
+import Pagination from '../components/Pagination';
 import type { Difficulty, Tag, ProblemMeta } from '../types/problem';
 import { useProblems } from '../hooks/useProblems';
 import { useDebounce } from '../hooks/useDebounce';
@@ -13,7 +14,7 @@ export default function HomePage() {
   const { problems, isLoading } = useProblems();
 
   // Get filter state from URL
-  const { searchTerm: urlSearchTerm, difficulty: urlDifficulty, selectedTags: urlSelectedTags, updateFilters } = useURLState();
+  const { searchTerm: urlSearchTerm, difficulty: urlDifficulty, selectedTags: urlSelectedTags, page: urlPage, updateFilters, updatePage } = useURLState();
 
   // Local state for immediate UI updates (before debounce)
   const [searchTerm, setSearchTerm] = useState(urlSearchTerm);
@@ -22,18 +23,44 @@ export default function HomePage() {
   const [tagFilterMode, setTagFilterMode] = useState<TagFilterMode>('OR');
   const [sortBy, setSortBy] = useState<SortOption>('difficulty-asc');
 
-  // Pagination State
-  const [currentPage, setCurrentPage] = useState(1);
+  // Pagination State - initialized from URL
+  const [currentPage, setCurrentPage] = useState(urlPage);
   const ITEMS_PER_PAGE = 9;
 
   // Debounce search term for better performance
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
+  // Track previous filter values to detect actual changes
+  const [prevFilters, setPrevFilters] = useState({
+    search: debouncedSearchTerm,
+    difficulty,
+    tags: Array.from(selectedTags).join(','),
+  });
+
   // Update URL when filters change (using debounced search)
   useEffect(() => {
-    updateFilters(debouncedSearchTerm, difficulty, selectedTags);
-    setCurrentPage(1); // Reset to first page on filter change
-  }, [debouncedSearchTerm, difficulty, selectedTags, updateFilters]);
+    const currentFilters = {
+      search: debouncedSearchTerm,
+      difficulty,
+      tags: Array.from(selectedTags).join(','),
+    };
+
+    const filtersChanged =
+      prevFilters.search !== currentFilters.search ||
+      prevFilters.difficulty !== currentFilters.difficulty ||
+      prevFilters.tags !== currentFilters.tags;
+
+    if (filtersChanged) {
+      updateFilters(debouncedSearchTerm, difficulty, selectedTags, 1);
+      setCurrentPage(1);
+      setPrevFilters(currentFilters);
+    }
+  }, [debouncedSearchTerm, difficulty, selectedTags, updateFilters, prevFilters]);
+
+  // Sync currentPage with URL when navigating back
+  useEffect(() => {
+    setCurrentPage(urlPage);
+  }, [urlPage]);
 
   // Memoize handler functions to prevent unnecessary re-renders
   const handleTagToggle = useCallback((tag: Tag) => {
@@ -55,7 +82,8 @@ export default function HomePage() {
     setTagFilterMode('OR');
     setSortBy('difficulty-asc');
     setCurrentPage(1);
-  }, []);
+    updatePage(1);
+  }, [updatePage]);
 
   // Sort problems based on selected option
   const sortProblems = useCallback((problemsToSort: ProblemMeta[]): ProblemMeta[] => {
@@ -112,6 +140,7 @@ export default function HomePage() {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+    updatePage(page);
     window.scrollTo({ top: 300, behavior: 'smooth' }); // Scroll to top of grid
   };
 
@@ -228,39 +257,11 @@ export default function HomePage() {
 
         {/* Pagination Controls */}
         {totalPages > 1 && (
-          <div className="mt-12 flex justify-center items-center gap-2">
-            <button
-              onClick={() => handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
-              className="px-4 py-2 rounded-lg bg-slate-800/50 border border-slate-700/50 text-slate-400 hover:text-white hover:bg-slate-700/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-            >
-              Previous
-            </button>
-            
-            <div className="flex gap-1">
-              {Array.from({ length: totalPages }).map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => handlePageChange(i + 1)}
-                  className={`w-10 h-10 rounded-lg border transition-all font-medium ${
-                    currentPage === i + 1
-                      ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.2)]'
-                      : 'bg-slate-800/30 border-slate-700/30 text-slate-500 hover:bg-slate-800/50 hover:text-slate-300'
-                  }`}
-                >
-                  {i + 1}
-                </button>
-              ))}
-            </div>
-
-            <button
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              className="px-4 py-2 rounded-lg bg-slate-800/50 border border-slate-700/50 text-slate-400 hover:text-white hover:bg-slate-700/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-            >
-              Next
-            </button>
-          </div>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
         )}
       </div>
     </div>
