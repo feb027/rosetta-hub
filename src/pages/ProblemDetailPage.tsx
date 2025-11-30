@@ -97,6 +97,7 @@ import AveragesMedianVisualization from '../components/visualizations/AveragesMe
 import AveragesModeVisualization from '../components/visualizations/AveragesModeVisualization';
 import SimpleMovingAverageVisualization from '../components/visualizations/SimpleMovingAverageVisualization';
 import BellNumbersVisualization from '../components/visualizations/BellNumbersVisualization';
+import BenfordsLawVisualization from '../components/visualizations/BenfordsLawVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -203,6 +204,7 @@ export default function ProblemDetailPage() {
     'averages-mode': <AveragesModeVisualization />,
     'simple-moving-average': <SimpleMovingAverageVisualization />,
     'bell-numbers': <BellNumbersVisualization />,
+    'benfords-law': <BenfordsLawVisualization />,
   };
   
   // Find the problem by slug

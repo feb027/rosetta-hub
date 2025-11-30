@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Benford's Law"
+  - Added metadata and `BenfordsLawVisualization` component.
+  - Implemented "Digit Detective" with forensic data analysis theme.
+  - Features animated bar chart comparing actual vs expected distributions.
+  - Multiple data sets: Fibonacci (1000), Powers of 2, Factorials, Primes.
+  - Real-time scanning animation with progress tracking.
+  - Expected distribution shown as dashed amber outlines.
+  - Color-coded bars: sky for actual, emerald when matching expected.
+  - Detailed analysis table with count, actual %, expected %, deviation.
+  - Chi-square (χ²) statistical test with pass/fail indicator.
+  - Instant analysis button for immediate results.
+  - Batch size control for scan speed adjustment.
+  - Stats panel: data set, analyzed count, most common digit, χ² value.
+  - Scan line effect during analysis for detective aesthetic.
+  - Sound effects for tick, scan, complete, match, and deviation.
+  - Keyboard shortcuts: Space (play/pause), A (instant), R (reset).
 - **New Problem**: "Bell Numbers"
   - Added metadata and `BellNumbersVisualization` component.
   - Implemented "Partition Garden" with colorful set partition theme.
