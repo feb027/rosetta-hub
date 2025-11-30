@@ -64,6 +64,7 @@ import Base64EncodeDecodeVisualization from '../components/visualizations/Base64
 import TwentyFortyEightVisualization from '../components/visualizations/TwentyFortyEightVisualization';
 import AbstractTypeVisualization from '../components/visualizations/AbstractTypeVisualization';
 import AbundantDeficientPerfectVisualization from '../components/visualizations/AbundantDeficientPerfectVisualization';
+import AckermannFunctionVisualization from '../components/visualizations/AckermannFunctionVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -137,6 +138,7 @@ export default function ProblemDetailPage() {
     '2048-game': <TwentyFortyEightVisualization />,
     'abstract-type': <AbstractTypeVisualization />,
     'abundant-deficient-perfect': <AbundantDeficientPerfectVisualization />,
+    'ackermann-function': <AckermannFunctionVisualization />,
   };
   
   // Find the problem by slug

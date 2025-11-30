@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Ackermann Function"
+  - Added metadata and `AckermannFunctionVisualization` component.
+  - Implemented "Recursion Depth Explorer" with call tree visualization theme.
+  - Features animated step-by-step recursion with depth tracking.
+  - Three color-coded rules: Base case (emerald), Zero-n (amber), Recursive (cyan).
+  - Call tree visualization grouped by recursion depth level.
+  - Interactive m/n input selectors with safe value warnings.
+  - Quick reference table showing known Ackermann values (clickable).
+  - Stats panel: total calls, max depth, base cases count, result.
+  - Current call display showing rule being applied.
+  - Overflow detection with truncation warning for large inputs.
+  - Sound effects for steps, base cases, completion, and warnings.
+  - Keyboard shortcuts: Space (play/pause), R (reset).
 - **New Problem**: "Abundant, Deficient and Perfect Number Classifications"
   - Added metadata and `AbundantDeficientPerfectVisualization` component.
   - Implemented "Number Classification Lab" with scientific laboratory theme.
