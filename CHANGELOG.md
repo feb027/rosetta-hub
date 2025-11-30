@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Arithmetic/Integer"
+  - Added metadata and `ArithmeticIntegerVisualization` component.
+  - Implemented "Calculator Console" with retro scientific calculator theme.
+  - Features six integer operations: Sum, Difference, Product, Quotient, Remainder, Exponent.
+  - Large numeric input fields with real-time result updates.
+  - Color-coded operation cards: emerald (sum), rose (diff), amber (prod), cyan (quot), sky (rem), pink (exp).
+  - Animated computation sequence with highlighted operations.
+  - Preset value buttons including negative number combinations.
+  - Divmod bonus section showing (quotient, remainder) tuple.
+  - Notes explaining rounding behavior and remainder sign rules.
+  - Sound effects for input changes and computation steps.
 - **New Problem**: "Arithmetic/Complex"
   - Added metadata and `ArithmeticComplexVisualization` component.
   - Implemented "Complex Plane Navigator" with interactive 2D coordinate plane.

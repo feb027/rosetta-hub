@@ -83,6 +83,7 @@ import AppendRecordVisualization from '../components/visualizations/AppendRecord
 import ApplyCallbackVisualization from '../components/visualizations/ApplyCallbackVisualization';
 import ArbitraryPrecisionVisualization from '../components/visualizations/ArbitraryPrecisionVisualization';
 import ArithmeticComplexVisualization from '../components/visualizations/ArithmeticComplexVisualization';
+import ArithmeticIntegerVisualization from '../components/visualizations/ArithmeticIntegerVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -175,6 +176,7 @@ export default function ProblemDetailPage() {
     'apply-callback-to-array': <ApplyCallbackVisualization />,
     'arbitrary-precision-integers': <ArbitraryPrecisionVisualization />,
     'arithmetic-complex': <ArithmeticComplexVisualization />,
+    'arithmetic-integer': <ArithmeticIntegerVisualization />,
   };
   
   // Find the problem by slug
