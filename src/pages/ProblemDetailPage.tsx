@@ -76,6 +76,7 @@ import AlgebraicDataTypesVisualization from '../components/visualizations/Algebr
 import AlignColumnsVisualization from '../components/visualizations/AlignColumnsVisualization';
 import AlmostPrimeVisualization from '../components/visualizations/AlmostPrimeVisualization';
 import AnglesConversionVisualization from '../components/visualizations/AnglesConversionVisualization';
+import AnimatePendulumVisualization from '../components/visualizations/AnimatePendulumVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -161,6 +162,7 @@ export default function ProblemDetailPage() {
     'align-columns': <AlignColumnsVisualization />,
     'almost-prime': <AlmostPrimeVisualization />,
     'angles-conversion': <AnglesConversionVisualization />,
+    'animate-pendulum': <AnimatePendulumVisualization />,
   };
   
   // Find the problem by slug

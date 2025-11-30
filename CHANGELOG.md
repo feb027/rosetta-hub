@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased] - 2025-11-30
 
 ### Added
+- **New Problem**: "Animate a Pendulum"
+  - Added metadata and `AnimatePendulumVisualization` component.
+  - Implemented "Physics Playground" with realistic pendulum simulation theme.
+  - Features SVG-based pendulum with smooth Runge-Kutta 4th order physics integration.
+  - Adjustable parameters: initial angle, length, gravity, and damping.
+  - Real-time energy bar showing potential/kinetic energy distribution.
+  - Motion trail visualization showing bob trajectory.
+  - Optional velocity and gravity vector overlays.
+  - Presets for different scenarios: Gentle Swing, Wide Arc, Moon/Jupiter gravity, With Friction.
+  - Live stats: angle, angular velocity, time elapsed, oscillation count.
+  - Physics info panel showing period, frequency, and max angle reached.
+  - Angle arc indicator with degree readout on the pendulum.
+  - Sound effects for swing whoosh, ticks, start, and stop.
+  - Keyboard shortcuts: Space (play/pause), R (reset), T (trail), V (vectors).
 - **New Problem**: "Angles (geometric), normalization and conversion"
   - Added metadata and `AnglesConversionVisualization` component.
   - Implemented "Universal Angle Translator" with rotating dial/protractor theme.
