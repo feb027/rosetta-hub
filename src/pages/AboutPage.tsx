@@ -59,7 +59,7 @@ export default function AboutPage() {
 
       {/* Bento Grid Layout */}
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 -mt-20 relative z-30">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
           
           {/* Intro Card - Large */}
           <motion.div
@@ -100,9 +100,9 @@ export default function AboutPage() {
             className="glass rounded-3xl p-6 border border-slate-700/50 flex flex-col items-center justify-center text-center hover:border-cyan-500/30 transition-colors group"
           >
             <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-cyan-400 to-blue-500 mb-2 group-hover:scale-110 transition-transform duration-300">
-              50+
+              104
             </div>
-            <div className="text-slate-400 font-medium">Algorithms Planned</div>
+            <div className="text-slate-400 font-medium">Visualizations Built</div>
           </motion.div>
 
           {/* Stats Card 2 */}
@@ -117,6 +117,20 @@ export default function AboutPage() {
               100%
             </div>
             <div className="text-slate-400 font-medium">Open Source</div>
+          </motion.div>
+
+          {/* Stats Card 3 - New */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.25 }}
+            className="glass rounded-3xl p-6 border border-slate-700/50 flex flex-col items-center justify-center text-center hover:border-emerald-500/30 transition-colors group"
+          >
+            <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-emerald-400 to-teal-500 mb-2 group-hover:scale-110 transition-transform duration-300">
+              4+
+            </div>
+            <div className="text-slate-400 font-medium">Enhanced with Premium Features</div>
           </motion.div>
 
           {/* Vision Card */}
@@ -202,14 +216,22 @@ export default function AboutPage() {
               <Calendar className="text-orange-400" size={24} />
               <h3 className="text-xl font-bold text-slate-100">My Journey</h3>
             </div>
-            <div className="relative border-l border-slate-700/50 ml-3 space-y-8">
+             <div className="relative border-l border-slate-700/50 ml-3 space-y-8">
+              <div className="relative pl-8">
+                <div className="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-4 ring-slate-900" />
+                <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mb-1">
+                  <span className="text-sm font-mono text-emerald-400">Jan 2026</span>
+                  <h4 className="text-lg font-semibold text-slate-200">Premium Enhancements</h4>
+                </div>
+                <p className="text-slate-400 text-sm">Enhanced 4+ visualizations with premium features: matrix views, LED displays, hex viewers, histograms, and interactive Pascal's triangles.</p>
+              </div>
               <div className="relative pl-8">
                 <div className="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-cyan-500 ring-4 ring-slate-900" />
                 <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mb-1">
-                  <span className="text-sm font-mono text-cyan-400">2024 - Present</span>
+                  <span className="text-sm font-mono text-cyan-400">2024 - 2025</span>
                   <h4 className="text-lg font-semibold text-slate-200">Building Rosetta Hub</h4>
                 </div>
-                <p className="text-slate-400 text-sm">Creating interactive visualizations for classic algorithms to help students learn better.</p>
+                <p className="text-slate-400 text-sm">Created 104 interactive visualizations for classic algorithms. Milestone: 100th visualization (Bifid Cipher) achieved.</p>
               </div>
               <div className="relative pl-8">
                 <div className="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-purple-500 ring-4 ring-slate-900" />
