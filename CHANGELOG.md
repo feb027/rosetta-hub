@@ -97,11 +97,6 @@ All notable changes to this project will be documented in this file.
   - Sound effects for calculation steps.
 
 ### Enhanced
-- **Enhanced Visualizations**: 4 Mathematical Algorithm Visualizations
-  - **Bin Given Limits**: Added histogram visualization with animated bars, pie chart toggle, statistics panel (mean, median, mode), data points preview with hover effects, and improved color schemes with gradients.
-  - **Binary Digits**: Added LED 7-segment style display, tabbed interface (Binary/Hex/Octal), bitwise operations calculator (AND, OR, XOR, NOT, shifts), interactive bit flipper, auto counter mode, and better animations.
-  - **Binary Strings**: Added memory dump view with offset addresses, string comparison tool with diff highlighting, search and replace functionality, detail view with byte breakdown, and ASCII table reference.
-  - **Binomial Transform**: Added matrix multiplication visualization showing b = M × a, interactive Pascal's triangle with hover effects and coefficient heatmap, step-by-step calculation breakdown, formula display, 2 new preset sequences (Powers of 2, Natural numbers), animated matrix operations, and enhanced sound effects.
 - **Enhanced Visualization**: "Bernoulli's Triangle"
   - Complete redesign with "Crystal Pyramid" theme featuring crystalline aesthetics.
   - Cell-by-cell animated generation with spring physics transitions.
