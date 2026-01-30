@@ -2,6 +2,104 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2025-01-30
+
+### Added
+- **New Problem**: "Bernstein Basis Polynomials"
+  - Added metadata and `BernsteinBasisPolynomialsVisualization` component.
+  - Implemented "Curve Sculptor" theme with interactive Bézier curve design.
+  - Dual-panel visualization: Bézier curve canvas + Bernstein basis polynomials graph.
+  - Draggable control points with real-time curve updates.
+  - 5 preset curve shapes: Wave, Loop, Arch, S-Curve, Heart.
+  - Animated parameter sweep (t: 0→1) with visual marker following curve.
+  - Color-coded basis polynomials with interactive legend.
+  - Partition of Unity panel showing real-time sum verification (Σ = 1.000000).
+  - Formula display with degree-aware notation.
+  - Sound effects: tick (sweep), point (preset), complete (finish), click, sweep, drag.
+  - Toggle visibility: basis curves and control polygon.
+  - Speed control for animation (0.25x - 3x).
+  - Manual t-value slider for precise exploration.
+  - Grid overlays on both canvases.
+  - Gradient Bézier curve with glow effect.
+  - Stats panel: degree, control points count, current t, curve coordinates.
+  - Keyboard shortcuts: Space (play), R (reset), B (basis), C (control), 1-5 (presets).
+  - Detailed info panel about Bernstein polynomials and their applications.
+  - Fixed canvas overflow with `overflow-hidden` and responsive `max-w-full` classes.
+  - Improved Heart preset with properly positioned control points for better heart shape.
+  - Fixed mouse cursor alignment with control points by adding coordinate scaling (canvas width/height vs display size).
+  - Preset selection now auto-adjusts degree to match the preset's natural shape.
+  - Heart preset now uses 7 control points (degree 6) for proper heart shape formation.
+- **New Problem**: "Best Shuffle"
+  - Added metadata and `BestShuffleVisualization` component.
+  - Implemented "Card Shuffler" theme with casino-style card animations.
+  - Two shuffle algorithms: Best (optimal) and Random (Fisher-Yates).
+  - Animated card shuffling with color-coded cards (green = moved, red badge = stayed).
+  - Score tracking showing number of fixed points (characters in original position).
+  - Perfect shuffle indicator (score = 0) with trophy animation.
+  - Test cases: tree, abracadabra, seesaw, elk, grrrrrr, up, a.
+  - Custom input support with 20 character limit.
+  - Shuffle history panel showing last 10 shuffles.
+  - Stats panel: length, fixed points, unique characters, success rate.
+  - Sound effects: shuffle, card flip, success (perfect), fail, click.
+  - Visual indicators: Original position numbers below each card.
+  - Educational info about derangements and perfect shuffles.
+- **🎉 MILESTONE: 100th Visualization - "Bifid Cipher"**
+  - Added metadata and `BifidCipherVisualization` component.
+  - Implemented "Spy/Secret Agent" theme with dark navy aesthetic.
+  - Special milestone celebration banner marking the 100th visualization.
+  - Encrypt and decrypt functionality with step-by-step visualization.
+  - Interactive 5×5 Polybius square display with hover effects.
+  - Custom keyword support to generate custom Polybius squares.
+  - 5 quick test messages: ATTACK, SECRET, HELLO, FELIX, SPY.
+  - Animated step-by-step process showing coordinate conversion.
+  - Visual breakdown of encryption phases:
+    - Step 1: Letter to coordinate conversion
+    - Step 2: Row and column combination
+    - Step 3: Pair splitting and final encryption
+  - Mission log showing last 5 encryption/decryption operations.
+  - Stats panel: input/output length, steps completed, status.
+  - Sound effects: key press, beep, success, click, tick.
+  - Monospace typography throughout for authentic spy terminal feel.
+  - Blinking status indicator and "CLASSIFIED" badges.
+  - Educational info about Félix Delastelle and cipher mechanics.
+
+### Enhanced
+- **Enhanced Visualization**: "Bernoulli's Triangle"
+  - Complete redesign with "Crystal Pyramid" theme featuring crystalline aesthetics.
+  - Cell-by-cell animated generation with spring physics transitions.
+  - Color-coded diagonals: violet (powers of 2), amber (Mersenne numbers), cyan (first column).
+  - Toggle overlay showing Pascal's triangle values for comparison.
+  - Crystal chime sound effects with harmonic chord progression.
+  - Special "power" sound for powers-of-2 diagonal cells.
+  - Interactive controls: build, step, reveal all, reset, speed slider.
+  - Row size selector (5-15 rows) with live preview.
+  - Properties panel explaining key mathematical relationships.
+  - Real-time row sum display showing 2ⁿ pattern.
+  - Legend for color coding interpretation.
+  - Hover tooltips showing B(n,k) values with Pascal comparison.
+  - Keyboard shortcuts: Space (play), A (reveal all), P (Pascal toggle), R (reset).
+  - Gradient glow effects during active building state.
+  - Stats panel: rows, cells revealed, current row sum, max value.
+  - Detailed info panel about Bernoulli's Triangle and Jacob Bernoulli.
+- **New Problem**: "Bernoulli Numbers"
+  - Added metadata and `BernoulliNumbersVisualization` component.
+  - Implemented "Fraction Factory" with industrial production line theme.
+  - Features Akiyama-Tanigawa algorithm visualization with working array.
+  - Exact fraction arithmetic using BigInt for numerator/denominator.
+  - Animated conveyor belt effect during computation.
+  - Working array A[] display showing intermediate calculations.
+  - Results table with index, fraction, and decimal approximation.
+  - Toggle to show/hide zero values (odd Bₙ except B₁ are zero).
+  - Configurable range from B₀ to B₆₀.
+  - Notable values quick reference panel.
+  - Step-by-step or compute-all execution modes.
+  - Progress bar with production line animation.
+  - Stats panel: target, computed, non-zero count, zero count.
+  - Factory pattern background with gear animations.
+  - Sound effects for tick, produce, complete, gear, and zero.
+  - Keyboard shortcuts: Space (play/pause), A (all), Z (zeros), R (reset).
+
+
 ## [Unreleased] - 2025-11-30
 
 ### Added
@@ -926,7 +1024,6 @@ All notable changes to this project will be documented in this file.
 - **Bug**: Resolved `iconData is undefined` error by ensuring all tags have corresponding icons.
 - **Bug**: Fixed variable name conflict (`memo` vs `React.memo`) in `NineBillionNamesVisualization`.
 - **Bug**: Fixed "Showing X of Y" text on Home Page to correctly reflect paginated range.
-
 
 
 

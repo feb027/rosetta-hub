@@ -99,7 +99,11 @@ import SimpleMovingAverageVisualization from '../components/visualizations/Simpl
 import BellNumbersVisualization from '../components/visualizations/BellNumbersVisualization';
 import BenfordsLawVisualization from '../components/visualizations/BenfordsLawVisualization';
 import BerlekampMasseyVisualization from '../components/visualizations/BerlekampMasseyVisualization';
+import BernoullisTriangleVisualization from '../components/visualizations/BernoullisTriangleVisualization';
 import BernoulliNumbersVisualization from '../components/visualizations/BernoulliNumbersVisualization';
+import BernsteinBasisPolynomialsVisualization from '../components/visualizations/BernsteinBasisPolynomialsVisualization';
+import BestShuffleVisualization from '../components/visualizations/BestShuffleVisualization';
+import BifidCipherVisualization from '../components/visualizations/BifidCipherVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -208,7 +212,11 @@ export default function ProblemDetailPage() {
     'bell-numbers': <BellNumbersVisualization />,
     'benfords-law': <BenfordsLawVisualization />,
     'berlekamp-massey': <BerlekampMasseyVisualization />,
+    'bernoullis-triangle': <BernoullisTriangleVisualization />,
     'bernoulli-numbers': <BernoulliNumbersVisualization />,
+    'bernstein-basis-polynomials': <BernsteinBasisPolynomialsVisualization />,
+    'best-shuffle': <BestShuffleVisualization />,
+    'bifid-cipher': <BifidCipherVisualization />,
   };
   
   // Find the problem by slug

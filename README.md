@@ -4,7 +4,7 @@
 
 **Rosetta Code Hub** is an ambitious portfolio project transforming classic programming problems from [Rosetta Code](https://rosettacode.org/) into stunning, interactive visualizations. Learn algorithms, data structures, and computational thinking through immersive visual demonstrations.
 
-> 🚧 **Project Status**: Actively in development | **Progress**: 50+ visualizations completed | **Goal**: 1000+ problems from Rosetta Code
+> 🚧 **Project Status**: Actively in development | **Progress**: 100 visualizations completed 🎉 | **Goal**: 1000+ problems from Rosetta Code
 
 [Documentation](#dokumentasi) • [Roadmap](#roadmap) • [Featured Visualizations](#-featured-visualizations)
 
@@ -13,7 +13,7 @@
 ## ✨ Fitur Utama
 
 ### 🎯 Interactive Visual Learning
-- **50+ Programming Problems** visualized (and counting!)
+- **100 Programming Problems** visualized! 🎉
 - Each visualization is unique and hand-crafted with care
 - Real-time animations showcasing algorithm execution step-by-step
 - Beautiful UI with smooth transitions and micro-interactions
@@ -26,11 +26,12 @@
 - Custom animations with Motion (Framer Motion successor)
 
 ### 🧩 Diverse Problem Categories
-- **Mathematical Puzzles**: 9 Billion Names of God, Achilles Numbers, Almkvist-Giullera Formula
+- **Mathematical Puzzles**: 9 Billion Names of God, Achilles Numbers, Almkvist-Giullera Formula, Bernstein Basis Polynomials
 - **Game Simulations**: 15 Puzzle, 21 Game, 24 Game, 100 Prisoners Problem
 - **Cellular Automata**: Abelian Sandpile Model with neon toppling effects
-- **String Processing**: Anagrams, Anadromes, Abbreviations
-- **Algorithm Visualization**: Binary Search, ABC Correlation, Aliquot Sequences
+- **String Processing**: Anagrams, Anadromes, Abbreviations, Best Shuffle
+- **Algorithm Visualization**: Binary Search, ABC Correlation, Aliquot Sequences, Bifid Cipher
+- **Cryptography**: Bifid Cipher with Spy/Secret Agent theme, ADFGVX Cipher
 
 ### 🚀 Performance-First Architecture
 - **Code Splitting** with lazy-loaded routes and components
