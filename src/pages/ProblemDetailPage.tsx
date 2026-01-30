@@ -104,6 +104,10 @@ import BernoulliNumbersVisualization from '../components/visualizations/Bernoull
 import BernsteinBasisPolynomialsVisualization from '../components/visualizations/BernsteinBasisPolynomialsVisualization';
 import BestShuffleVisualization from '../components/visualizations/BestShuffleVisualization';
 import BifidCipherVisualization from '../components/visualizations/BifidCipherVisualization';
+import BinGivenLimitsVisualization from '../components/visualizations/BinGivenLimitsVisualization';
+import BinaryDigitsVisualization from '../components/visualizations/BinaryDigitsVisualization';
+import BinaryStringsVisualization from '../components/visualizations/BinaryStringsVisualization';
+import BinomialTransformVisualization from '../components/visualizations/BinomialTransformVisualization';
 
 export default function ProblemDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -217,6 +221,10 @@ export default function ProblemDetailPage() {
     'bernstein-basis-polynomials': <BernsteinBasisPolynomialsVisualization />,
     'best-shuffle': <BestShuffleVisualization />,
     'bifid-cipher': <BifidCipherVisualization />,
+    'bin-given-limits': <BinGivenLimitsVisualization />,
+    'binary-digits': <BinaryDigitsVisualization />,
+    'binary-strings': <BinaryStringsVisualization />,
+    'binomial-transform': <BinomialTransformVisualization />,
   };
   
   // Find the problem by slug

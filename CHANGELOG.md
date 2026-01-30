@@ -62,6 +62,39 @@ All notable changes to this project will be documented in this file.
   - Monospace typography throughout for authentic spy terminal feel.
   - Blinking status indicator and "CLASSIFIED" badges.
   - Educational info about Félix Delastelle and cipher mechanics.
+- **New Problem**: "Bin Given Limits"
+  - Added metadata and `BinGivenLimitsVisualization` component.
+  - Implemented "Data Analysis" theme with amber/orange histogram styling.
+  - Interactive binning algorithm with ascending limits and data distribution.
+  - Visual bar chart showing count distribution across bins.
+  - Animated bars growing when data is processed.
+  - Color-coded bins for easy visual differentiation.
+  - Stats showing total items and distribution summary.
+  - Sound effects for binning process.
+- **New Problem**: "Binary Digits"
+  - Added metadata and `BinaryDigitsVisualization` component.
+  - Implemented "Digital Matrix" theme with green emerald styling.
+  - Decimal to binary conversion with step-by-step visualization.
+  - Bit breakdown showing each bit's value (2^n).
+  - Animated bit appearance during conversion.
+  - Copy binary result functionality.
+  - Test values: 5, 50, 9000, 255, 1024.
+- **New Problem**: "Binary Strings"
+  - Added metadata and `BinaryStringsVisualization` component.
+  - Implemented "Hex Viewer" theme with cyan memory-debug styling.
+  - Byte string operations: add, clone, remove, join.
+  - Visual hex and ASCII representation of strings.
+  - Detailed view showing hex and binary breakdown.
+  - Interactive string list management.
+  - Sound effects for operations.
+- **New Problem**: "Binomial Transform"
+  - Added metadata and `BinomialTransformVisualization` component.
+  - Implemented "Mathematical" theme with purple Pascal's triangle styling.
+  - Forward and inverse binomial transform operations.
+  - Visual Pascal's triangle display.
+  - Preset sequences: Catalan numbers, Prime flip-flop, Fibonacci.
+  - Animated calculation showing transform process.
+  - Sound effects for calculation steps.
 
 ### Enhanced
 - **Enhanced Visualization**: "Bernoulli's Triangle"
